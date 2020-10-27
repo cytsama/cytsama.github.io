@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2020/10/25/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>我的第一篇blog</title>
     <url>/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87blog/</url>
     <content><![CDATA[<p>hexo博客安装的简要笔记</p>
@@ -22,42 +42,25 @@ deploy:
 ]]></content>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/10/25/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>hexo主题next7.8博客美化</title>
     <url>/2020/10/26/next7.8%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<p>hexo 主题 next7.8 版本配置美化<br>网上next主题的配置大多为next5.+或next6.+，在最新版本中对之前的版本进行了高度的插件化，许多功能都集成在主题配置文件中，同时之前自定义样式配置文件的路径也有所改变，针对于此写下自己的配置记录</p>
 <a id="more"></a>
 
-<p><br>设置博主文字描述和中文语言<br>站点配置文件修改site<br>设置next主题和主题样式<br>设置首页不显示全文<br>设置博客文章持久化连接<br>安装hexo-abbrlink这个插件<br>站点配置文件修改permalink添加如下内容<br>Menu增加关于、标签、分类页面<br>站点配置文件修改menu<br>新建相关页面<br>修改生成页面的配置<br>添加搜索功能<br>安装exo-generator-searchdb这个插件<br>站点配置文件添加并修改local_search<br>设置背景图片和透明度<br>修改主题配置文件中的custom_file_path<br>在博客主站目录下的source文件夹下新建_data文件夹并添加styles.styl文件<br>在styles.styl中添加如下内容<br>设置canvas_ribbon动态背景<br>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下<br>编辑主题配置文件，启用 canvas_ribbon 模块，如下：<br>设置左上角或右上角 github 图标<br>设置侧栏阅读进度百分比<br>设置阅读位置标记功能<br>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下：<br>编辑主题配置文件，启用 bookmark 模块，如下：<br>设置字数统计和预计阅读时间<br>进入到博客主站目录下，安装 Hexo 插件：<br>编辑站点配置文件，添加如下内容：<br>此插件集成在 NexT 主题中，在 Hexo 站点配置文件中启用插件后，你可以调整 NexT 配置中的选项，查看主题配置文件，配置如下：<br>添加文章分享按钮<br>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下：<br>编辑主题配置文件，添加 needmoreshare2 模块，如下：<br>设置网页底部信息<br>网站底部添加网站运行时间<br>修改主题下layout_partials\footer.swig，并添加内容如下：<br>添加自定义404页面<br>添加图片放大预览功能<br>图片懒加载设置<br>点击出现桃心效果(可选)<br>在主题/source/js/下新建文件 clicklove.js，添加内容如下<br>修改_layout.swig<br>主页文章添加置顶图标(可选)<br>标签云特效（可选）<br>主页文章添加阴影效果<br>设置代码块复制和代码高亮<br>网站侧栏背景及主副标题颜色<br>修改文章内链接文本样式<br>修改文章底部标签样式<br>在文章末尾添加“文章结束”标记<br>修改分类页面样式<br>设置头像<br>网站底部加上访问量<br>修改不蒜子颜色<br>网站底部添加动态桃心<br>网站底部添加备案信息(可选)<br>侧边栏社交链接<br>添加侧栏友情链接<br>在文章底部增加版权信息<br>关于页面样式的修改,回顶部按钮样式、底部页码等等<br>设置博主文字描述和中文语言</p>
-<ul>
-<li>站点配置文件修改site</li>
-<li> title: Kali<br> subtitle: sakura的blog<br> description: 这个世界很温柔，但它不喜欢我。<br> keywords:<br> author: KaliAlbert<br> language: zh-CN<br> timezone: Asia/Shanghai</li>
+
+<h1 id="设置博主文字描述和中文语言"><a href="#设置博主文字描述和中文语言" class="headerlink" title="设置博主文字描述和中文语言"></a>设置博主文字描述和中文语言</h1><ul>
+<li><h1 id="站点配置文件修改site"><a href="#站点配置文件修改site" class="headerlink" title="站点配置文件修改site"></a>站点配置文件修改site</h1></li>
+<li><p> title: Kali<br> subtitle: sakura的blog<br> description: 这个世界很温柔，但它不喜欢我。<br> keywords:<br> author: KaliAlbert<br> language: zh-CN<br> timezone: Asia/Shanghai</p>
+</li>
+<li><h1 id="设置next主题和主题样式"><a href="#设置next主题和主题样式" class="headerlink" title="设置next主题和主题样式"></a>设置next主题和主题样式</h1></li>
+<li><h1 id="站点配置文件"><a href="#站点配置文件" class="headerlink" title="站点配置文件"></a>站点配置文件</h1><pre><code> theme: next</code></pre>
+</li>
 </ul>
-<p>设置next主题和主题样式<br>站点配置文件</p>
-<p>theme: next</p>
-<p>主题配置文件</p>
-<p>#Schemes<br>#scheme: Muse<br>#scheme: Mist<br>#scheme: Pisces<br>scheme: Gemini</p>
-<p>设置首页不显示全文<br>主题配置文件修改：</p>
-<p>excerpt accurately.<br>auto_excerpt:<br>enable: true<br>length: 150</p>
+<h1 id="主题配置文件"><a href="#主题配置文件" class="headerlink" title="主题配置文件"></a>主题配置文件</h1><p>#Schemes<br>#scheme: Muse<br>#scheme: Mist<br>#scheme: Pisces<br>scheme: Gemini</p>
+<h1 id="设置首页不显示全文"><a href="#设置首页不显示全文" class="headerlink" title="设置首页不显示全文"></a>设置首页不显示全文</h1><h1 id="主题配置文件修改："><a href="#主题配置文件修改：" class="headerlink" title="主题配置文件修改："></a>主题配置文件修改：</h1><pre><code>    excerpt accurately.
+    auto_excerpt:
+    enable: true
+    length: 150</code></pre>
 <p>设置博客文章持久化连接<br>安装hexo-abbrlink这个插件<br>npm install hexo-abbrlink –save</p>
 <p>站点配置文件修改permalink添加如下内容<br>permalink: post/:abbrlink.html<br>abbrlink:<br>  alg: crc32<br>  rep: hex    </p>
 <p>Menu增加关于、标签、分类页面<br>站点配置文件修改menu<br>将about、tags、categories前的#号去掉,示例如下：</p>
@@ -88,8 +91,9 @@ deploy:
 <p>此插件集成在 NexT 主题中，在 Hexo 站点配置文件中启用插件后，你可以调整 NexT 配置中的选项，查看主题配置文件，配置如下：<br>symbols_count_time:<br>  separated_meta: true<br>  item_text_post: true<br>  item_text_total: true<br>  awl: 2<br>  wpm: 275</p>
 <p>添加文章分享按钮<br>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下：<br>git clone <a href="https://github.com/theme-next/theme-next-needmoreshare2">https://github.com/theme-next/theme-next-needmoreshare2</a> source/lib/needsharebutton<br>1<br>编辑主题配置文件，添加 needmoreshare2 模块，如下：<br>needmoreshare2:<br>  enable: true<br>  postbottom:<br>    enable: true<br>    options:<br>      iconStyle: default<br>      boxForm: horizontal<br>      position: bottomCenter<br>      networks: Weibo,Wechat,Douban,QQZone<br>  float:<br>    enable: false<br>    options:<br>      iconStyle: default<br>      boxForm: horizontal<br>      position: middleRight<br>      networks: Weibo,Wechat,Douban,QQZone</p>
 <p>设置网页底部信息<br>查看主题配置文件，修改 footer 配置如下：</p>
-<p>zixingguankan<br>1<br>网站底部添加网站运行时间<br>修改主题下layout_partials\footer.swig，并添加内容如下：<br>    <!-- 网站运行时间的设置 --><br>    <span id="timeDate">载入天数…</span><br>    <span id="times">载入时分秒…</span>  Sometimes your whole life boils down to one insame move.<br>    <script><br>        var now = new Date();<br>        function createtime() {<br>            var grt= new Date("01/05/2020 00:00:00");//此处修改你的建站时间或者网站上线时间<br>            now.setTime(now.getTime()+250);<br>            days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);<br>            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);<br>            if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);<br>            mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}<br>            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);<br>            snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}<br>            document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";<br>            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";<br>    }<br>    setInterval("createtime()",250);<br>    </script></p>
-<p>添加自定义404页面<br>hexo new page 404<br>1<br>编辑新建的页面文件，默认在站点根目录下 /source/404/index.md，在 front-matter 中添加 permalink: /404，表示指定该页面固定链接为 http://“主页”/404.html</p>
+<p>zixingguankan</p>
+<h1 id="网站底部添加网站运行时间"><a href="#网站底部添加网站运行时间" class="headerlink" title="网站底部添加网站运行时间"></a>网站底部添加网站运行时间</h1><p>修改主题下layout_partials\footer.swig，并添加内容如下：<br>    <!-- 网站运行时间的设置 --><br>    <span id="timeDate">载入天数…</span><br>    <span id="times">载入时分秒…</span>  Sometimes your whole life boils down to one insame move.<br>    <script><br>        var now = new Date();<br>        function createtime() {<br>            var grt= new Date("01/01/2020 00:00:00");//此处修改你的建站时间或者网站上线时间<br>            now.setTime(now.getTime()+250);<br>            days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);<br>            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);<br>            if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);<br>            mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}<br>            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);<br>            snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}<br>            document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";<br>            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";<br>    }<br>    setInterval("createtime()",250);<br>    </script></p>
+<h1 id="添加自定义404页面"><a href="#添加自定义404页面" class="headerlink" title="添加自定义404页面"></a>添加自定义404页面</h1><p>hexo new page 404<br>1<br>编辑新建的页面文件，默认在站点根目录下 /source/404/index.md，在 front-matter 中添加 permalink: /404，表示指定该页面固定链接为 http://“主页”/404.html</p>
 <pre><code>---
 title: 404
 comments: false
@@ -122,9 +126,8 @@ permalink: /404
         </div>
     </div>
     &#123;% endif %&#125;</code></pre>
-<p>在主站配置文加下添加内容如下</p>
-<h1 id="hexo-tag-cloud"><a href="#hexo-tag-cloud" class="headerlink" title="hexo-tag-cloud"></a>hexo-tag-cloud</h1><p>tag_cloud:<br>    textFont: Trebuchet MS, Helvetica<br>    textColor: ‘#333’<br>    textHeight: 25<br>    outlineColor: ‘#E2E1D1’<br>    maxSpeed: 0.1 </p>
-<p>主页文章添加阴影效果<br>在source/_data/styles.styl中添加内容如下</p>
+<h1 id="在主站配置文加下添加内容如下"><a href="#在主站配置文加下添加内容如下" class="headerlink" title="在主站配置文加下添加内容如下"></a>在主站配置文加下添加内容如下</h1><p> #hexo-tag-cloud<br>tag_cloud:<br>    textFont: Trebuchet MS, Helvetica<br>    textColor: ‘#333’<br>    textHeight: 25<br>    outlineColor: ‘#E2E1D1’<br>    maxSpeed: 0.1 </p>
+<h1 id="主页文章添加阴影效果"><a href="#主页文章添加阴影效果" class="headerlink" title="主页文章添加阴影效果"></a>主页文章添加阴影效果</h1><p>在source/_data/styles.styl中添加内容如下</p>
 <p>.post {<br>   margin-top: 60px;<br>   margin-bottom: 60px;<br>   padding: 25px;<br>   -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);<br>   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);<br>}</p>
 <p>设置代码块复制和代码高亮<br>在主题配置文件中修改codeblock</p>
 <p>codeblock:<br>  highlight_theme: normal<br>  copy_button:<br>    enable: true<br>    show_result: true<br>    style:</p>
@@ -157,7 +160,7 @@ permalink: /404
     &lt;a target=&quot;_blank&quot; href=&quot;http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42090202000295&quot; style=&quot;text-decoration:none;color:#4dfc23;padding-left:30px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center&quot; rel=&quot;nofollow&quot;&gt;&#123;&#123; __('鄂公网安备 42090202000295') &#125;&#125;&lt;/a&gt;    &lt;!--这里将图标作为了背景，以使得能和后面的文字在同一行--&gt;
 &lt;/div&gt;</code></pre>
 <p>侧边栏社交链接<br>修改主题配置文件</p>
-<p>social:<br>  GitHub: <a href="https://github.com/KaliAlbert">https://github.com/KaliAlbert</a> || fab fa-github<br>  E-Mail: <a href="mailto:&#49;&#x37;&#50;&#x34;&#x36;&#x38;&#49;&#x30;&#x33;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#x6d;">&#49;&#x37;&#50;&#x34;&#x36;&#x38;&#49;&#x30;&#x33;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#x6d;</a> || fa fa-envelope<br>  Bili: <a href="https://space.bilibili.com/15071276">https://space.bilibili.com/15071276</a> || fa fa-tv</p>
+<p>social:<br>  GitHub: <a href="https://github.com/KaliAlbert">https://github.com/KaliAlbert</a> || fab fa-github<br>  E-Mail: <a href="mailto:&#x31;&#x37;&#50;&#x34;&#x36;&#56;&#49;&#48;&#51;&#64;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;">&#x31;&#x37;&#50;&#x34;&#x36;&#56;&#49;&#48;&#51;&#64;&#113;&#113;&#46;&#x63;&#x6f;&#x6d;</a> || fa fa-envelope<br>  Bili: <a href="https://space.bilibili.com/15071276">https://space.bilibili.com/15071276</a> || fa fa-tv</p>
 <p>添加侧栏友情链接<br>在主题配置文件中修改Blog rolls</p>
 <p>links_settings:<br>  icon: fa fa-link<br>  title: Friend Links<br>  layout: inline</p>
 <p>links:<br>  V2EX: <a href="https://www.v2ex.com/">https://www.v2ex.com/</a><br>  #Title: <a href="http://yoursite.com/">http://yoursite.com</a></p>
