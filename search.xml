@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>我的第一篇blog</title>
+    <url>/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87blog/</url>
+    <content><![CDATA[<p>hexo博客安装的简要笔记</p>
+<a id="more"></a>
+
+<h2 id="调皮-学习笔记！"><a href="#调皮-学习笔记！" class="headerlink" title="[调皮]学习笔记！"></a>[调皮]学习笔记！</h2><h2 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="#安装Nodejs"></a>#安装Nodejs</h2><p>node -v    #查看node版本<br>npm -v    #查看npm版本<br>npm install -g cnpm –registry=<a href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a>    #安装淘宝的cnpm 管理器<br>cnpm -v    #查看cnpm版本<br>cnpm install -g hexo-cli    #安装hexo框架<br>hexo -v    #查看hexo版本<br>mkdir blog    #创建blog目录<br>cd blog     #进入blog目录<br>sudo hexo init     #生成博客 初始化博客<br>hexo s    #启动本地博客服务<br><a href="http://localhost:4000/">http://localhost:4000/</a>    #本地访问地址<br>hexo n “我的第一篇文章” #创建新的文章<br>#返回blog目录<br>hexo clean #清理<br>hexo g #生成<br>#Github创建一个新的仓库 YourGithubName.github.io<br>cnpm install –save hexo-deployer-git #在blog目录下安装git部署插件</p>
+<hr>
+<h2 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="#配置_config.yml "></a>#配置_config.yml </h2><pre><code># Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+      type: git
+     repo: https://github.com/YourGithubName/YourGithubName.github.io.git
+      branch: master</code></pre>
+<hr>
+<p>hexo d    #部署到Github仓库里<br><a href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #访问这个地址可以查看博客</p>
+<p> git clone <a href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia  #下载yilia主题到本地</p>
+<p>#修改hexo根目录下的 _config.yml 文件 ：<br> theme: yilia</p>
+<p>hexo c    #清理一下<br>hexo g    #生成<br>hexo d    #部署到远程Github仓库<br><a href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #查看博客</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2020/10/25/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<a id="more"></a>
+
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -19,21 +42,142 @@
 ]]></content>
   </entry>
   <entry>
-    <title>我的第一篇blog</title>
-    <url>/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87blog/</url>
-    <content><![CDATA[<p>[调皮]学习笔记！<br>—    #安装Nodejs<br>node -v    #查看node版本<br>npm -v    #查看npm版本<br>npm install -g cnpm –registry=<a href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a>    #安装淘宝的cnpm 管理器<br>cnpm -v    #查看cnpm版本<br>cnpm install -g hexo-cli    #安装hexo框架<br>hexo -v    #查看hexo版本<br>mkdir blog    #创建blog目录<br>cd blog     #进入blog目录<br>sudo hexo init     #生成博客 初始化博客<br>hexo s    #启动本地博客服务<br><a href="http://localhost:4000/">http://localhost:4000/</a>    #本地访问地址<br>hexo n “我的第一篇文章” #创建新的文章<br>#返回blog目录<br>hexo clean #清理<br>hexo g #生成<br>#Github创建一个新的仓库 YourGithubName.github.io<br>cnpm install –save hexo-deployer-git #在blog目录下安装git部署插件</p>
+    <title>hexo主题next7.8博客美化</title>
+    <url>/2020/10/26/next7.8%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BE%8E%E5%8C%96/</url>
+    <content><![CDATA[<p>hexo 主题 next7.8 版本配置美化<br>网上next主题的配置大多为next5.+或next6.+，在最新版本中对之前的版本进行了高度的插件化，许多功能都集成在主题配置文件中，同时之前自定义样式配置文件的路径也有所改变，针对于此写下自己的配置记录</p>
+<a id="more"></a>
+
+<p><br>设置博主文字描述和中文语言<br>站点配置文件修改site<br>设置next主题和主题样式<br>设置首页不显示全文<br>设置博客文章持久化连接<br>安装hexo-abbrlink这个插件<br>站点配置文件修改permalink添加如下内容<br>Menu增加关于、标签、分类页面<br>站点配置文件修改menu<br>新建相关页面<br>修改生成页面的配置<br>添加搜索功能<br>安装exo-generator-searchdb这个插件<br>站点配置文件添加并修改local_search<br>设置背景图片和透明度<br>修改主题配置文件中的custom_file_path<br>在博客主站目录下的source文件夹下新建_data文件夹并添加styles.styl文件<br>在styles.styl中添加如下内容<br>设置canvas_ribbon动态背景<br>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下<br>编辑主题配置文件，启用 canvas_ribbon 模块，如下：<br>设置左上角或右上角 github 图标<br>设置侧栏阅读进度百分比<br>设置阅读位置标记功能<br>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下：<br>编辑主题配置文件，启用 bookmark 模块，如下：<br>设置字数统计和预计阅读时间<br>进入到博客主站目录下，安装 Hexo 插件：<br>编辑站点配置文件，添加如下内容：<br>此插件集成在 NexT 主题中，在 Hexo 站点配置文件中启用插件后，你可以调整 NexT 配置中的选项，查看主题配置文件，配置如下：<br>添加文章分享按钮<br>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下：<br>编辑主题配置文件，添加 needmoreshare2 模块，如下：<br>设置网页底部信息<br>网站底部添加网站运行时间<br>修改主题下layout_partials\footer.swig，并添加内容如下：<br>添加自定义404页面<br>添加图片放大预览功能<br>图片懒加载设置<br>点击出现桃心效果(可选)<br>在主题/source/js/下新建文件 clicklove.js，添加内容如下<br>修改_layout.swig<br>主页文章添加置顶图标(可选)<br>标签云特效（可选）<br>主页文章添加阴影效果<br>设置代码块复制和代码高亮<br>网站侧栏背景及主副标题颜色<br>修改文章内链接文本样式<br>修改文章底部标签样式<br>在文章末尾添加“文章结束”标记<br>修改分类页面样式<br>设置头像<br>网站底部加上访问量<br>修改不蒜子颜色<br>网站底部添加动态桃心<br>网站底部添加备案信息(可选)<br>侧边栏社交链接<br>添加侧栏友情链接<br>在文章底部增加版权信息<br>关于页面样式的修改,回顶部按钮样式、底部页码等等<br>设置博主文字描述和中文语言</p>
+<ul>
+<li>站点配置文件修改site</li>
+<li> title: Kali<br> subtitle: sakura的blog<br> description: 这个世界很温柔，但它不喜欢我。<br> keywords:<br> author: KaliAlbert<br> language: zh-CN<br> timezone: Asia/Shanghai</li>
+</ul>
+<p>设置next主题和主题样式<br>站点配置文件</p>
+<p>theme: next</p>
+<p>主题配置文件</p>
+<p>#Schemes<br>#scheme: Muse<br>#scheme: Mist<br>#scheme: Pisces<br>scheme: Gemini</p>
+<p>设置首页不显示全文<br>主题配置文件修改：</p>
+<p>excerpt accurately.<br>auto_excerpt:<br>enable: true<br>length: 150</p>
+<p>设置博客文章持久化连接<br>安装hexo-abbrlink这个插件<br>npm install hexo-abbrlink –save</p>
+<p>站点配置文件修改permalink添加如下内容<br>permalink: post/:abbrlink.html<br>abbrlink:<br>  alg: crc32<br>  rep: hex    </p>
+<p>Menu增加关于、标签、分类页面<br>站点配置文件修改menu<br>将about、tags、categories前的#号去掉,示例如下：</p>
+<p>menu:<br>  home: / || fa fa-home<br>  about: /about/ || fa fa-user<br>  tags: /tags/ || fa fa-tags<br>  categories: /categories/ || fa fa-th</p>
+<p>新建相关页面<br>hexo new page “about”<br>hexo new page “tags”<br>hexo new page “categories”</p>
+<p>修改生成页面的配置<br>source\about\index.md<br>source\tags\index.md<br>source\categories\index.md</p>
 <hr>
-<h2 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="#配置_config.yml "></a>#配置_config.yml </h2><pre><code># Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-      type: git
-     repo: https://github.com/YourGithubName/YourGithubName.github.io.git
-      branch: master</code></pre>
+<p>title: 关于<br>type: “about”</p>
 <hr>
-<p>hexo d    #部署到Github仓库里<br><a href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #访问这个地址可以查看博客</p>
-<p> git clone <a href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia  #下载yilia主题到本地</p>
-<p>#修改hexo根目录下的 _config.yml 文件 ： theme: yilia</p>
-<p>hexo c    #清理一下<br>hexo g    #生成<br>hexo d    #部署到远程Github仓库<br><a href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #查看博客</p>
+<hr>
+<p>title: 标签<br>type: “tags”</p>
+<hr>
+<hr>
+<p>title: 分类<br>type: “categories”</p>
+<hr>
+<p>添加搜索功能<br>安装exo-generator-searchdb这个插件<br>npm install hexo-generator-searchdb –save<br>1<br>站点配置文件添加并修改local_search<br>search:<br>  path: search.xml<br>  field: post<br>  format: html<br>  limit: 10000<br>local_search:<br>  enable: true</p>
+<p>设置背景图片和透明度<br>修改主题配置文件中的custom_file_path<br>custom_file_path:<br>  #head: source/_data/head.swig<br>  #header: source/_data/header.swig<br>  #sidebar: source/_data/sidebar.swig<br>  #postMeta: source/_data/post-meta.swig<br>  #postBodyEnd: source/_data/post-body-end.swig<br>  #footer: source/_data/footer.swig<br>  #bodyEnd: source/_data/body-end.swig<br>  #variable: source/_data/variables.styl<br>  #mixin: source/_data/mixins.styl<br>  style: source/_data/styles.styl</p>
+<p>在博客主站目录下的source文件夹下新建_data文件夹并添加styles.styl文件<br>在styles.styl中添加如下内容<br>url中可以添加本地图片资源<br>在next主题的source中新建assets目录图片资源放在其中</p>
+<p>body {<br>    background:url(/assets/background.jpg);<br>    background-repeat: no-repeat;<br>    background-attachment:fixed;<br>    background-position:50% 50%;<br>    opacity: 0.8;<br>    //可选<br>    +mobile(){<br>      //background-position: 0% -20%;<a href="https://i.loli.net/2018/12/29/5c270a0523154.jpg">https://i.loli.net/2018/12/29/5c270a0523154.jpg</a><br>      //<a href="https://i.loli.net/2018/12/29/5c270fc2bfcad.png">https://i.loli.net/2018/12/29/5c270fc2bfcad.png</a><br>      background-image: url(<a href="https://ziyuan.lruihao.cn/images/bg_cell.png">https://ziyuan.lruihao.cn/images/bg_cell.png</a>);<br>      background-size: cover;<br>    }<br>}</p>
+<p>设置canvas_ribbon动态背景<br>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下<br>git clone <a href="https://github.com/theme-next/theme-next-canvas-ribbon">https://github.com/theme-next/theme-next-canvas-ribbon</a> source/lib/canvas-ribbon<br>1<br>编辑主题配置文件，启用 canvas_ribbon 模块，如下：<br>canvas_ribbon:<br>  enable: true<br>  size: 300<br>  alpha: 0.6<br>  zIndex: -1</p>
+<p>设置左上角或右上角 github 图标<br>主题配置文件，启用 github-banner 如下：</p>
+<p>github_banner:<br>  enable: true<br>  permalink: <a href="https://https//github.com/KaliAlbert">https://https://github.com/KaliAlbert</a><br>  title: Follow me on GitHub</p>
+<p>设置侧栏阅读进度百分比<br>编辑站点配置文件，修改 back2top 部分如下</p>
+<p>back2top:<br>  enable: true<br>  sidebar: true<br>  scrollpercent: true</p>
+<p>设置阅读位置标记功能<br>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下：<br>git clone <a href="https://github.com/theme-next/theme-next-bookmark.git">https://github.com/theme-next/theme-next-bookmark.git</a> source/lib/bookmark</p>
+<p>编辑主题配置文件，启用 bookmark 模块，如下：<br>bookmark:<br>  enable: true<br>  save: auto</p>
+<p>设置字数统计和预计阅读时间<br>进入到博客主站目录下，安装 Hexo 插件：<br>npm install hexo-symbols-count-time –save<br>1<br>编辑站点配置文件，添加如下内容：<br>symbols_count_time:<br>  symbols: true<br>  time: true<br>  total_symbols: true<br>  total_time: true </p>
+<p>此插件集成在 NexT 主题中，在 Hexo 站点配置文件中启用插件后，你可以调整 NexT 配置中的选项，查看主题配置文件，配置如下：<br>symbols_count_time:<br>  separated_meta: true<br>  item_text_post: true<br>  item_text_total: true<br>  awl: 2<br>  wpm: 275</p>
+<p>添加文章分享按钮<br>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下：<br>git clone <a href="https://github.com/theme-next/theme-next-needmoreshare2">https://github.com/theme-next/theme-next-needmoreshare2</a> source/lib/needsharebutton<br>1<br>编辑主题配置文件，添加 needmoreshare2 模块，如下：<br>needmoreshare2:<br>  enable: true<br>  postbottom:<br>    enable: true<br>    options:<br>      iconStyle: default<br>      boxForm: horizontal<br>      position: bottomCenter<br>      networks: Weibo,Wechat,Douban,QQZone<br>  float:<br>    enable: false<br>    options:<br>      iconStyle: default<br>      boxForm: horizontal<br>      position: middleRight<br>      networks: Weibo,Wechat,Douban,QQZone</p>
+<p>设置网页底部信息<br>查看主题配置文件，修改 footer 配置如下：</p>
+<p>zixingguankan<br>1<br>网站底部添加网站运行时间<br>修改主题下layout_partials\footer.swig，并添加内容如下：<br>    <!-- 网站运行时间的设置 --><br>    <span id="timeDate">载入天数…</span><br>    <span id="times">载入时分秒…</span>  Sometimes your whole life boils down to one insame move.<br>    <script><br>        var now = new Date();<br>        function createtime() {<br>            var grt= new Date("01/05/2020 00:00:00");//此处修改你的建站时间或者网站上线时间<br>            now.setTime(now.getTime()+250);<br>            days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);<br>            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);<br>            if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);<br>            mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}<br>            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);<br>            snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}<br>            document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";<br>            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";<br>    }<br>    setInterval("createtime()",250);<br>    </script></p>
+<p>添加自定义404页面<br>hexo new page 404<br>1<br>编辑新建的页面文件，默认在站点根目录下 /source/404/index.md，在 front-matter 中添加 permalink: /404，表示指定该页面固定链接为 http://“主页”/404.html</p>
+<pre><code>---
+title: 404
+comments: false
+permalink: /404
+---
+
+&lt;center&gt;404 Not Found
+对不起，您所访问的页面不存在或者已删除
+[点击此处](https://kalialbert.github.io/)返回首页
+&lt;/center&gt;
+
+* 我的Github：[https://kalialbert.github.io/](https://kalialbert.github.io/)</code></pre>
+<p>添加图片放大预览功能<br>在主题配置文件，启用 fancybox，修改配置如下：</p>
+<p>fancybox: true<br>1<br>图片懒加载设置<br>在主题配置文件中启用lazyload</p>
+<p>lazyload: true<br>1<br>点击出现桃心效果(可选)<br>在主题/source/js/下新建文件 clicklove.js，添加内容如下<br>    !function(e,t,a){function n(){c(“.heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: ‘’;width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}”),o(),r()}function r(){for(var e=0;e&lt;d.length;e++)d[e].alpha&lt;=0?(t.body.removeChild(d[e].el),d.splice(e,1)):(d[e].y–,d[e].scale+=.004,d[e].alpha-=.013,d[e].el.style.cssText=”left:”+d[e].x+”px;top:”+d[e].y+”px;opacity:”+d[e].alpha+”;transform:scale(“+d[e].scale+”,”+d[e].scale+”) rotate(45deg);background:”+d[e].color+”;z-index:99999”);requestAnimationFrame(r)}function o(){var t=”function”==typeof e.onclick&amp;&amp;e.onclick;e.onclick=function(e){t&amp;&amp;t(),i(e)}}function i(e){var a=t.createElement(“div”);a.className=”heart”,d.push({el:a,x:e.clientX-5,y:e.clientY-5,scale:1,alpha:1,color:s()}),t.body.appendChild(a)}function c(e){var a=t.createElement(“style”);a.type=”text/css”;try{a.appendChild(t.createTextNode(e))}catch(t){a.styleSheet.cssText=e}t.getElementsByTagName(“head”)[0].appendChild(a)}function s(){return”rgb(“+<del>(255*Math.random())+”,”+</del>(255<em>Math.random())+”,”+~~(255</em>Math.random())+”)”}var d=[];e.requestAnimationFrame=function(){return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}}(),n()}(window,document);<br>1<br>修改_layout.swig<br>在主题\layout_layout.swig文件末尾添加：</p>
+<pre><code>&lt;!-- 页面点击小红心 --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/clicklove.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>1<br>2<br>主页文章添加置顶图标(可选)<br>修改主题的/layout/_macro/post.swig 文件，在</p>
+<p>下加入 “置顶” 标识，如图标和文字描述：<br>    </p>
+<p>标签云特效（可选）<br>npm install hexo-tag-cloud@^2.0.* –save<br>1<br>在主题文件夹找到文件 theme/next/layout/_macro/sidebar.swig, 然后在back2top.sidebar上方添加如下代码</p>
+<pre><code>&#123;% if site.tags.length > 1 %&#125;
+    <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+    <div class="widget-wrap">
+        <h3 class="widget-title">Tag Cloud</h3>
+        <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                &#123;&#123; list_tags() &#125;&#125;
+            </canvas>
+        </div>
+    </div>
+    &#123;% endif %&#125;</code></pre>
+<p>在主站配置文加下添加内容如下</p>
+<h1 id="hexo-tag-cloud"><a href="#hexo-tag-cloud" class="headerlink" title="hexo-tag-cloud"></a>hexo-tag-cloud</h1><p>tag_cloud:<br>    textFont: Trebuchet MS, Helvetica<br>    textColor: ‘#333’<br>    textHeight: 25<br>    outlineColor: ‘#E2E1D1’<br>    maxSpeed: 0.1 </p>
+<p>主页文章添加阴影效果<br>在source/_data/styles.styl中添加内容如下</p>
+<p>.post {<br>   margin-top: 60px;<br>   margin-bottom: 60px;<br>   padding: 25px;<br>   -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);<br>   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);<br>}</p>
+<p>设置代码块复制和代码高亮<br>在主题配置文件中修改codeblock</p>
+<p>codeblock:<br>  highlight_theme: normal<br>  copy_button:<br>    enable: true<br>    show_result: true<br>    style:</p>
+<p>网站侧栏背景及主副标题颜色<br>在主站source/_data/styles.styl中添加内容如下</p>
+<p>//题头<br>.site-meta {<br>    background: $blue;<br>}<br>//主标题颜色<br>.brand{<br>    color: #4dfc23<br>}<br>//副标题颜色<br>.site-subtitle{<br>    color: #4dfc23<br>}</p>
+<p>修改文章内链接文本样式<br>打开文件 /themes/next/source/css/_common/components/post/post.styl，在末尾添加以下</p>
+<p>.post-body p a{<br>  color: #0593d3;<br>  border-bottom: none;<br>  border-bottom: 1px solid #0593d3;<br>  &amp;:hover {<br>    color: #fc6423;<br>    border-bottom: none;<br>    border-bottom: 1px solid #fc6423;<br>  }<br>}</p>
+<p>修改文章底部标签样式<br>在主题配置文件中修改</p>
+<p>tag_icon: true<br>1<br>在文章末尾添加“文章结束”标记<br>在主题/layout/_macro 下新建 passage-end-tag.swig 文件，并添加以下代码</p>
+<pre><code>&lt;div style=&quot;text-align:center;color: #ccc;font-size:14px;&quot;&gt;-------------本文结束 &lt;i class=&quot;fa fa-heart&quot;&gt;&lt;/i&gt; 感谢阅读-------------&lt;/div&gt;</code></pre>
+<p>1<br>打开 /themes/next/layout/_macro/post.swig 文件，在 END POST BODY 后面引入 passage-end-tag.swig，如下</p>
+<pre><code>&#123;#####################&#125;
+&#123;### END POST BODY ###&#125;
+&#123;#####################&#125;
+&#123;% if theme.passage_end_tag.enable and not is_index %&#125;
+    &#123;% include 'passage-end-tag.swig' %&#125;
+    &#123;% endif %&#125;</code></pre>
+<p>在主题配置文件 _config.yml 的末尾添加以下配置</p>
+<p>passage_end_tag:<br>  enable: true</p>
+<p>修改分类页面样式<br>在主站source/_data/styles.styl中添加内容如下</p>
+<p>// 分类&amp;&amp;标签 页面样式<br>.post-block.page {<br>    margin-top: 40px;<br>}<br>// 分类页面page<br>.category-all-page {<br>    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);<br>    background-color: #797D7F;<br>    padding: 20px 30px 60px 30px;<br>    border-radius: 25px 25px 25px 25px;<br>}<br>.category-all-title {<br>    font-family: Impact;<br>    font-size: 24px;<br>    color: aqua;<br>}<br>.category-list {<br>    overflow: auto;<br>}<br>.category-list li {<br>    height: 100%;<br>    float: left;<br>    border-right: 3px solid #222;<br>    padding: 0 20px;<br>}<br>.category-all ul li {<br>    list-style: none!important;<br>}<br>.category-list li:last-child {<br>    border-right: none;<br>}<br>.category-list li a {<br>    font-size: 16px;<br>    text-decoration: none;<br>    color: chartreuse;<br>    font-family: Helvetica, Verdana, sans-serif;<br>    // text-transform: uppercase;<br>    -webkit-transition: all 0.5s ease;<br>    -moz-transition: all 0.5s ease;<br>    -o-transition: all 0.5s ease;<br>    -ms-transition: all 0.5s ease;<br>    transition: all 0.5s ease;<br>}<br>.category-list li a:hover {<br>    color: black;<br>}<br>.category-list li.active a {<br>    font-weight: bold;<br>    color: black;<br>}</p>
+<p>设置头像<br>在站点配置文件下修改avatar<br>网站底部加上访问量<br>打开主题的配置文件/theme/next/_config.yml，找到如下配置busuanzi_count（不蒜子）启用</p>
+<p>busuanzi_count:<br>  enable: true<br>1<br>2<br>修改不蒜子颜色<br>在主站source/_data/styles.styl中添加</p>
+<p>// 修改不蒜子数据颜色<br>#busuanzi_value_site_pv,#busuanzi_value_site_uv{<br>  color: #00BFFF;<br>}<br>1<br>2<br>3<br>4<br>网站底部添加动态桃心<br>修改主题配置文件中icon</p>
+<p>icon:<br>    name: fa fa-heart<br>    animated: true<br>    color: “#ff0000” </p>
+<p>网站底部添加备案信息(可选)<br>在主题\layout_partials\footer.swing下添加</p>
+<pre><code>&lt;div class=&quot;BbeiAn-info&quot; style=&quot;color:#4dfc23&quot;&gt;
+    &#123;&#123; __('鄂ICP备') &#125;&#125; -
+    &lt;a target=&quot;_blank&quot; href=&quot;http://www.miitbeian.gov.cn/&quot; style=&quot;color:#4dfc23;&quot;  rel=&quot;nofollow&quot;&gt;18025394&lt;/a&gt; &lt;!--a标签中增加nofollow属性，避免爬虫出站。--&gt;| 
+    &lt;a target=&quot;_blank&quot; href=&quot;http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42090202000295&quot; style=&quot;text-decoration:none;color:#4dfc23;padding-left:30px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center&quot; rel=&quot;nofollow&quot;&gt;&#123;&#123; __('鄂公网安备 42090202000295') &#125;&#125;&lt;/a&gt;    &lt;!--这里将图标作为了背景，以使得能和后面的文字在同一行--&gt;
+&lt;/div&gt;</code></pre>
+<p>侧边栏社交链接<br>修改主题配置文件</p>
+<p>social:<br>  GitHub: <a href="https://github.com/KaliAlbert">https://github.com/KaliAlbert</a> || fab fa-github<br>  E-Mail: <a href="mailto:&#49;&#x37;&#50;&#x34;&#x36;&#x38;&#49;&#x30;&#x33;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#x6d;">&#49;&#x37;&#50;&#x34;&#x36;&#x38;&#49;&#x30;&#x33;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#x6d;</a> || fa fa-envelope<br>  Bili: <a href="https://space.bilibili.com/15071276">https://space.bilibili.com/15071276</a> || fa fa-tv</p>
+<p>添加侧栏友情链接<br>在主题配置文件中修改Blog rolls</p>
+<p>links_settings:<br>  icon: fa fa-link<br>  title: Friend Links<br>  layout: inline</p>
+<p>links:<br>  V2EX: <a href="https://www.v2ex.com/">https://www.v2ex.com/</a><br>  #Title: <a href="http://yoursite.com/">http://yoursite.com</a></p>
+<p>在文章底部增加版权信息<br>编辑 主题配置文件，修改如下配置：</p>
+<p>creative_commons:<br>  license: by-nc-sa<br>  sidebar: true<br>  post: true<br>  language:</p>
+<p>关于页面样式的修改,回顶部按钮样式、底部页码等等<br>在博客主站\source_data\styles.styl中添加内容如下</p>
+<p>//TOC目录全部展开<br>.post-toc.nav.nav-child {<br>  display: block;<br>}<br>//TOC目录不显示三级以上目录<br>.nav-level-3.nav-child {<br>  display: none !important;<br>}</p>
+<p>// 右下角返回顶部按钮样式<br>.back-to-top:hover {<br>    color: rgb(136, 255, 13);<br>    background-color: rgba(0, 0, 0, 0.75); //black<br>}</p>
+<p>// 文章代码块顶部样式<br>.highlight figcaption {<br>    margin: 0em;<br>    padding: 0.5em;<br>    background: #eee;<br>    border-bottom: 1px solid #e9e9e9;<br>}<br>.highlight figcaption a {<br>    color: rgb(80, 115, 184);<br>}</p>
+<p>//代码块复制按钮<br>.highlight{<br>  //方便copy代码按钮（btn-copy）的定位<br>  position: relative;<br>}<br>.btn-copy {<br>    display: inline-block;<br>    cursor: pointer;<br>    background-color: #eee;<br>    background-image: linear-gradient(#fcfcfc,#eee);<br>    border: 1px solid #d5d5d5;<br>    border-radius: 3px;<br>    -webkit-user-select: none;<br>    -moz-user-select: none;<br>    -ms-user-select: none;<br>    user-select: none;<br>    -webkit-appearance: none;<br>    font-size: 13px;<br>    font-weight: 700;<br>    line-height: 20px;<br>    color: #333;<br>    -webkit-transition: opacity .3s ease-in-out;<br>    -o-transition: opacity .3s ease-in-out;<br>    transition: opacity .3s ease-in-out;<br>    padding: 2px 6px;<br>    position: absolute;<br>    right: 5px;<br>    top: 5px;<br>    opacity: 0;<br>}<br>.btn-copy span {<br>    margin-left: 5px;<br>}<br>.highlight:hover .btn-copy{<br>  opacity: 1;<br>}</p>
+<p>//修改文章内code样式<br>code {color:#c7254e;background:#f9f2f4;border:1px solid #d6d6d6;}</p>
+<p>// [Read More]按钮样式: 黑底绿字<br>.post-button .btn:hover {</p>
+<pre><code>color: rgb(136, 255, 13) !important;
+background-color: rgba(0, 0, 0, 0.75); //black</code></pre>
+<p>}</p>
+<p>// 页面底部页码<br>.pagination .page-number.current {</p>
+<pre><code>border-radius: 100%;
+background-color: rgba(100, 100, 100, 0.75);</code></pre>
+<p>}<br>// 页面底部页码, 去除鼠标置于上方时，数字上方的线<br>.pagination .prev, .pagination .next, .pagination .page-number {<br>    margin-bottom: 10px;<br>    border: none;<br>    color: rgb(1, 1, 1);<br>}</p>
+<p>// 页面底部页码，鼠标置于上方，黑底绿字<br>.page-number:hover,.page-number:active{<br>    color: rgb(136, 255, 13);<br>    border-radius: 100%;<br>    //background-color: rgba(255, 0, 100, 0.75); //品红<br>    background-color: rgba(0, 0, 0, 0.75); //black<br>}</p>
 ]]></content>
   </entry>
 </search>
