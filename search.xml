@@ -26,7 +26,8 @@
     <content><![CDATA[<p>hexo博客安装的简要笔记</p>
 <a id="more"></a>
 
-<h2 id="调皮-学习笔记！"><a href="#调皮-学习笔记！" class="headerlink" title="[调皮]学习笔记！"></a>[调皮]学习笔记！</h2><h2 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="#安装Nodejs"></a>#安装Nodejs</h2><p>node -v    #查看node版本<br>npm -v    #查看npm版本<br>npm install -g cnpm –registry=<a href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a>    #安装淘宝的cnpm 管理器<br>cnpm -v    #查看cnpm版本<br>cnpm install -g hexo-cli    #安装hexo框架<br>hexo -v    #查看hexo版本<br>mkdir blog    #创建blog目录<br>cd blog     #进入blog目录<br>sudo hexo init     #生成博客 初始化博客<br>hexo s    #启动本地博客服务<br><a href="http://localhost:4000/">http://localhost:4000/</a>    #本地访问地址<br>hexo n “我的第一篇文章” #创建新的文章<br>#返回blog目录<br>hexo clean #清理<br>hexo g #生成<br>#Github创建一个新的仓库 YourGithubName.github.io<br>cnpm install –save hexo-deployer-git #在blog目录下安装git部署插件</p>
+<h2 id="学习笔记！"><a href="#学习笔记！" class="headerlink" title="学习笔记！"></a>学习笔记！</h2><h2 id="GitHub账号注册。"><a href="#GitHub账号注册。" class="headerlink" title="GitHub账号注册。"></a>GitHub账号注册。</h2><h2 id="安装git。"><a href="#安装git。" class="headerlink" title="安装git。"></a>安装git。</h2><hr>
+<h2 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="#安装Nodejs"></a>#安装Nodejs</h2><p>node -v    #查看node版本<br>npm -v    #查看npm版本<br>npm install -g cnpm –registry=<a href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a>    #安装淘宝的cnpm 管理器<br>cnpm -v    #查看cnpm版本<br>cnpm install -g hexo-cli    #安装hexo框架<br>hexo -v    #查看hexo版本<br>mkdir blog    #创建blog目录<br>cd blog     #进入blog目录<br>sudo hexo init     #生成博客 初始化博客<br>hexo s    #启动本地博客服务<br><a href="http://localhost:4000/">http://localhost:4000/</a>    #本地访问地址<br>hexo n “我的第一篇文章” #创建新的文章<br>#返回blog目录<br>hexo clean #清理<br>hexo g #生成<br>#Github创建一个新的仓库 YourGithubName.github.io<br>cnpm install –save hexo-deployer-git #在blog目录下安装git部署插件</p>
 <hr>
 <h2 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="#配置_config.yml "></a>#配置_config.yml </h2><pre><code># Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -35,10 +36,11 @@ deploy:
      repo: https://github.com/YourGithubName/YourGithubName.github.io.git
       branch: master</code></pre>
 <hr>
-<p>hexo d    #部署到Github仓库里<br><a href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #访问这个地址可以查看博客</p>
-<p> git clone <a href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia  #下载yilia主题到本地</p>
-<p>#修改hexo根目录下的 _config.yml 文件 ：<br> theme: yilia</p>
-<p>hexo c    #清理一下<br>hexo g    #生成<br>hexo d    #部署到远程Github仓库<br><a href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #查看博客</p>
+<p>hexo d    #部署到Github仓库里<br>      <a href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #访问这个地址可以查看博客</p>
+<h1 id="主题部署下载"><a href="#主题部署下载" class="headerlink" title="主题部署下载"></a>主题部署下载</h1><p> git clone <a href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia  #下载yilia主题到本地</p>
+<h1 id="修改hexo根目录下的-config-yml-文件-："><a href="#修改hexo根目录下的-config-yml-文件-：" class="headerlink" title="修改hexo根目录下的 _config.yml 文件 ："></a>修改hexo根目录下的 _config.yml 文件 ：</h1><p> theme: yilia</p>
+<p>hexo c    #清理一下<br>hexo g    #生成<br>hexo d    #部署到远程Github仓库</p>
+<p><a href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #查看博客</p>
 ]]></content>
   </entry>
   <entry>
@@ -47,40 +49,73 @@ deploy:
     <content><![CDATA[<p>hexo 主题 next7.8 版本配置美化<br>网上next主题的配置大多为next5.+或next6.+，在最新版本中对之前的版本进行了高度的插件化，许多功能都集成在主题配置文件中，同时之前自定义样式配置文件的路径也有所改变，针对于此写下自己的配置记录</p>
 <a id="more"></a>
 
-
-<h1 id="设置博主文字描述和中文语言"><a href="#设置博主文字描述和中文语言" class="headerlink" title="设置博主文字描述和中文语言"></a>设置博主文字描述和中文语言</h1><ul>
-<li><h1 id="站点配置文件修改site"><a href="#站点配置文件修改site" class="headerlink" title="站点配置文件修改site"></a>站点配置文件修改site</h1></li>
-<li><p> title: Kali<br> subtitle: sakura的blog<br> description: 这个世界很温柔，但它不喜欢我。<br> keywords:<br> author: KaliAlbert<br> language: zh-CN<br> timezone: Asia/Shanghai</p>
+<ul>
+<li><h1 id="设置博主文字描述和中文语言"><a href="#设置博主文字描述和中文语言" class="headerlink" title="设置博主文字描述和中文语言"></a>设置博主文字描述和中文语言</h1></li>
+<li><h2 id="站点配置文件修改site"><a href="#站点配置文件修改site" class="headerlink" title="站点配置文件修改site"></a>站点配置文件修改site</h2><p>title: Kali<br>subtitle: sakura的blog<br>description: 这个世界很温柔，但它不喜欢我。<br>keywords:<br>author: KaliAlbert<br>language: zh-CN<br>timezone: Asia/Shanghai</p>
 </li>
-<li><h1 id="设置next主题和主题样式"><a href="#设置next主题和主题样式" class="headerlink" title="设置next主题和主题样式"></a>设置next主题和主题样式</h1></li>
-<li><h1 id="站点配置文件"><a href="#站点配置文件" class="headerlink" title="站点配置文件"></a>站点配置文件</h1><pre><code> theme: next</code></pre>
+<li><h2 id="设置next主题和主题样式"><a href="#设置next主题和主题样式" class="headerlink" title="设置next主题和主题样式"></a>设置next主题和主题样式</h2></li>
+<li><h3 id="站点配置文件"><a href="#站点配置文件" class="headerlink" title="站点配置文件"></a>站点配置文件</h3><p> theme: next</p>
+</li>
+<li><h1 id="主题配置文件"><a href="#主题配置文件" class="headerlink" title="主题配置文件"></a>主题配置文件</h1><p> #Schemes<br> #scheme: Muse<br> #scheme: Mist<br> #scheme: Pisces<br> scheme: Gemini</p>
+</li>
+<li><h1 id="设置首页不显示全文"><a href="#设置首页不显示全文" class="headerlink" title="设置首页不显示全文"></a>设置首页不显示全文</h1></li>
+<li><h2 id="主题配置文件修改："><a href="#主题配置文件修改：" class="headerlink" title="主题配置文件修改："></a>主题配置文件修改：</h2><p>excerpt accurately.<br>auto_excerpt:<br>enable: true<br>length: 150</p>
+</li>
+<li><h1 id="设置博客文章持久化连接"><a href="#设置博客文章持久化连接" class="headerlink" title="设置博客文章持久化连接"></a>设置博客文章持久化连接</h1></li>
+<li><h2 id="安装hexo-abbrlink这个插件"><a href="#安装hexo-abbrlink这个插件" class="headerlink" title="安装hexo-abbrlink这个插件"></a>安装hexo-abbrlink这个插件</h2><p>npm install hexo-abbrlink –save</p>
+</li>
+<li><h2 id="站点配置文件修改permalink添加如下内容"><a href="#站点配置文件修改permalink添加如下内容" class="headerlink" title="站点配置文件修改permalink添加如下内容"></a>站点配置文件修改permalink添加如下内容</h2><p>permalink: post/:abbrlink.html<br>abbrlink:<br> alg: crc32<br> rep: hex    </p>
+</li>
+<li><h1 id="Menu增加关于、标签、分类页面"><a href="#Menu增加关于、标签、分类页面" class="headerlink" title="Menu增加关于、标签、分类页面"></a>Menu增加关于、标签、分类页面</h1></li>
+<li><h2 id="站点配置文件修改menu"><a href="#站点配置文件修改menu" class="headerlink" title="站点配置文件修改menu"></a>站点配置文件修改menu</h2><p>#将about、tags、categories前的#号去掉,示例如下：<br> menu:<br>   home: / || fa fa-home<br>   about: /about/ || fa fa-user<br>   tags: /tags/ || fa menufa-tags<br>   categories: /categories/ || fa fa-th</p>
+</li>
+<li><h2 id="新建相关页面"><a href="#新建相关页面" class="headerlink" title="新建相关页面"></a>新建相关页面</h2><p>hexo new page “about”<br>hexo new page “tags”<br>hexo new page “categories”</p>
+</li>
+<li><h2 id="修改生成页面的配置"><a href="#修改生成页面的配置" class="headerlink" title="修改生成页面的配置"></a>修改生成页面的配置</h2><p>source\about\index.md<br>source\tags\index.md<br>source\categories\index.md</p>
 </li>
 </ul>
-<h1 id="主题配置文件"><a href="#主题配置文件" class="headerlink" title="主题配置文件"></a>主题配置文件</h1><p>#Schemes<br>#scheme: Muse<br>#scheme: Mist<br>#scheme: Pisces<br>scheme: Gemini</p>
-<h1 id="设置首页不显示全文"><a href="#设置首页不显示全文" class="headerlink" title="设置首页不显示全文"></a>设置首页不显示全文</h1><h1 id="主题配置文件修改："><a href="#主题配置文件修改：" class="headerlink" title="主题配置文件修改："></a>主题配置文件修改：</h1><pre><code>    excerpt accurately.
-    auto_excerpt:
-    enable: true
-    length: 150</code></pre>
-<h1 id="设置博客文章持久化连接"><a href="#设置博客文章持久化连接" class="headerlink" title="设置博客文章持久化连接"></a>设置博客文章持久化连接</h1><p>安装hexo-abbrlink这个插件<br>npm install hexo-abbrlink –save</p>
-<p>站点配置文件修改permalink添加如下内容<br>permalink: post/:abbrlink.html<br>abbrlink:<br>  alg: crc32<br>  rep: hex    </p>
-<p>Menu增加关于、标签、分类页面<br>站点配置文件修改menu<br>将about、tags、categories前的#号去掉,示例如下：</p>
-<p>menu:<br>  home: / || fa fa-home<br>  about: /about/ || fa fa-user<br>  tags: /tags/ || fa fa-tags<br>  categories: /categories/ || fa fa-th</p>
-<p>新建相关页面<br>hexo new page “about”<br>hexo new page “tags”<br>hexo new page “categories”</p>
-<p>修改生成页面的配置<br>source\about\index.md<br>source\tags\index.md<br>source\categories\index.md</p>
-<hr>
-<p>title: 关于<br>type: “about”</p>
-<hr>
-<hr>
-<p>title: 标签<br>type: “tags”</p>
-<hr>
-<hr>
-<p>title: 分类<br>type: “categories”</p>
-<hr>
-<p>添加搜索功能<br>安装exo-generator-searchdb这个插件<br>npm install hexo-generator-searchdb –save<br>1<br>站点配置文件添加并修改local_search<br>search:<br>  path: search.xml<br>  field: post<br>  format: html<br>  limit: 10000<br>local_search:<br>  enable: true</p>
-<p>设置背景图片和透明度<br>修改主题配置文件中的custom_file_path<br>custom_file_path:<br>  #head: source/_data/head.swig<br>  #header: source/_data/header.swig<br>  #sidebar: source/_data/sidebar.swig<br>  #postMeta: source/_data/post-meta.swig<br>  #postBodyEnd: source/_data/post-body-end.swig<br>  #footer: source/_data/footer.swig<br>  #bodyEnd: source/_data/body-end.swig<br>  #variable: source/_data/variables.styl<br>  #mixin: source/_data/mixins.styl<br>  style: source/_data/styles.styl</p>
-<p>在博客主站目录下的source文件夹下新建_data文件夹并添加styles.styl文件<br>在styles.styl中添加如下内容<br>url中可以添加本地图片资源<br>在next主题的source中新建assets目录图片资源放在其中</p>
-<p>body {<br>    background:url(/assets/background.jpg);<br>    background-repeat: no-repeat;<br>    background-attachment:fixed;<br>    background-position:50% 50%;<br>    opacity: 0.8;<br>    //可选<br>    +mobile(){<br>      //background-position: 0% -20%;<a href="https://i.loli.net/2018/12/29/5c270a0523154.jpg">https://i.loli.net/2018/12/29/5c270a0523154.jpg</a><br>      //<a href="https://i.loli.net/2018/12/29/5c270fc2bfcad.png">https://i.loli.net/2018/12/29/5c270fc2bfcad.png</a><br>      background-image: url(<a href="https://ziyuan.lruihao.cn/images/bg_cell.png">https://ziyuan.lruihao.cn/images/bg_cell.png</a>);<br>      background-size: cover;<br>    }<br>}</p>
-<p>设置canvas_ribbon动态背景<br>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下<br>git clone <a href="https://github.com/theme-next/theme-next-canvas-ribbon">https://github.com/theme-next/theme-next-canvas-ribbon</a> source/lib/canvas-ribbon<br>1<br>编辑主题配置文件，启用 canvas_ribbon 模块，如下：<br>canvas_ribbon:<br>  enable: true<br>  size: 300<br>  alpha: 0.6<br>  zIndex: -1</p>
+<pre><code>title: 标签
+type: &quot;tags&quot;
+
+title: 关于
+type: &quot;about&quot;
+
+title: 分类
+type: &quot;categories&quot;</code></pre>
+<ul>
+<li><h1 id="添加搜索功能"><a href="#添加搜索功能" class="headerlink" title="添加搜索功能"></a>添加搜索功能</h1></li>
+<li><h2 id="安装exo-generator-searchdb这个插件"><a href="#安装exo-generator-searchdb这个插件" class="headerlink" title="安装exo-generator-searchdb这个插件"></a>安装exo-generator-searchdb这个插件</h2><p> npm install hexo-generator-searchdb –save</p>
+</li>
+<li><h2 id="站点配置文件添加并修改local-search"><a href="#站点配置文件添加并修改local-search" class="headerlink" title="站点配置文件添加并修改local_search"></a>站点配置文件添加并修改local_search</h2><p> search:<br>   path: search.xml<br>   field: post<br>   format: html<br>   limit: 10000<br>   local_search:<br>   enable: true</p>
+</li>
+<li><h1 id="设置背景图片和透明度"><a href="#设置背景图片和透明度" class="headerlink" title="设置背景图片和透明度"></a>设置背景图片和透明度</h1></li>
+<li><h2 id="修改主题配置文件中的custom-file-path"><a href="#修改主题配置文件中的custom-file-path" class="headerlink" title="修改主题配置文件中的custom_file_path"></a>修改主题配置文件中的custom_file_path</h2><p> custom_file_path:<br>   #head: source/_data/head.swig<br>   #header: source/_data/header.swig<br>   #sidebar: source/_data/sidebar.swig<br>   #postMeta: source/_data/post-meta.swig<br>   #postBodyEnd: source/_data/post-body-end.swig<br>   #footer: source/_data/footer.swig<br>   #bodyEnd: source/_data/body-end.swig<br>   #variable: source/_data/variables.styl<br>   #mixin: source/_data/mixins.styl<br>   style: source/_data/styles.styl</p>
+</li>
+<li><h1 id="在博客主站目录下的source文件夹下新建-data文件夹并添加styles-styl文件"><a href="#在博客主站目录下的source文件夹下新建-data文件夹并添加styles-styl文件" class="headerlink" title="在博客主站目录下的source文件夹下新建_data文件夹并添加styles.styl文件"></a>在博客主站目录下的source文件夹下新建_data文件夹并添加styles.styl文件</h1></li>
+<li><h3 id="在styles-styl中添加如下内容"><a href="#在styles-styl中添加如下内容" class="headerlink" title="在styles.styl中添加如下内容"></a>在styles.styl中添加如下内容</h3><ul>
+<li><p>#url中可以添加本地图片资源</p>
+</li>
+<li><p>#在next主题的source中新建assets目录图片资源放在其中</p>
+<p>   body {</p>
+<pre><code>   background:url(/assets/background.jpg);
+   background-repeat: no-repeat;
+   background-attachment:fixed;
+   background-position:50% 50%;
+   opacity: 0.8;
+   //可选
+   +mobile()&#123;
+     //background-position: 0% -20%;https://i.loli.net/2018/12/29/5c270a0523154.jpg
+     //https://i.loli.net/2018/12/29/5c270fc2bfcad.png
+     background-image: url(https://ziyuan.lruihao.cn/images/bg_cell.png);
+     background-size: cover;
+   &#125;</code></pre>
+<p>   }</p>
+</li>
+</ul>
+</li>
+<li><h1 id="设置canvas-ribbon动态背景"><a href="#设置canvas-ribbon动态背景" class="headerlink" title="设置canvas_ribbon动态背景"></a>设置canvas_ribbon动态背景</h1><p>进入到 NexT 主题目录下<br>安装模块到 source/lib 目录下<br>git clone <a href="https://github.com/theme-next/theme-next-canvas-ribbon">https://github.com/theme-next/theme-next-canvas-ribbon</a> source/lib/canvas-ribbon<br>1<br>编辑主题配置文件，启用 canvas_ribbon 模块，如下：<br>canvas_ribbon:<br>enable: true<br>size: 300<br>alpha: 0.6<br>zIndex: -1</p>
+</li>
+</ul>
 <p>设置左上角或右上角 github 图标<br>主题配置文件，启用 github-banner 如下：</p>
 <p>github_banner:<br>  enable: true<br>  permalink: <a href="https://https//github.com/KaliAlbert">https://https://github.com/KaliAlbert</a><br>  title: Follow me on GitHub</p>
 <p>设置侧栏阅读进度百分比<br>编辑站点配置文件，修改 back2top 部分如下</p>
@@ -160,7 +195,7 @@ permalink: /404
     &lt;a target=&quot;_blank&quot; href=&quot;http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42090202000295&quot; style=&quot;text-decoration:none;color:#4dfc23;padding-left:30px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center&quot; rel=&quot;nofollow&quot;&gt;&#123;&#123; __('鄂公网安备 42090202000295') &#125;&#125;&lt;/a&gt;    &lt;!--这里将图标作为了背景，以使得能和后面的文字在同一行--&gt;
 &lt;/div&gt;</code></pre>
 <p>侧边栏社交链接<br>修改主题配置文件</p>
-<p>social:<br>  GitHub: <a href="https://github.com/KaliAlbert">https://github.com/KaliAlbert</a> || fab fa-github<br>  E-Mail: <a href="mailto:&#49;&#x37;&#50;&#52;&#54;&#x38;&#49;&#48;&#x33;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;">&#49;&#x37;&#50;&#52;&#54;&#x38;&#49;&#48;&#x33;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;</a> || fa fa-envelope<br>  Bili: <a href="https://space.bilibili.com/15071276">https://space.bilibili.com/15071276</a> || fa fa-tv</p>
+<p>social:<br>  GitHub: <a href="https://github.com/KaliAlbert">https://github.com/KaliAlbert</a> || fab fa-github<br>  E-Mail: <a href="mailto:&#x31;&#x37;&#x32;&#x34;&#54;&#56;&#x31;&#48;&#x33;&#64;&#113;&#113;&#x2e;&#x63;&#111;&#x6d;">&#x31;&#x37;&#x32;&#x34;&#54;&#56;&#x31;&#48;&#x33;&#64;&#113;&#113;&#x2e;&#x63;&#111;&#x6d;</a> || fa fa-envelope<br>  Bili: <a href="https://space.bilibili.com/15071276">https://space.bilibili.com/15071276</a> || fa fa-tv</p>
 <p>添加侧栏友情链接<br>在主题配置文件中修改Blog rolls</p>
 <p>links_settings:<br>  icon: fa fa-link<br>  title: Friend Links<br>  layout: inline</p>
 <p>links:<br>  V2EX: <a href="https://www.v2ex.com/">https://www.v2ex.com/</a><br>  #Title: <a href="http://yoursite.com/">http://yoursite.com</a></p>
