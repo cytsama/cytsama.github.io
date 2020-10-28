@@ -53,77 +53,67 @@ deploy:
 <li><h1 id="设置博主文字描述和中文语言"><a href="#设置博主文字描述和中文语言" class="headerlink" title="设置博主文字描述和中文语言"></a>设置博主文字描述和中文语言</h1></li>
 <li><h2 id="站点配置文件修改site"><a href="#站点配置文件修改site" class="headerlink" title="站点配置文件修改site"></a>站点配置文件修改site</h2><figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">title:</span> Kali</span><br><span class="line"><span class="symbol">subtitle:</span> sakura的blog</span><br><span class="line"><span class="symbol">description:</span> 描述</span><br><span class="line"><span class="symbol">keywords:</span></span><br><span class="line"><span class="symbol">author:</span> KaliAlbert</span><br><span class="line"><span class="symbol">language:</span> <span class="built_in">zh</span>-CN</span><br><span class="line"><span class="symbol">timezone:</span> Asia/Shanghai</span><br></pre></td></tr></table></figure></li>
 <li><h2 id="设置next主题和主题样式"><a href="#设置next主题和主题样式" class="headerlink" title="设置next主题和主题样式"></a>设置next主题和主题样式</h2></li>
-<li><h3 id="站点配置文件"><a href="#站点配置文件" class="headerlink" title="站点配置文件"></a>站点配置文件</h3><figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">theme: <span class="keyword">next</span></span><br></pre></td></tr></table></figure>
-<ul>
+<li><h3 id="站点配置文件"><a href="#站点配置文件" class="headerlink" title="站点配置文件"></a>站点配置文件</h3><figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">theme: <span class="keyword">next</span></span><br></pre></td></tr></table></figure></li>
 <li><h1 id="主题配置文件"><a href="#主题配置文件" class="headerlink" title="主题配置文件"></a>主题配置文件</h1><figure class="highlight vala"><table><tr><td class="code"><pre><span class="line"><span class="meta">#Schemes</span></span><br><span class="line"><span class="meta">#scheme: Muse</span></span><br><span class="line"><span class="meta">#scheme: Mist</span></span><br><span class="line"><span class="meta">#scheme: Pisces</span></span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure></li>
 <li><h1 id="设置首页不显示全文"><a href="#设置首页不显示全文" class="headerlink" title="设置首页不显示全文"></a>设置首页不显示全文</h1></li>
 <li><h2 id="主题配置文件修改："><a href="#主题配置文件修改：" class="headerlink" title="主题配置文件修改："></a>主题配置文件修改：</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">excerpt</span> <span class="string">accurately.</span></span><br><span class="line"><span class="attr">auto_excerpt:</span></span><br><span class="line"><span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">length:</span> <span class="number">150</span></span><br></pre></td></tr></table></figure></li>
 <li><h1 id="设置博客文章持久化连接"><a href="#设置博客文章持久化连接" class="headerlink" title="设置博客文章持久化连接"></a>设置博客文章持久化连接</h1></li>
-<li><h2 id="安装hexo-abbrlink这个插件"><a href="#安装hexo-abbrlink这个插件" class="headerlink" title="安装hexo-abbrlink这个插件"></a>安装hexo-abbrlink这个插件</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-abbrlink <span class="comment">--save</span></span><br></pre></td></tr></table></figure></li>
+<li><h2 id="安装hexo-abbrlink这个插件"><a href="#安装hexo-abbrlink这个插件" class="headerlink" title="安装hexo-abbrlink这个插件"></a>安装hexo-abbrlink这个插件</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-abbrlink <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>站点配置文件修改permalink添加如下内容<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">permalink:</span> post/:abbrlink.html</span><br><span class="line"><span class="symbol">abbrlink:</span></span><br><span class="line"><span class="symbol">  alg:</span> crc32  </span><br><span class="line"><span class="symbol">  rep:</span> hex    </span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><p>站点配置文件修改permalink添加如下内容</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">permalink:</span> post/:abbrlink.html</span><br><span class="line"><span class="symbol">abbrlink:</span></span><br><span class="line"><span class="symbol">  alg:</span> crc32  </span><br><span class="line"><span class="symbol">  rep:</span> hex    </span><br></pre></td></tr></table></figure>
-<ul>
 <li><h1 id="Menu增加关于、标签、分类页面"><a href="#Menu增加关于、标签、分类页面" class="headerlink" title="Menu增加关于、标签、分类页面"></a>Menu增加关于、标签、分类页面</h1></li>
-<li><h2 id="站点配置文件修改menu"><a href="#站点配置文件修改menu" class="headerlink" title="站点配置文件修改menu"></a>站点配置文件修改menu</h2></li>
+<li><h2 id="站点配置文件修改menu"><a href="#站点配置文件修改menu" class="headerlink" title="站点配置文件修改menu"></a>站点配置文件修改menu</h2><ul>
+<li>#将about、tags、categories前的#号去掉,示例如下：<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">menu:</span></span><br><span class="line"><span class="symbol">  home:</span> / || fa fa-home</span><br><span class="line"><span class="symbol">  about:</span> <span class="meta-keyword">/about/</span> || fa fa-user</span><br><span class="line"><span class="symbol">  tags:</span> <span class="meta-keyword">/tags/</span> || fa menufa-tags</span><br><span class="line"><span class="symbol">  categories:</span> <span class="meta-keyword">/categories/</span> || fa fa-th</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><p>#将about、tags、categories前的#号去掉,示例如下：</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">menu:</span></span><br><span class="line"><span class="symbol">  home:</span> / || fa fa-home</span><br><span class="line"><span class="symbol">  about:</span> <span class="meta-keyword">/about/</span> || fa fa-user</span><br><span class="line"><span class="symbol">  tags:</span> <span class="meta-keyword">/tags/</span> || fa menufa-tags</span><br><span class="line"><span class="symbol">  categories:</span> <span class="meta-keyword">/categories/</span> || fa fa-th</span><br></pre></td></tr></table></figure>
-<ul>
 <li><h2 id="新建相关页面"><a href="#新建相关页面" class="headerlink" title="新建相关页面"></a>新建相关页面</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">hexo new<span class="built_in"> page </span><span class="string">&quot;about&quot;</span></span><br><span class="line">hexo new<span class="built_in"> page </span><span class="string">&quot;tags&quot;</span></span><br><span class="line">hexo new<span class="built_in"> page </span><span class="string">&quot;categories&quot;</span></span><br></pre></td></tr></table></figure></li>
-<li><h2 id="修改生成页面的配置"><a href="#修改生成页面的配置" class="headerlink" title="修改生成页面的配置"></a>修改生成页面的配置</h2>source\about\index.md<br>source\tags\index.md<br>source\categories\index.md<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">title:</span> 标签</span><br><span class="line"><span class="symbol">type:</span> <span class="string">&quot;tags&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">title:</span> 关于</span><br><span class="line"><span class="symbol">type:</span> <span class="string">&quot;about&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">title:</span> 分类</span><br><span class="line"><span class="symbol">type:</span> <span class="string">&quot;categories&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><h2 id="修改生成页面的配置"><a href="#修改生成页面的配置" class="headerlink" title="修改生成页面的配置"></a>修改生成页面的配置</h2><p>source\about\index.md<br>source\tags\index.md<br>source\categories\index.md</p>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">title:</span> 标签</span><br><span class="line"><span class="symbol">type:</span> <span class="string">&quot;tags&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">title:</span> 关于</span><br><span class="line"><span class="symbol">type:</span> <span class="string">&quot;about&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">title:</span> 分类</span><br><span class="line"><span class="symbol">type:</span> <span class="string">&quot;categories&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><h1 id="添加搜索功能"><a href="#添加搜索功能" class="headerlink" title="添加搜索功能"></a>添加搜索功能</h1></li>
+<li><h2 id="安装exo-generator-searchdb这个插件"><a href="#安装exo-generator-searchdb这个插件" class="headerlink" title="安装exo-generator-searchdb这个插件"></a>安装exo-generator-searchdb这个插件</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-generator-searchdb <span class="comment">--save</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><h1 id="添加搜索功能"><a href="#添加搜索功能" class="headerlink" title="添加搜索功能"></a>添加搜索功能</h1></li>
-<li><h2 id="安装exo-generator-searchdb这个插件"><a href="#安装exo-generator-searchdb这个插件" class="headerlink" title="安装exo-generator-searchdb这个插件"></a>安装exo-generator-searchdb这个插件</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-generator-searchdb <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
-<ul>
 <li><h2 id="站点配置文件添加并修改local-search"><a href="#站点配置文件添加并修改local-search" class="headerlink" title="站点配置文件添加并修改local_search"></a>站点配置文件添加并修改local_search</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br><span class="line">  <span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
 <li><h1 id="设置背景图片和透明度"><a href="#设置背景图片和透明度" class="headerlink" title="设置背景图片和透明度"></a>设置背景图片和透明度</h1></li>
-<li><h2 id="修改主题配置文件中的custom-file-path"><a href="#修改主题配置文件中的custom-file-path" class="headerlink" title="修改主题配置文件中的custom_file_path"></a>修改主题配置文件中的custom_file_path</h2><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">custom_file_path:</span><br><span class="line">  #head: <span class="keyword">source</span><span class="regexp">/_data/</span>head.swig</span><br><span class="line">  #header: <span class="keyword">source</span><span class="regexp">/_data/</span>header.swig</span><br><span class="line">  #sidebar: <span class="keyword">source</span><span class="regexp">/_data/</span>sidebar.swig</span><br><span class="line">  #postMeta: <span class="keyword">source</span><span class="regexp">/_data/</span>post-meta.swig</span><br><span class="line">  #postBodyEnd: <span class="keyword">source</span><span class="regexp">/_data/</span>post-body-end.swig</span><br><span class="line">  #footer: <span class="keyword">source</span><span class="regexp">/_data/</span>footer.swig</span><br><span class="line">  #bodyEnd: <span class="keyword">source</span><span class="regexp">/_data/</span>body-end.swig</span><br><span class="line">  #variable: <span class="keyword">source</span><span class="regexp">/_data/</span>variables.styl</span><br><span class="line">  #mixin: <span class="keyword">source</span><span class="regexp">/_data/mi</span>xins.styl</span><br><span class="line">  style: <span class="keyword">source</span><span class="regexp">/_data/</span>styles.styl</span><br></pre></td></tr></table></figure></li>
+<li><h2 id="修改主题配置文件中的custom-file-path"><a href="#修改主题配置文件中的custom-file-path" class="headerlink" title="修改主题配置文件中的custom_file_path"></a>修改主题配置文件中的custom_file_path</h2>  <figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">custom_file_path:</span><br><span class="line">  #head: <span class="keyword">source</span><span class="regexp">/_data/</span>head.swig</span><br><span class="line">  #header: <span class="keyword">source</span><span class="regexp">/_data/</span>header.swig</span><br><span class="line">  #sidebar: <span class="keyword">source</span><span class="regexp">/_data/</span>sidebar.swig</span><br><span class="line">  #postMeta: <span class="keyword">source</span><span class="regexp">/_data/</span>post-meta.swig</span><br><span class="line">  #postBodyEnd: <span class="keyword">source</span><span class="regexp">/_data/</span>post-body-end.swig</span><br><span class="line">  #footer: <span class="keyword">source</span><span class="regexp">/_data/</span>footer.swig</span><br><span class="line">  #bodyEnd: <span class="keyword">source</span><span class="regexp">/_data/</span>body-end.swig</span><br><span class="line">  #variable: <span class="keyword">source</span><span class="regexp">/_data/</span>variables.styl</span><br><span class="line">  #mixin: <span class="keyword">source</span><span class="regexp">/_data/mi</span>xins.styl</span><br><span class="line">  style: <span class="keyword">source</span><span class="regexp">/_data/</span>styles.styl</span><br></pre></td></tr></table></figure></li>
 <li><h1 id="在博客主站目录下的source文件夹下新建-data文件夹并添加styles-styl文件"><a href="#在博客主站目录下的source文件夹下新建-data文件夹并添加styles-styl文件" class="headerlink" title="在博客主站目录下的source文件夹下新建_data文件夹并添加styles.styl文件"></a>在博客主站目录下的source文件夹下新建_data文件夹并添加styles.styl文件</h1></li>
-</ul>
-</li>
 <li><h3 id="在styles-styl中添加如下内容"><a href="#在styles-styl中添加如下内容" class="headerlink" title="在styles.styl中添加如下内容"></a>在styles.styl中添加如下内容</h3><ul>
 <li>#url中可以添加本地图片资源</li>
 <li>#在next主题的source中新建assets目录图片资源放在其中<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">     background:url(<span class="regexp">/assets/</span>background.jpg);</span><br><span class="line">     background-repeat: no-repeat;</span><br><span class="line">     background-attachment:fixed;</span><br><span class="line">     background-position:<span class="number">50</span>% <span class="number">50</span>%;</span><br><span class="line">      opacity: <span class="number">0.8</span>;</span><br><span class="line">      <span class="regexp">//</span>可选</span><br><span class="line">      +mobile()&#123;</span><br><span class="line">      <span class="regexp">//</span>background-position: <span class="number">0</span>% -<span class="number">20</span>%;https:<span class="regexp">//i</span>.loli.net<span class="regexp">/2018/</span><span class="number">12</span><span class="regexp">/29/</span><span class="number">5</span>c270a0523154.jpg</span><br><span class="line">      <span class="regexp">//</span>https:<span class="regexp">//i</span>.loli.net<span class="regexp">/2018/</span><span class="number">12</span><span class="regexp">/29/</span><span class="number">5</span>c270fc2bfcad.png</span><br><span class="line">      background-image: url(https:<span class="regexp">//</span>ziyuan.lruihao.cn<span class="regexp">/images/</span>bg_cell.png);</span><br><span class="line">      background-size: cover;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-<li><h1 id="设置canvas-ribbon动态背景"><a href="#设置canvas-ribbon动态背景" class="headerlink" title="设置canvas_ribbon动态背景"></a>设置canvas_ribbon动态背景</h1></li>
-<li><h2 id="进入到-NexT-主题目录下"><a href="#进入到-NexT-主题目录下" class="headerlink" title="进入到 NexT 主题目录下"></a>进入到 NexT 主题目录下</h2></li>
 </ul>
 </li>
-<li><p>安装模块到 source/lib 目录下</p>
-<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-canvas-ribbon source/<span class="class"><span class="keyword">lib</span>/<span class="title">canvas</span>-<span class="title">ribbon</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><h2 id="编辑主题配置文件，启用-canvas-ribbon-模块，如下："><a href="#编辑主题配置文件，启用-canvas-ribbon-模块，如下：" class="headerlink" title="编辑主题配置文件，启用 canvas_ribbon 模块，如下："></a>编辑主题配置文件，启用 canvas_ribbon 模块，如下：</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">canvas_ribbon:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">size:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">alpha:</span> <span class="number">0.6</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure></li>
+<li><h1 id="设置canvas-ribbon动态背景"><a href="#设置canvas-ribbon动态背景" class="headerlink" title="设置canvas_ribbon动态背景"></a>设置canvas_ribbon动态背景</h1></li>
+<li><h2 id="进入到-NexT-主题目录下"><a href="#进入到-NexT-主题目录下" class="headerlink" title="进入到 NexT 主题目录下"></a>进入到 NexT 主题目录下</h2><ul>
+<li>安装模块到 source/lib 目录下<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-canvas-ribbon source/<span class="class"><span class="keyword">lib</span>/<span class="title">canvas</span>-<span class="title">ribbon</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h2 id="编辑主题配置文件，启用-canvas-ribbon-模块，如下："><a href="#编辑主题配置文件，启用-canvas-ribbon-模块，如下：" class="headerlink" title="编辑主题配置文件，启用 canvas_ribbon 模块，如下："></a>编辑主题配置文件，启用 canvas_ribbon 模块，如下：</h2>  <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">canvas_ribbon:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">size:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">alpha:</span> <span class="number">0.6</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure></li>
 <li><h1 id="设置左上角或右上角-github-图标"><a href="#设置左上角或右上角-github-图标" class="headerlink" title="设置左上角或右上角 github 图标"></a>设置左上角或右上角 github 图标</h1></li>
 <li><h2 id="主题配置文件，启用-github-banner-如下："><a href="#主题配置文件，启用-github-banner-如下：" class="headerlink" title="主题配置文件，启用 github-banner 如下："></a>主题配置文件，启用 github-banner 如下：</h2><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">github_banner</span>:</span><br><span class="line">  <span class="attribute">enable</span>: true</span><br><span class="line">  <span class="attribute">permalink</span>: <span class="attribute">https</span>:<span class="comment">//https://github.com/KaliAlbert</span></span><br><span class="line">  <span class="attribute">title</span>: Follow me on GitHub</span><br></pre></td></tr></table></figure></li>
 <li><h1 id="设置侧栏阅读进度百分比"><a href="#设置侧栏阅读进度百分比" class="headerlink" title="设置侧栏阅读进度百分比"></a>设置侧栏阅读进度百分比</h1></li>
 <li><h2 id="编辑站点配置文件，修改-back2top-部分如下"><a href="#编辑站点配置文件，修改-back2top-部分如下" class="headerlink" title="编辑站点配置文件，修改 back2top 部分如下"></a>编辑站点配置文件，修改 back2top 部分如下</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">back2top:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">sidebar:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">scrollpercent:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
 <li><h1 id="设置阅读位置标记功能"><a href="#设置阅读位置标记功能" class="headerlink" title="设置阅读位置标记功能"></a>设置阅读位置标记功能</h1></li>
-<li><h2 id="进入到-NexT-主题目录下-1"><a href="#进入到-NexT-主题目录下-1" class="headerlink" title="进入到 NexT 主题目录下"></a>进入到 NexT 主题目录下</h2><p>安装模块到 source/lib 目录下：</p>
-<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-bookmark.git source/<span class="class"><span class="keyword">lib</span>/<span class="title">bookmark</span></span></span><br></pre></td></tr></table></figure></li>
+<li><h2 id="进入到-NexT-主题目录下-1"><a href="#进入到-NexT-主题目录下-1" class="headerlink" title="进入到 NexT 主题目录下"></a>进入到 NexT 主题目录下</h2><p> 安装模块到 source/lib 目录下：</p>
+ <figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-bookmark.git source/<span class="class"><span class="keyword">lib</span>/<span class="title">bookmark</span></span></span><br></pre></td></tr></table></figure></li>
 <li><h2 id="编辑主题配置文件，启用-bookmark-模块，如下："><a href="#编辑主题配置文件，启用-bookmark-模块，如下：" class="headerlink" title="编辑主题配置文件，启用 bookmark 模块，如下："></a>编辑主题配置文件，启用 bookmark 模块，如下：</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">bookmark:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">save:</span> <span class="string">auto</span></span><br></pre></td></tr></table></figure></li>
-<li><h1 id="设置字数统计和预计阅读时间"><a href="#设置字数统计和预计阅读时间" class="headerlink" title="设置字数统计和预计阅读时间"></a>设置字数统计和预计阅读时间</h1><p>进入到博客主站目录下，安装 Hexo 插件：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-symbols-<span class="keyword">count</span>-<span class="built_in">time</span> <span class="comment">--save</span></span><br></pre></td></tr></table></figure></li>
+<li><h1 id="设置字数统计和预计阅读时间"><a href="#设置字数统计和预计阅读时间" class="headerlink" title="设置字数统计和预计阅读时间"></a>设置字数统计和预计阅读时间</h1><p>  进入到博客主站目录下，安装 Hexo 插件：</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-symbols-<span class="keyword">count</span>-<span class="built_in">time</span> <span class="comment">--save</span></span><br></pre></td></tr></table></figure></li>
 <li><h2 id="编辑站点配置文件，添加如下内容："><a href="#编辑站点配置文件，添加如下内容：" class="headerlink" title="编辑站点配置文件，添加如下内容："></a>编辑站点配置文件，添加如下内容：</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">symbols_count_time:</span></span><br><span class="line">  <span class="attr">symbols:</span> <span class="literal">true</span> </span><br><span class="line">  <span class="attr">time:</span> <span class="literal">true</span> </span><br><span class="line">  <span class="attr">total_symbols:</span> <span class="literal">true</span> </span><br><span class="line">  <span class="attr">total_time:</span> <span class="literal">true</span> </span><br></pre></td></tr></table></figure></li>
 <li><h2 id="此插件集成在-NexT-主题中，在-Hexo-站点配置文件中启用插件后，你可以调整-NexT-配置中的选项，查看主题配置文件，配置如下："><a href="#此插件集成在-NexT-主题中，在-Hexo-站点配置文件中启用插件后，你可以调整-NexT-配置中的选项，查看主题配置文件，配置如下：" class="headerlink" title="此插件集成在 NexT 主题中，在 Hexo 站点配置文件中启用插件后，你可以调整 NexT 配置中的选项，查看主题配置文件，配置如下："></a>此插件集成在 NexT 主题中，在 Hexo 站点配置文件中启用插件后，你可以调整 NexT 配置中的选项，查看主题配置文件，配置如下：</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">symbols_count_time:</span></span><br><span class="line">  <span class="attr">separated_meta:</span> <span class="literal">true</span> </span><br><span class="line">  <span class="attr">item_text_post:</span> <span class="literal">true</span> </span><br><span class="line">  <span class="attr">item_text_total:</span> <span class="literal">true</span> </span><br><span class="line">  <span class="attr">awl:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">wpm:</span> <span class="number">275</span></span><br></pre></td></tr></table></figure></li>
 <li><h1 id="添加文章分享按钮"><a href="#添加文章分享按钮" class="headerlink" title="添加文章分享按钮"></a>添加文章分享按钮</h1></li>
-<li><h2 id="进入到-NexT-主题目录下-2"><a href="#进入到-NexT-主题目录下-2" class="headerlink" title="进入到 NexT 主题目录下"></a>进入到 NexT 主题目录下</h2><p>安装模块到 source/lib 目录下：</p>
-<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-needmoreshare2 source/<span class="class"><span class="keyword">lib</span>/<span class="title">needsharebutton</span></span></span><br></pre></td></tr></table></figure></li>
+<li><h2 id="进入到-NexT-主题目录下-2"><a href="#进入到-NexT-主题目录下-2" class="headerlink" title="进入到 NexT 主题目录下"></a>进入到 NexT 主题目录下</h2><p>  安装模块到 source/lib 目录下：</p>
+  <figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/theme</span>-<span class="keyword">next</span>/theme-<span class="keyword">next</span>-needmoreshare2 source/<span class="class"><span class="keyword">lib</span>/<span class="title">needsharebutton</span></span></span><br></pre></td></tr></table></figure></li>
 <li><h2 id="编辑主题配置文件，添加-needmoreshare2-模块，如下："><a href="#编辑主题配置文件，添加-needmoreshare2-模块，如下：" class="headerlink" title="编辑主题配置文件，添加 needmoreshare2 模块，如下："></a>编辑主题配置文件，添加 needmoreshare2 模块，如下：</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">needmoreshare2:</span><br><span class="line">  enable: <span class="literal">true</span></span><br><span class="line">  postbottom:</span><br><span class="line">    enable: <span class="literal">true</span></span><br><span class="line">    options:</span><br><span class="line">      iconStyle: default</span><br><span class="line">      boxForm: horizontal</span><br><span class="line">      position: bottomCenter</span><br><span class="line">      networks: Weibo,Wechat,Douban,QQZone</span><br><span class="line">  float:</span><br><span class="line">    enable: <span class="literal">false</span></span><br><span class="line">    options:</span><br><span class="line">      iconStyle: default</span><br><span class="line">      boxForm: horizontal</span><br><span class="line">      position: middleRight</span><br><span class="line">      networks: Weibo,Wechat,Douban,QQZone</span><br></pre></td></tr></table></figure></li>
-<li><h1 id="设置网页底部信息"><a href="#设置网页底部信息" class="headerlink" title="设置网页底部信息"></a>设置网页底部信息</h1><p>查看主题配置文件，修改 footer 配置如下：</p>
+<li><h1 id="设置网页底部信息"><a href="#设置网页底部信息" class="headerlink" title="设置网页底部信息"></a>设置网页底部信息</h1><p> 查看主题配置文件，修改 footer 配置如下：</p>
 <figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">zixingguankan</span></span><br></pre></td></tr></table></figure></li>
 <li><h1 id="网站底部添加网站运行时间"><a href="#网站底部添加网站运行时间" class="headerlink" title="网站底部添加网站运行时间"></a>网站底部添加网站运行时间</h1></li>
 <li><h2 id="修改主题下layout-partials-footer-swig，并添加内容如下："><a href="#修改主题下layout-partials-footer-swig，并添加内容如下：" class="headerlink" title="修改主题下layout_partials\footer.swig，并添加内容如下："></a>修改主题下layout_partials\footer.swig，并添加内容如下：</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 网站运行时间的设置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;timeDate&quot;</span>&gt;</span>载入天数...<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;times&quot;</span>&gt;</span>载入时分秒...<span class="tag">&lt;/<span class="name">span</span>&gt;</span>  Sometimes your whole life boils down to one insame move.</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">createtime</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> grt= <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;01/01/2020 00:00:00&quot;</span>);<span class="comment">//此处修改你的建站时间或者网站上线时间</span></span></span><br><span class="line">        now.setTime(now.getTime()+250);</span><br><span class="line"><span class="javascript">        days = (now - grt ) / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> / <span class="number">24</span>; dnum = <span class="built_in">Math</span>.floor(days);</span></span><br><span class="line"><span class="javascript">        hours = (now - grt ) / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> - (<span class="number">24</span> * dnum); hnum = <span class="built_in">Math</span>.floor(hours);</span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="title">if</span>(<span class="params"><span class="built_in">String</span>(hnum).length ==<span class="number">1</span> </span>)</span>&#123;hnum = <span class="string">&quot;0&quot;</span> + hnum;&#125; minutes = (now - grt ) / <span class="number">1000</span> /<span class="number">60</span> - (<span class="number">24</span> * <span class="number">60</span> * dnum) - (<span class="number">60</span> * hnum);</span></span><br><span class="line"><span class="javascript">        mnum = <span class="built_in">Math</span>.floor(minutes); <span class="function"><span class="title">if</span>(<span class="params"><span class="built_in">String</span>(mnum).length ==<span class="number">1</span> </span>)</span>&#123;mnum = <span class="string">&quot;0&quot;</span> + mnum;&#125;</span></span><br><span class="line">        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);</span><br><span class="line"><span class="javascript">        snum = <span class="built_in">Math</span>.round(seconds); <span class="function"><span class="title">if</span>(<span class="params"><span class="built_in">String</span>(snum).length ==<span class="number">1</span> </span>)</span>&#123;snum = <span class="string">&quot;0&quot;</span> + snum;&#125;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;timeDate&quot;</span>).innerHTML = <span class="string">&quot;本站已安全运行 &quot;</span>+dnum+<span class="string">&quot; 天 &quot;</span>;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;times&quot;</span>).innerHTML = hnum + <span class="string">&quot; 小时 &quot;</span> + mnum + <span class="string">&quot; 分 &quot;</span> + snum + <span class="string">&quot; 秒&quot;</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="javascript"><span class="built_in">setInterval</span>(<span class="string">&quot;createtime()&quot;</span>,<span class="number">250</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li><h1 id="添加自定义404页面"><a href="#添加自定义404页面" class="headerlink" title="添加自定义404页面"></a>添加自定义404页面</h1><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">hexo new<span class="built_in"> page </span>404</span><br></pre></td></tr></table></figure></li>
 <li><h2 id="编辑新建的页面文件，默认在站点根目录下-source-404-index-md，在-front-matter-中添加-permalink-404，表示指定该页面固定链接为-http-“主页”-404-html"><a href="#编辑新建的页面文件，默认在站点根目录下-source-404-index-md，在-front-matter-中添加-permalink-404，表示指定该页面固定链接为-http-“主页”-404-html" class="headerlink" title="编辑新建的页面文件，默认在站点根目录下 /source/404/index.md，在 front-matter 中添加 permalink: /404，表示指定该页面固定链接为 http://“主页”/404.html"></a>编辑新建的页面文件，默认在站点根目录下 /source/404/index.md，在 front-matter 中添加 permalink: /404，表示指定该页面固定链接为 http://“主页”/404.html</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 404</span><br><span class="line">comments: false</span><br><span class="line">permalink: /404</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">center</span>&gt;</span></span>404 Not Found</span><br><span class="line">对不起，您所访问的页面不存在或者已删除</span><br><span class="line">[<span class="string">点击此处</span>](<span class="link">https://kalialbert.github.io/</span>)返回首页</span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">center</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="bullet">*</span> 我的Github：[<span class="string">https://kalialbert.github.io/</span>](<span class="link">https://kalialbert.github.io/</span>)</span><br></pre></td></tr></table></figure>
-
 </li>
-</ul>
-</li>
-</ul>
-<ul>
 <li><h1 id="添加图片放大预览功能"><a href="#添加图片放大预览功能" class="headerlink" title="添加图片放大预览功能"></a>添加图片放大预览功能</h1><p> 在主题配置文件，启用 fancybox，修改配置如下：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">fancybox:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
 <li><h1 id="图片懒加载设置"><a href="#图片懒加载设置" class="headerlink" title="图片懒加载设置"></a>图片懒加载设置</h1><p> 在主题配置文件中启用lazyload</p>
@@ -157,26 +147,77 @@ deploy:
 <p>}<br>//副标题颜色<br>.site-subtitle{</p>
 <pre><code>color: #4dfc23</code></pre>
 <p>}</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">- # 修改文章内链接文本样式</span><br><span class="line">    打开文件 /themes/next/source/css/_common/components/post/post.styl，在末尾添加以下</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">- # 修改文章内链接文本样式</span><br><span class="line"> 打开文件 /themes/next/source/css/_common/components/post/post.styl，在末尾添加以下</span><br></pre></td></tr></table></figure>
 <p>.post-body p a{<br>color: #0593d3;<br>border-bottom: none;<br>border-bottom: 1px solid #0593d3;<br>&amp;:hover {<br>  color: #fc6423;<br>  border-bottom: none;<br>  border-bottom: 1px solid #fc6423;<br>}<br>}</p>
-<pre><code>
-</code></pre>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">- # 修改文章底部标签样式</span><br><span class="line">     在主题配置文件中修改</span><br></pre></td></tr></table></figure>
+<p>tag_icon: true</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">- <span class="comment"># 在文章末尾添加“文章结束”标记</span></span><br><span class="line">  在主题<span class="regexp">/layout/</span>_macro 下新建 passage-end-tag.swig 文件，并添加以下代码</span><br></pre></td></tr></table></figure>
+  <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束 <i class="fa fa-heart"></i> 感谢阅读-------------</div>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">- ## 打开 <span class="regexp">/themes/</span><span class="keyword">next</span><span class="regexp">/layout/</span>_macro/post.swig 文件，在 END POST BODY 后面引入 passage-end-tag.swig，如下</span><br></pre></td></tr></table></figure>
+  
+  
+  
+  
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">- ## 在主题配置文件 _config.yml 的末尾添加以下配置</span><br></pre></td></tr></table></figure>
+passage_end_tag:
+enable: true
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">- # 修改分类页面样式</span><br><span class="line">   在主站source/_data/styles.styl中添加内容如下</span><br></pre></td></tr></table></figure>
+  // 分类&&标签 页面样式
+  .post-block.page {
+      margin-top: 40px;
+  }
+  // 分类页面page
+  .category-all-page {
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+      background-color: #797D7F;
+      padding: 20px 30px 60px 30px;
+      border-radius: 25px 25px 25px 25px;
+  }
+  .category-all-title {
+      font-family: Impact;
+      font-size: 24px;
+      color: aqua;
+  }
+  .category-list {
+      overflow: auto;
+  }
+  .category-list li {
+      height: 100%;
+      float: left;
+      border-right: 3px solid #222;
+      padding: 0 20px;
+  }
+  .category-all ul li {
+      list-style: none!important;
+  }
+  .category-list li:last-child {
+      border-right: none;
+  }
+  .category-list li a {
+      font-size: 16px;
+      text-decoration: none;
+      color: chartreuse;
+      font-family: Helvetica, Verdana, sans-serif;
+      // text-transform: uppercase;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+  }
+  .category-list li a:hover {
+      color: black;
+  }
+  .category-list li.active a {
+      font-weight: bold;
+      color: black;
+  }
+```
+
+
+
 </li>
 </ul>
-<p>修改文章底部标签样式<br>在主题配置文件中修改</p>
-<p>tag_icon: true<br>1<br>在文章末尾添加“文章结束”标记<br>在主题/layout/_macro 下新建 passage-end-tag.swig 文件，并添加以下代码</p>
-<pre><code>&lt;div style=&quot;text-align:center;color: #ccc;font-size:14px;&quot;&gt;-------------本文结束 &lt;i class=&quot;fa fa-heart&quot;&gt;&lt;/i&gt; 感谢阅读-------------&lt;/div&gt;</code></pre>
-<p>1<br>打开 /themes/next/layout/_macro/post.swig 文件，在 END POST BODY 后面引入 passage-end-tag.swig，如下</p>
-<pre><code>&#123;#####################&#125;
-&#123;### END POST BODY ###&#125;
-&#123;#####################&#125;
-&#123;% if theme.passage_end_tag.enable and not is_index %&#125;
-    &#123;% include 'passage-end-tag.swig' %&#125;
-    &#123;% endif %&#125;</code></pre>
-<p>在主题配置文件 _config.yml 的末尾添加以下配置</p>
-<p>passage_end_tag:<br>  enable: true</p>
-<p>修改分类页面样式<br>在主站source/_data/styles.styl中添加内容如下</p>
-<p>// 分类&amp;&amp;标签 页面样式<br>.post-block.page {<br>    margin-top: 40px;<br>}<br>// 分类页面page<br>.category-all-page {<br>    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);<br>    background-color: #797D7F;<br>    padding: 20px 30px 60px 30px;<br>    border-radius: 25px 25px 25px 25px;<br>}<br>.category-all-title {<br>    font-family: Impact;<br>    font-size: 24px;<br>    color: aqua;<br>}<br>.category-list {<br>    overflow: auto;<br>}<br>.category-list li {<br>    height: 100%;<br>    float: left;<br>    border-right: 3px solid #222;<br>    padding: 0 20px;<br>}<br>.category-all ul li {<br>    list-style: none!important;<br>}<br>.category-list li:last-child {<br>    border-right: none;<br>}<br>.category-list li a {<br>    font-size: 16px;<br>    text-decoration: none;<br>    color: chartreuse;<br>    font-family: Helvetica, Verdana, sans-serif;<br>    // text-transform: uppercase;<br>    -webkit-transition: all 0.5s ease;<br>    -moz-transition: all 0.5s ease;<br>    -o-transition: all 0.5s ease;<br>    -ms-transition: all 0.5s ease;<br>    transition: all 0.5s ease;<br>}<br>.category-list li a:hover {<br>    color: black;<br>}<br>.category-list li.active a {<br>    font-weight: bold;<br>    color: black;<br>}</p>
 <p>设置头像<br>在站点配置文件下修改avatar<br>网站底部加上访问量<br>打开主题的配置文件/theme/next/_config.yml，找到如下配置busuanzi_count（不蒜子）启用</p>
 <p>busuanzi_count:<br>  enable: true<br>1<br>2<br>修改不蒜子颜色<br>在主站source/_data/styles.styl中添加</p>
 <p>// 修改不蒜子数据颜色<br>#busuanzi_value_site_pv,#busuanzi_value_site_uv{<br>  color: #00BFFF;<br>}<br>1<br>2<br>3<br>4<br>网站底部添加动态桃心<br>修改主题配置文件中icon</p>
@@ -188,7 +229,7 @@ deploy:
     &lt;a target=&quot;_blank&quot; href=&quot;http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42090202000295&quot; style=&quot;text-decoration:none;color:#4dfc23;padding-left:30px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center&quot; rel=&quot;nofollow&quot;&gt;&#123;&#123; __('鄂公网安备 42090202000295') &#125;&#125;&lt;/a&gt;    &lt;!--这里将图标作为了背景，以使得能和后面的文字在同一行--&gt;
 &lt;/div&gt;</code></pre>
 <p>侧边栏社交链接<br>修改主题配置文件</p>
-<p>social:<br>  GitHub: <a href="https://github.com/KaliAlbert">https://github.com/KaliAlbert</a> || fab fa-github<br>  E-Mail: <a href="mailto:&#49;&#x37;&#x32;&#x34;&#54;&#56;&#x31;&#x30;&#x33;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#109;">&#49;&#x37;&#x32;&#x34;&#54;&#56;&#x31;&#x30;&#x33;&#x40;&#113;&#113;&#46;&#x63;&#x6f;&#109;</a> || fa fa-envelope<br>  Bili: <a href="https://space.bilibili.com/15071276">https://space.bilibili.com/15071276</a> || fa fa-tv</p>
+<p>social:<br>  GitHub: <a href="https://github.com/KaliAlbert">https://github.com/KaliAlbert</a> || fab fa-github<br>  E-Mail: <a href="mailto:&#49;&#x37;&#50;&#x34;&#54;&#56;&#x31;&#48;&#x33;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;">&#49;&#x37;&#50;&#x34;&#54;&#56;&#x31;&#48;&#x33;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;</a> || fa fa-envelope<br>  Bili: <a href="https://space.bilibili.com/15071276">https://space.bilibili.com/15071276</a> || fa fa-tv</p>
 <p>添加侧栏友情链接<br>在主题配置文件中修改Blog rolls</p>
 <p>links_settings:<br>  icon: fa fa-link<br>  title: Friend Links<br>  layout: inline</p>
 <p>links:<br>  V2EX: <a href="https://www.v2ex.com/">https://www.v2ex.com/</a><br>  #Title: <a href="http://yoursite.com/">http://yoursite.com</a></p>
@@ -210,5 +251,11 @@ background-color: rgba(100, 100, 100, 0.75);</code></pre>
 <p>}<br>// 页面底部页码, 去除鼠标置于上方时，数字上方的线<br>.pagination .prev, .pagination .next, .pagination .page-number {<br>    margin-bottom: 10px;<br>    border: none;<br>    color: rgb(1, 1, 1);<br>}</p>
 <p>// 页面底部页码，鼠标置于上方，黑底绿字<br>.page-number:hover,.page-number:active{<br>    color: rgb(136, 255, 13);<br>    border-radius: 100%;<br>    //background-color: rgba(255, 0, 100, 0.75); //品红<br>    background-color: rgba(0, 0, 0, 0.75); //black<br>}</p>
 ]]></content>
+      <categories>
+        <category>-美化 -next</category>
+      </categories>
+      <tags>
+        <tag>-next -美化</tag>
+      </tags>
   </entry>
 </search>
