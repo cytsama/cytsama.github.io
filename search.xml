@@ -234,4 +234,74 @@
         <tag>next</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SQL语句基础</title>
+    <url>/2020/10/31/SQL%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<p>SQL语句的语法及使用</p>
+<a id="more"></a>
+
+<h1 id="一、SQL简介"><a href="#一、SQL简介" class="headerlink" title="一、SQL简介"></a>一、SQL简介</h1><p>SQL 是用于访问和处理数据库的标准的计算机语言。</p>
+<h2 id="1-什么是-SQL？"><a href="#1-什么是-SQL？" class="headerlink" title="1,什么是 SQL？"></a>1,什么是 SQL？</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SQL</span> 指结构化查询语言 </span><br><span class="line"><span class="keyword">SQL</span> 使我们有能力访问数据库 </span><br><span class="line"><span class="keyword">SQL</span> 是一种 ANSI 的标准计算机语言 </span><br><span class="line">编者注：ANSI，美国国家标准化组</span><br></pre></td></tr></table></figure>
+
+<h2 id="2，SQL能做什么？"><a href="#2，SQL能做什么？" class="headerlink" title="2，SQL能做什么？"></a>2，SQL能做什么？</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SQL</span> 面向数据库执行查询 </span><br><span class="line"><span class="keyword">SQL</span> 可从数据库取回数据 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中插入新的纪录 </span><br><span class="line"><span class="keyword">SQL</span> 可更新数据库中的数据 </span><br><span class="line"><span class="keyword">SQL</span> 可从数据库删除记录 </span><br><span class="line"><span class="keyword">SQL</span> 可创建新数据库 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中创建新表 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中创建存储过程 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中创建视图 </span><br><span class="line"><span class="keyword">SQL</span> 可以设置表、存储过程和视图的权限</span><br></pre></td></tr></table></figure>
+<h2 id="3，在网站中使用-SQL"><a href="#3，在网站中使用-SQL" class="headerlink" title="3，在网站中使用 SQL"></a>3，在网站中使用 SQL</h2><p>要创建发布数据库中数据的网站，需要以下要素：</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">RDBMS 数据库程序（比如 MS <span class="keyword">Access</span>, <span class="keyword">SQL</span> <span class="keyword">Server</span>, MySQL） </span><br><span class="line">服务器端脚本语言（比如 PHP 或 ASP） </span><br><span class="line"><span class="keyword">SQL</span> </span><br><span class="line">HTML / CSS </span><br><span class="line">RDBMS</span><br><span class="line">RDBMS 指的是关系型数据库管理系统。</span><br></pre></td></tr></table></figure>
+<h2 id="4，RDBMS"><a href="#4，RDBMS" class="headerlink" title="4，RDBMS"></a>4，RDBMS</h2><p>RDBMS 是 SQL 的基础，同样也是所有现代数据库系统的基础，比如 MS SQL Server, IBM DB2, Oracle, MySQL 以及 Microsoft Access。</p>
+<p>RDBMS 中的数据存储在被称为表（tables）的数据库对象中。</p>
+<p>表是相关的数据项的集合，它由列和行组成。</p>
+<h1 id="二，SQL语句"><a href="#二，SQL语句" class="headerlink" title="二，SQL语句"></a>二，SQL语句</h1><p><strong><em>注意：SQL对大小写不敏感！！！</em></strong></p>
+<h2 id="1，SQL语句后面的分号"><a href="#1，SQL语句后面的分号" class="headerlink" title="1，SQL语句后面的分号"></a>1，SQL语句后面的分号</h2><p>某些数据库系统要求在每条SQL命令的末端使用分号。</p>
+<p>分号是在数据库系统中分隔每条SQL语句的标准方法，这样就可以在服务器的相同请求中执行一条以上的语句。</p>
+<p>如果使用的是MS Access和SQL Server 2000,则不必在每条SQL语句之后使用分号，不过某些数据库要求必须使用分号。</p>
+<h2 id="2，SQL-DML和DDL"><a href="#2，SQL-DML和DDL" class="headerlink" title="2，SQL DML和DDL"></a>2，SQL DML和DDL</h2><p>可以把SQL分为两个部分：数据操作语言（DML）和数据库定义语言（DDL）</p>
+<p>SQL（结构化查询语句）适用于执行查询的语法。但是SQL语言也包含用于更新、插入和删除记录的语法。查询和更新构成了SQL的DML部分：select、update、delete、insert into 。 数据库定义语言（DDL）部分使我们有能力创建或删除表格，我们也可以定义索引（键），规定表之间的连接，以及事假表间的约束：</p>
+<p>Create database、alert database、create table、alert table、drop table、create index、drop index</p>
+<h1 id="三，数据库"><a href="#三，数据库" class="headerlink" title="三，数据库"></a>三，数据库</h1><h2 id="1-一个数据库通常包含一个或多个表。每个表由一个名字标识（例如“客户”或者“订单”）。表包含带有数据的记录（行）。"><a href="#1-一个数据库通常包含一个或多个表。每个表由一个名字标识（例如“客户”或者“订单”）。表包含带有数据的记录（行）。" class="headerlink" title="1.一个数据库通常包含一个或多个表。每个表由一个名字标识（例如“客户”或者“订单”）。表包含带有数据的记录（行）。"></a>1.一个数据库通常包含一个或多个表。每个表由一个名字标识（例如“客户”或者“订单”）。表包含带有数据的记录（行）。</h2><p>下面的例子是一个名为 “Persons” 的表：</p>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>Address</th>
+            <th>City </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Adams</td>
+            <td>John</td>
+            <td>Oxford Street</td>
+            <td> London</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Bush</td>
+            <td>George</td>
+            <td>Fifth Avenue</td>
+            <td>New York</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Carter</td>
+            <td>Thomas</td>
+            <td>Changan Street</td>
+            <td>Beijing </td>
+        </tr>
+    </tbody>
+</table>
+上面的表包含三条记录（每一条对应一个人）和五个列（Id、姓、名、地址和城市）。
+
+<h2 id="2-用SQL语句创建数据库"><a href="#2-用SQL语句创建数据库" class="headerlink" title="2.用SQL语句创建数据库"></a>2.用SQL语句创建数据库</h2><p>创建数据库的SQL命令的语法格式如下所示：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">CREATE DATABASE 数据库名称</span><br><span class="line">[ON </span><br><span class="line">[filegroup                  </span><br><span class="line">(</span><br><span class="line">	<span class="attribute">name</span>=数据文件逻辑名称，</span><br><span class="line">	<span class="attribute">filename</span>=<span class="string">&#x27;路径+数据文件名&#x27;</span>,</span><br><span class="line">	<span class="attribute">size</span>=数据文件文件初始大小,</span><br><span class="line">	<span class="attribute">maxsize</span>=数据文件最大容量，</span><br><span class="line">	<span class="attribute">filegrowth</span>=数据文件的自动增长容量,</span><br><span class="line">	)]</span><br><span class="line">	[LOG ON </span><br><span class="line">	(</span><br><span class="line">	<span class="attribute">name</span>=日志文件逻辑名称,</span><br><span class="line">	<span class="attribute">filename</span>=<span class="string">&#x27;路径+日志文件名&#x27;</span>,</span><br><span class="line">	<span class="attribute">size</span>=数据文件文件初始大小,</span><br><span class="line">	<span class="attribute">maxsize</span>=日志文件最大容量,</span><br><span class="line">	<span class="attribute">filegrowth</span>=日志文件的自动增长容量,</span><br><span class="line">	)]</span><br><span class="line">	[collate 数据库校验方式名称]</span><br><span class="line">	[<span class="keyword">for</span> attach]</span><br></pre></td></tr></table></figure>
+<p><strong>对于上述命令，有以下几点说明:</strong><br>(1)用[]括起来的语句，表示在创建数据库的过程中可以选用或者不适用，例如，在创建数据库的过程中，如果只用第一条语句”CREATE DATABASE 数据库名称”，DBMS将会按照默认的“逻辑名称” “文件组” “初始大小”  “自动增长”和“路径”等属性创建数据库。<br>(2)”FILEGROWTH”可以是具体的容量，也可以是UNLIMITED,表示文件无增长容量限制。<br>(3)“数据库校验方式名称”可以是Windows校验方式名称，也可以是SQL校验方式名称。<br>(4)”FOR ATTACH”表示将已经存在的数据库文件附加到新的数据库中。<br>(5)用()括起来的语句，除了最后一行命令之外，其余的命令都用逗号作为分隔符。<br><strong>例如：</strong></p>
+]]></content>
+      <categories>
+        <category>SQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
 </search>

@@ -23,20 +23,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="hexo博客安装的简要笔记">
+  <meta name="description" content="SQL语句的语法及使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的第一篇blog">
-<meta property="og:url" content="http://example.com/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87blog/index.html">
+<meta property="og:title" content="SQL语句基础">
+<meta property="og:url" content="http://example.com/2020/10/31/SQL%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="sakuraのblog">
-<meta property="og:description" content="hexo博客安装的简要笔记">
+<meta property="og:description" content="SQL语句的语法及使用">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-10-26T02:24:05.000Z">
-<meta property="article:modified_time" content="2020-10-28T11:18:28.064Z">
+<meta property="article:published_time" content="2020-10-31T06:56:07.000Z">
+<meta property="article:modified_time" content="2020-10-31T14:58:52.343Z">
 <meta property="article:author" content="chenyongtao">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87blog/">
+<link rel="canonical" href="http://example.com/2020/10/31/SQL%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/">
 
 
 <script id="page-configurations">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>我的第一篇blog | sakuraのblog</title>
+  <title>SQL语句基础 | sakuraのblog</title>
   
 
 
@@ -201,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87blog/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/31/SQL%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/a1.jpg">
@@ -214,7 +214,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          我的第一篇blog
+          SQL语句基础
         </h1>
 
         <div class="post-meta">
@@ -223,23 +223,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-10-26 10:24:05" itemprop="dateCreated datePublished" datetime="2020-10-26T10:24:05+08:00">2020-10-26</time>
+              <time title="创建时间：2020-10-31 14:56:07 / 修改时间：22:58:52" itemprop="dateCreated datePublished" datetime="2020-10-31T14:56:07+08:00">2020-10-31</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-28 19:18:28" itemprop="dateModified" datetime="2020-10-28T19:18:28+08:00">2020-10-28</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
+                  <a href="/categories/SQL/" itemprop="url" rel="index"><span itemprop="name">SQL</span></a>
                 </span>
             </span>
 
@@ -256,7 +250,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>868</span>
+              <span>1.9k</span>
             </span>
 
         </div>
@@ -268,19 +262,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>hexo博客安装的简要笔记</p>
+        <p>SQL语句的语法及使用</p>
 <a id="more"></a>
 
-<h2 id="学习笔记！"><a href="#学习笔记！" class="headerlink" title="学习笔记！"></a>学习笔记！</h2><h2 id="GitHub账号注册。"><a href="#GitHub账号注册。" class="headerlink" title="GitHub账号注册。"></a>GitHub账号注册。</h2><h2 id="安装git。"><a href="#安装git。" class="headerlink" title="安装git。"></a>安装git。</h2><hr>
-<h2 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="#安装Nodejs"></a>#安装Nodejs</h2><p>node -v    #查看node版本<br>npm -v    #查看npm版本<br>npm install -g cnpm –registry=<a target="_blank" rel="noopener" href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a>    #安装淘宝的cnpm 管理器<br>cnpm -v    #查看cnpm版本<br>cnpm install -g hexo-cli    #安装hexo框架<br>hexo -v    #查看hexo版本<br>mkdir blog    #创建blog目录<br>cd blog     #进入blog目录<br>sudo hexo init     #生成博客 初始化博客<br>hexo s    #启动本地博客服务<br><a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a>    #本地访问地址<br>hexo n “我的第一篇文章” #创建新的文章<br>#返回blog目录<br>hexo clean #清理<br>hexo g #生成<br>#Github创建一个新的仓库 YourGithubName.github.io<br>cnpm install –save hexo-deployer-git #在blog目录下安装git部署插件</p>
-<hr>
-<h2 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="#配置_config.yml "></a>#配置_config.yml </h2><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># Deployment</span></span><br><span class="line"><span class="meta">## Docs: https:<span class="comment">//hexo.io/docs/deployment.html</span></span></span><br><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol"> 		type:</span> git</span><br><span class="line"><span class="symbol">		repo:</span> https:<span class="comment">//github.com/YourGithubName/YourGithubName.github.io.git</span></span><br><span class="line"><span class="symbol"> 		branch:</span> master</span><br></pre></td></tr></table></figure>
-<hr>
-<p>hexo d    #部署到Github仓库里<br>      <a target="_blank" rel="noopener" href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #访问这个地址可以查看博客</p>
-<h1 id="主题部署下载"><a href="#主题部署下载" class="headerlink" title="主题部署下载"></a>主题部署下载</h1><p> git clone <a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia  #下载yilia主题到本地</p>
-<h1 id="修改hexo根目录下的-config-yml-文件-："><a href="#修改hexo根目录下的-config-yml-文件-：" class="headerlink" title="修改hexo根目录下的 _config.yml 文件 ："></a>修改hexo根目录下的 _config.yml 文件 ：</h1><p> theme: yilia</p>
-<p>hexo c    #清理一下<br>hexo g    #生成<br>hexo d    #部署到远程Github仓库</p>
-<p><a target="_blank" rel="noopener" href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #查看博客</p>
+<h1 id="一、SQL简介"><a href="#一、SQL简介" class="headerlink" title="一、SQL简介"></a>一、SQL简介</h1><p>SQL 是用于访问和处理数据库的标准的计算机语言。</p>
+<h2 id="1-什么是-SQL？"><a href="#1-什么是-SQL？" class="headerlink" title="1,什么是 SQL？"></a>1,什么是 SQL？</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span> 指结构化查询语言 </span><br><span class="line"><span class="keyword">SQL</span> 使我们有能力访问数据库 </span><br><span class="line"><span class="keyword">SQL</span> 是一种 ANSI 的标准计算机语言 </span><br><span class="line">编者注：ANSI，美国国家标准化组</span><br></pre></td></tr></table></figure>
+
+<h2 id="2，SQL能做什么？"><a href="#2，SQL能做什么？" class="headerlink" title="2，SQL能做什么？"></a>2，SQL能做什么？</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SQL</span> 面向数据库执行查询 </span><br><span class="line"><span class="keyword">SQL</span> 可从数据库取回数据 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中插入新的纪录 </span><br><span class="line"><span class="keyword">SQL</span> 可更新数据库中的数据 </span><br><span class="line"><span class="keyword">SQL</span> 可从数据库删除记录 </span><br><span class="line"><span class="keyword">SQL</span> 可创建新数据库 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中创建新表 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中创建存储过程 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中创建视图 </span><br><span class="line"><span class="keyword">SQL</span> 可以设置表、存储过程和视图的权限</span><br></pre></td></tr></table></figure>
+<h2 id="3，在网站中使用-SQL"><a href="#3，在网站中使用-SQL" class="headerlink" title="3，在网站中使用 SQL"></a>3，在网站中使用 SQL</h2><p>要创建发布数据库中数据的网站，需要以下要素：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RDBMS 数据库程序（比如 MS <span class="keyword">Access</span>, <span class="keyword">SQL</span> <span class="keyword">Server</span>, MySQL） </span><br><span class="line">服务器端脚本语言（比如 PHP 或 ASP） </span><br><span class="line"><span class="keyword">SQL</span> </span><br><span class="line">HTML / CSS </span><br><span class="line">RDBMS</span><br><span class="line">RDBMS 指的是关系型数据库管理系统。</span><br></pre></td></tr></table></figure>
+<h2 id="4，RDBMS"><a href="#4，RDBMS" class="headerlink" title="4，RDBMS"></a>4，RDBMS</h2><p>RDBMS 是 SQL 的基础，同样也是所有现代数据库系统的基础，比如 MS SQL Server, IBM DB2, Oracle, MySQL 以及 Microsoft Access。</p>
+<p>RDBMS 中的数据存储在被称为表（tables）的数据库对象中。</p>
+<p>表是相关的数据项的集合，它由列和行组成。</p>
+<h1 id="二，SQL语句"><a href="#二，SQL语句" class="headerlink" title="二，SQL语句"></a>二，SQL语句</h1><p><strong><em>注意：SQL对大小写不敏感！！！</em></strong></p>
+<h2 id="1，SQL语句后面的分号"><a href="#1，SQL语句后面的分号" class="headerlink" title="1，SQL语句后面的分号"></a>1，SQL语句后面的分号</h2><p>某些数据库系统要求在每条SQL命令的末端使用分号。</p>
+<p>分号是在数据库系统中分隔每条SQL语句的标准方法，这样就可以在服务器的相同请求中执行一条以上的语句。</p>
+<p>如果使用的是MS Access和SQL Server 2000,则不必在每条SQL语句之后使用分号，不过某些数据库要求必须使用分号。</p>
+<h2 id="2，SQL-DML和DDL"><a href="#2，SQL-DML和DDL" class="headerlink" title="2，SQL DML和DDL"></a>2，SQL DML和DDL</h2><p>可以把SQL分为两个部分：数据操作语言（DML）和数据库定义语言（DDL）</p>
+<p>SQL（结构化查询语句）适用于执行查询的语法。但是SQL语言也包含用于更新、插入和删除记录的语法。查询和更新构成了SQL的DML部分：select、update、delete、insert into 。 数据库定义语言（DDL）部分使我们有能力创建或删除表格，我们也可以定义索引（键），规定表之间的连接，以及事假表间的约束：</p>
+<p>Create database、alert database、create table、alert table、drop table、create index、drop index</p>
+<h1 id="三，数据库"><a href="#三，数据库" class="headerlink" title="三，数据库"></a>三，数据库</h1><h2 id="1-一个数据库通常包含一个或多个表。每个表由一个名字标识（例如“客户”或者“订单”）。表包含带有数据的记录（行）。"><a href="#1-一个数据库通常包含一个或多个表。每个表由一个名字标识（例如“客户”或者“订单”）。表包含带有数据的记录（行）。" class="headerlink" title="1.一个数据库通常包含一个或多个表。每个表由一个名字标识（例如“客户”或者“订单”）。表包含带有数据的记录（行）。"></a>1.一个数据库通常包含一个或多个表。每个表由一个名字标识（例如“客户”或者“订单”）。表包含带有数据的记录（行）。</h2><p>下面的例子是一个名为 “Persons” 的表：</p>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>Address</th>
+            <th>City </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Adams</td>
+            <td>John</td>
+            <td>Oxford Street</td>
+            <td> London</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Bush</td>
+            <td>George</td>
+            <td>Fifth Avenue</td>
+            <td>New York</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Carter</td>
+            <td>Thomas</td>
+            <td>Changan Street</td>
+            <td>Beijing </td>
+        </tr>
+    </tbody>
+</table>
+上面的表包含三条记录（每一条对应一个人）和五个列（Id、姓、名、地址和城市）。
+
+<h2 id="2-用SQL语句创建数据库"><a href="#2-用SQL语句创建数据库" class="headerlink" title="2.用SQL语句创建数据库"></a>2.用SQL语句创建数据库</h2><p>创建数据库的SQL命令的语法格式如下所示：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE 数据库名称</span><br><span class="line">[ON </span><br><span class="line">[filegroup                  </span><br><span class="line">(</span><br><span class="line">	<span class="attribute">name</span>=数据文件逻辑名称，</span><br><span class="line">	<span class="attribute">filename</span>=<span class="string">&#x27;路径+数据文件名&#x27;</span>,</span><br><span class="line">	<span class="attribute">size</span>=数据文件文件初始大小,</span><br><span class="line">	<span class="attribute">maxsize</span>=数据文件最大容量，</span><br><span class="line">	<span class="attribute">filegrowth</span>=数据文件的自动增长容量,</span><br><span class="line">	)]</span><br><span class="line">	[LOG ON </span><br><span class="line">	(</span><br><span class="line">	<span class="attribute">name</span>=日志文件逻辑名称,</span><br><span class="line">	<span class="attribute">filename</span>=<span class="string">&#x27;路径+日志文件名&#x27;</span>,</span><br><span class="line">	<span class="attribute">size</span>=数据文件文件初始大小,</span><br><span class="line">	<span class="attribute">maxsize</span>=日志文件最大容量,</span><br><span class="line">	<span class="attribute">filegrowth</span>=日志文件的自动增长容量,</span><br><span class="line">	)]</span><br><span class="line">	[collate 数据库校验方式名称]</span><br><span class="line">	[<span class="keyword">for</span> attach]</span><br></pre></td></tr></table></figure>
+<p><strong>对于上述命令，有以下几点说明:</strong><br>(1)用[]括起来的语句，表示在创建数据库的过程中可以选用或者不适用，例如，在创建数据库的过程中，如果只用第一条语句”CREATE DATABASE 数据库名称”，DBMS将会按照默认的“逻辑名称” “文件组” “初始大小”  “自动增长”和“路径”等属性创建数据库。<br>(2)”FILEGROWTH”可以是具体的容量，也可以是UNLIMITED,表示文件无增长容量限制。<br>(3)“数据库校验方式名称”可以是Windows校验方式名称，也可以是SQL校验方式名称。<br>(4)”FOR ATTACH”表示将已经存在的数据库文件附加到新的数据库中。<br>(5)用()括起来的语句，除了最后一行命令之外，其余的命令都用逗号作为分隔符。<br><strong>例如：</strong></p>
 
     </div>
 
@@ -294,7 +334,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
+              <a href="/tags/SQL/" rel="tag"><i class="fa fa-tag"></i> SQL</a>
           </div>
 
         
@@ -303,13 +343,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/10/26/next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BE%8E%E5%8C%96/" rel="prev" title="hexo博客next主题美化">
-      <i class="fa fa-chevron-left"></i> hexo博客next主题美化
+    <a href="/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87blog/" rel="prev" title="我的第一篇blog">
+      <i class="fa fa-chevron-left"></i> 我的第一篇blog
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/10/31/SQL%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/" rel="next" title="SQL语句基础">
-      SQL语句基础 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -368,7 +405,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%81"><span class="nav-number">1.</span> <span class="nav-text">学习笔记！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub%E8%B4%A6%E5%8F%B7%E6%B3%A8%E5%86%8C%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">GitHub账号注册。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85git%E3%80%82"><span class="nav-number">3.</span> <span class="nav-text">安装git。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Nodejs"><span class="nav-number">4.</span> <span class="nav-text">#安装Nodejs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-config-yml"><span class="nav-number">5.</span> <span class="nav-text">#配置_config.yml </span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E9%83%A8%E7%BD%B2%E4%B8%8B%E8%BD%BD"><span class="nav-number"></span> <span class="nav-text">主题部署下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9hexo%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84-config-yml-%E6%96%87%E4%BB%B6-%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">修改hexo根目录下的 _config.yml 文件 ：</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81SQL%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">一、SQL简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF-SQL%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">1,什么是 SQL？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%BC%8CSQL%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">2，SQL能做什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%EF%BC%8C%E5%9C%A8%E7%BD%91%E7%AB%99%E4%B8%AD%E4%BD%BF%E7%94%A8-SQL"><span class="nav-number">1.3.</span> <span class="nav-text">3，在网站中使用 SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%EF%BC%8CRDBMS"><span class="nav-number">1.4.</span> <span class="nav-text">4，RDBMS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%EF%BC%8CSQL%E8%AF%AD%E5%8F%A5"><span class="nav-number">2.</span> <span class="nav-text">二，SQL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%BC%8CSQL%E8%AF%AD%E5%8F%A5%E5%90%8E%E9%9D%A2%E7%9A%84%E5%88%86%E5%8F%B7"><span class="nav-number">2.1.</span> <span class="nav-text">1，SQL语句后面的分号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%BC%8CSQL-DML%E5%92%8CDDL"><span class="nav-number">2.2.</span> <span class="nav-text">2，SQL DML和DDL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%EF%BC%8C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">三，数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%9A%E5%B8%B8%E5%8C%85%E5%90%AB%E4%B8%80%E4%B8%AA%E6%88%96%E5%A4%9A%E4%B8%AA%E8%A1%A8%E3%80%82%E6%AF%8F%E4%B8%AA%E8%A1%A8%E7%94%B1%E4%B8%80%E4%B8%AA%E5%90%8D%E5%AD%97%E6%A0%87%E8%AF%86%EF%BC%88%E4%BE%8B%E5%A6%82%E2%80%9C%E5%AE%A2%E6%88%B7%E2%80%9D%E6%88%96%E8%80%85%E2%80%9C%E8%AE%A2%E5%8D%95%E2%80%9D%EF%BC%89%E3%80%82%E8%A1%A8%E5%8C%85%E5%90%AB%E5%B8%A6%E6%9C%89%E6%95%B0%E6%8D%AE%E7%9A%84%E8%AE%B0%E5%BD%95%EF%BC%88%E8%A1%8C%EF%BC%89%E3%80%82"><span class="nav-number">3.1.</span> <span class="nav-text">1.一个数据库通常包含一个或多个表。每个表由一个名字标识（例如“客户”或者“订单”）。表包含带有数据的记录（行）。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%94%A8SQL%E8%AF%AD%E5%8F%A5%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.2.</span> <span class="nav-text">2.用SQL语句创建数据库</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
