@@ -237,15 +237,14 @@
   <entry>
     <title>SQL语句基础</title>
     <url>/2020/10/31/SQL%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<p>SQL语句的语法及使用</p>
+    <content><![CDATA[<p>SQL语句的语法及使用<br><strong>主要使用SQL sever 2012</strong></p>
 <a id="more"></a>
 
 <h1 id="一、SQL简介"><a href="#一、SQL简介" class="headerlink" title="一、SQL简介"></a>一、SQL简介</h1><p>SQL 是用于访问和处理数据库的标准的计算机语言。</p>
-<h2 id="1-什么是-SQL？"><a href="#1-什么是-SQL？" class="headerlink" title="1,什么是 SQL？"></a>1,什么是 SQL？</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SQL</span> 指结构化查询语言 </span><br><span class="line"><span class="keyword">SQL</span> 使我们有能力访问数据库 </span><br><span class="line"><span class="keyword">SQL</span> 是一种 ANSI 的标准计算机语言 </span><br><span class="line">编者注：ANSI，美国国家标准化组</span><br></pre></td></tr></table></figure>
-
-<h2 id="2，SQL能做什么？"><a href="#2，SQL能做什么？" class="headerlink" title="2，SQL能做什么？"></a>2，SQL能做什么？</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SQL</span> 面向数据库执行查询 </span><br><span class="line"><span class="keyword">SQL</span> 可从数据库取回数据 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中插入新的纪录 </span><br><span class="line"><span class="keyword">SQL</span> 可更新数据库中的数据 </span><br><span class="line"><span class="keyword">SQL</span> 可从数据库删除记录 </span><br><span class="line"><span class="keyword">SQL</span> 可创建新数据库 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中创建新表 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中创建存储过程 </span><br><span class="line"><span class="keyword">SQL</span> 可在数据库中创建视图 </span><br><span class="line"><span class="keyword">SQL</span> 可以设置表、存储过程和视图的权限</span><br></pre></td></tr></table></figure>
+<h2 id="1-什么是-SQL？"><a href="#1-什么是-SQL？" class="headerlink" title="1,什么是 SQL？"></a>1,什么是 SQL？</h2><p>SQL 指结构化查询语言<br>SQL 使我们有能力访问数据库<br>SQL 是一种 ANSI 的标准计算机语言<br>编者注：ANSI，美国国家标准化组</p>
+<h2 id="2，SQL能做什么？"><a href="#2，SQL能做什么？" class="headerlink" title="2，SQL能做什么？"></a>2，SQL能做什么？</h2><p>SQL 面向数据库执行查询<br>SQL 可从数据库取回数据<br>SQL 可在数据库中插入新的纪录<br>SQL 可更新数据库中的数据<br>SQL 可从数据库删除记录<br>SQL 可创建新数据库<br>SQL 可在数据库中创建新表<br>SQL 可在数据库中创建存储过程<br>SQL 可在数据库中创建视图<br>SQL 可以设置表、存储过程和视图的权限</p>
 <h2 id="3，在网站中使用-SQL"><a href="#3，在网站中使用-SQL" class="headerlink" title="3，在网站中使用 SQL"></a>3，在网站中使用 SQL</h2><p>要创建发布数据库中数据的网站，需要以下要素：</p>
-<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">RDBMS 数据库程序（比如 MS <span class="keyword">Access</span>, <span class="keyword">SQL</span> <span class="keyword">Server</span>, MySQL） </span><br><span class="line">服务器端脚本语言（比如 PHP 或 ASP） </span><br><span class="line"><span class="keyword">SQL</span> </span><br><span class="line">HTML / CSS </span><br><span class="line">RDBMS</span><br><span class="line">RDBMS 指的是关系型数据库管理系统。</span><br></pre></td></tr></table></figure>
+<p>RDBMS 数据库程序（比如 MS Access, SQL Server, MySQL）<br>服务器端脚本语言（比如 PHP 或 ASP）<br>SQL<br>HTML / CSS<br>RDBMS<br>RDBMS 指的是关系型数据库管理系统。</p>
 <h2 id="4，RDBMS"><a href="#4，RDBMS" class="headerlink" title="4，RDBMS"></a>4，RDBMS</h2><p>RDBMS 是 SQL 的基础，同样也是所有现代数据库系统的基础，比如 MS SQL Server, IBM DB2, Oracle, MySQL 以及 Microsoft Access。</p>
 <p>RDBMS 中的数据存储在被称为表（tables）的数据库对象中。</p>
 <p>表是相关的数据项的集合，它由列和行组成。</p>
@@ -295,10 +294,9 @@
 
 <h2 id="2-用SQL命令创建数据库"><a href="#2-用SQL命令创建数据库" class="headerlink" title="2.用SQL命令创建数据库"></a>2.用SQL命令创建数据库</h2><p>创建数据库的SQL命令的语法格式如下所示：</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">CREATE DATABASE 数据库名称</span><br><span class="line">[ON </span><br><span class="line">[filegroup                  </span><br><span class="line">(</span><br><span class="line">	<span class="attribute">name</span>=数据文件逻辑名称，</span><br><span class="line">	<span class="attribute">filename</span>=<span class="string">&#x27;路径+数据文件名&#x27;</span>,</span><br><span class="line">	<span class="attribute">size</span>=数据文件文件初始大小,</span><br><span class="line">	<span class="attribute">maxsize</span>=数据文件最大容量，</span><br><span class="line">	<span class="attribute">filegrowth</span>=数据文件的自动增长容量,</span><br><span class="line">	)]</span><br><span class="line">	[LOG ON </span><br><span class="line">	(</span><br><span class="line">	<span class="attribute">name</span>=日志文件逻辑名称,</span><br><span class="line">	<span class="attribute">filename</span>=<span class="string">&#x27;路径+日志文件名&#x27;</span>,</span><br><span class="line">	<span class="attribute">size</span>=数据文件文件初始大小,</span><br><span class="line">	<span class="attribute">maxsize</span>=日志文件最大容量,</span><br><span class="line">	<span class="attribute">filegrowth</span>=日志文件的自动增长容量,</span><br><span class="line">	)]</span><br><span class="line">	[collate 数据库校验方式名称]</span><br><span class="line">	[<span class="keyword">for</span> attach]</span><br></pre></td></tr></table></figure>
-<p><strong>对于上述命令，有以下几点说明:</strong><br>(1)用[]括起来的语句，表示在创建数据库的过程中可以选用或者不适用，例如，在创建数据库的过程中，如果只用第一条语句”CREATE DATABASE 数据库名称”，DBMS将会按照默认的“逻辑名称” “文件组” “初始大小”  “自动增长”和“路径”等属性创建数据库。</p>
-<p>(2)”FILEGROWTH”可以是具体的容量，也可以是UNLIMITED,表示文件无增长容量限制。</p>
+<p><strong>对于上述命令，有以下几点说明:</strong><br>(1)用[]括起来的语句，表示在创建数据库的过程中可以选用或者不适用，例如，在创建数据库的过程中，如果只用第一条语句”CREATE DATABASE 数据库名称”，DBMS将会按照默认的“逻辑名称” “文件组” “初始大小”  “自动增长”和“路径”等属性创建数据库。<br>(2)“FILEGROWTH”可以是具体的容量，也可以是UNLIMITED,表示文件无增长容量限制。</p>
 <p>(3)“数据库校验方式名称”可以是Windows校验方式名称，也可以是SQL校验方式名称。</p>
-<p>(4)”FOR ATTACH”表示将已经存在的数据库文件附加到新的数据库中。</p>
+<p>(4)“FOR ATTACH”表示将已经存在的数据库文件附加到新的数据库中。</p>
 <p>(5)用()括起来的语句，除了最后一行命令之外，其余的命令都用逗号作为分隔符。</p>
 <p><strong>例3-2-1：</strong></p>
 <ul>
@@ -337,10 +335,53 @@
 <p><strong>例3-4-1：</strong></p>
 <ul>
 <li>删除数据库Teach。<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> Teach</span><br></pre></td></tr></table></figure>
-<h2 id="4，用系统存储过程查看数据库信息"><a href="#4，用系统存储过程查看数据库信息" class="headerlink" title="4，用系统存储过程查看数据库信息"></a>4，用系统存储过程查看数据库信息</h2></li>
+<h2 id="5，用系统存储过程查看数据库信息"><a href="#5，用系统存储过程查看数据库信息" class="headerlink" title="5，用系统存储过程查看数据库信息"></a>5，用系统存储过程查看数据库信息</h2><h3 id="1-用系统存储过程显示数据库结构。"><a href="#1-用系统存储过程显示数据库结构。" class="headerlink" title="(1)用系统存储过程显示数据库结构。"></a>(1)用系统存储过程显示数据库结构。</h3>可以使用系统存储过程<strong>Sp_helpdb</strong>来显示数据库结构，其语法如下:<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Sp_helpdb</span> [[<span class="variable">@dbname</span>=] <span class="string">&#x27;name&#x27;</span> ]</span><br></pre></td></tr></table></figure>
+使用Sp_helpdb系统存储过程可以显示指定数据库的信息。如果不指定[@dbname=]’name’子句，则会显示在<strong>master.dbo.sysdatabases</strong>表中存储的所有数据库信息，命令执行成功会返回0,否则返回1。如显示<strong>AdventureWorks2012</strong>数据库的信息:<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">EXEC</span> Sp_helpdb AdventureWorks<span class="number">2012</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-用系统存储过程显示文件信息。"><a href="#2-用系统存储过程显示文件信息。" class="headerlink" title="(2)用系统存储过程显示文件信息。"></a>(2)用系统存储过程显示文件信息。</h3>可以使用存储过程<strong>Sp_helpfile</strong>来显示当前数据库中的文件信息，其语法如下:<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Sp_helpfile</span> [[<span class="variable">@filename</span> =] <span class="string">&#x27; name&#x27;</span>]</span><br></pre></td></tr></table></figure>
+如果不指定文件名称，则会显示当前数据库中所有的文件信息。命令执行成功会返回0,否则返回1。 如显示<strong>AdventureWorks2012</strong>数据库中的<strong>Address</strong>表的信息:<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">EXEC Sp_helpfile Address</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-用系统存储过程显示文件组信息。"><a href="#3-用系统存储过程显示文件组信息。" class="headerlink" title="(3)用系统存储过程显示文件组信息。"></a>(3)用系统存储过程显示文件组信息。</h3>可以系统存储过程<strong>Sp_helpfilegroup</strong>来显示当前数据库中的文件组信息，其语法如下:<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Sp_helpfilegroup</span> [[<span class="variable">@filegroupname</span> =] <span class="string">&#x27;name &#x27;</span> ]</span><br></pre></td></tr></table></figure>
+如果不指定文件组名称，则会显示当前数据库中所有的文件组信息。命令执行成功会返回0，否则返回1。如显示<strong>AdventureWorks2012</strong>数据库中的所有文件组信息:<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">use</span> AdventureWorks<span class="number">2008</span>R<span class="number">2</span></span><br><span class="line"><span class="attribute">EXEC</span> Sp_helpfilegroup</span><br></pre></td></tr></table></figure>
+<h1 id="四，数据表"><a href="#四，数据表" class="headerlink" title="四，数据表"></a>四，数据表</h1><h2 id="1、Select"><a href="#1、Select" class="headerlink" title="1、Select"></a>1、Select</h2>User表里面的数据如下:<table>
+  <thead>
+      <tr>
+          <th>user_id</th>
+          <th>user_name</th>
+          <th>user_age</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>mary</td>
+          <td>12</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>tom</td>
+          <td>10</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>alice</td>
+          <td>14</td>
+      </tr>
+       <tr>
+          <td>5</td>
+          <td>luna</td>
+          <td>13</td>
+      </tr>
+  </tbody>
+</table>
+1,查询user表里面的user_name字段和user_age字段的所有数据:
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> user_name,user_age <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+2,查询user表中所有的字段数据，用 * 表示列的名称:
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> * <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
-<h1 id="四，数据表"><a href="#四，数据表" class="headerlink" title="四，数据表"></a>四，数据表</h1><p>三、Select</p>
-<p>User表里面的数据如下:</p>
+<h2 id="2、Distinct"><a href="#2、Distinct" class="headerlink" title="2、Distinct"></a>2、Distinct</h2><p>Distinct选取所有的值的时候不会出现重复的数据</p>
+<p>用普通的查询，查询所有</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> * <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
 <table>
     <thead>
         <tr>
@@ -356,179 +397,339 @@
             <td>12</td>
         </tr>
         <tr>
-            <td>2</td>
-            <td>tom</td>
-            <td>10</td>
+            <td>3</td>
+            <td>mary</td>
+            <td>12</td>
         </tr>
         <tr>
-            <td>3</td>
+            <td>4</td>
             <td>alice</td>
             <td>14</td>
         </tr>
          <tr>
-            <td>4</td>
+            <td>5</td>
             <td>luna</td>
             <td>13</td>
         </tr>
     </tbody>
 </table>
-查询user表里面的user_name字段和user_age字段的所有数据:
-<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> user_name,user_age <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
 
-<p>查询user表中所有的字段数据，用 * 表示列的名称:</p>
-<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> * <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="keyword">distinct</span> user_name,user_age <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：不能有user_id，因为两个Mary的user_id不一样，加上就不算相同数据</strong></p>
+<h2 id="5、Where"><a href="#5、Where" class="headerlink" title="5、Where"></a>5、Where</h2><p>1，查询user_id等于1的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_id = 1</span><br></pre></td></tr></table></figure>
+<p>2，查询user_age大于等于12的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_age &gt;=12</span><br></pre></td></tr></table></figure>
+<p>3，查询user_age不等于12的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_age &lt;&gt; 12</span><br></pre></td></tr></table></figure>
 
-<p>四、Distinct</p>
-<p>Distinct选取所有的值的时候不会出现重复的数据</p>
-<p>用普通的查询，查询所有</p>
-<p>Select * from user</p>
-<p>Select distinct user_name,user_age from user</p>
-<p>注意：不能有user_id，因为两个Mary的user_id不一样，加上就不算相同数据</p>
-<p>五、Where</p>
-<p>1：查询user_id等于1 的数据</p>
-<p>Select * from user where user_id = 1</p>
-<p>2：查询user_age大于等于12的数据</p>
-<p>Select * from user where user_age &gt;=12</p>
-<p>3：查询user_age不等于12的数据</p>
-<p>Select * from user where user_age &lt;&gt; 12</p>
-<p>六、AND 和 OR</p>
-<p>And和or在where子语句中把两个或多个条件结合起来。如果需要两个条件都成立就是用and如果只需要其中一个条件成立就使用or</p>
-<p>Select * from user where user_name = ‘mary’ and user_age = 12</p>
-<p>需要注意的是SQL使用单引号来环绕文本值，如果是数值则不需要引号</p>
-<p>Select * from user where user_name=’mary’ or user_age =13</p>
-<p>结合and和or使用圆括号来组成复杂的表达式</p>
-<p>Select * from user where (user_name = ‘mary’ and user_age = 12) or(user_age =13)</p>
-<p>七、Order by</p>
-<p>1：对指定列进行升序排列</p>
-<p>Select * from user order by user_name</p>
-<p>2：按照user_id逆序排列</p>
-<p>Select * from user order by user_id DESC</p>
-<p>2：按照升序排列user_id逆序排列user_age</p>
-<p>SELECT * FROM user order by user_id ASC,user_age DESC</p>
-<p>3：按照升序排列user_id逆序排列user_age</p>
-<p>SELECT * FROM user order by user_age DESC,user_id ASC</p>
-<p>注意：前面的条件优先级更高！！</p>
-<p>八、Insert</p>
-<p>User表</p>
-<p>插入一行数据 user_id为2 user_name为tom，user_age为12</p>
-<p>注意：如果每一项都有插入的话就不需要在前面列出列名！！</p>
-<p>Insert into user values(2,’tom’,12)</p>
-<p>新插入一行数据，只要求user_name为eva</p>
-<p>Insert into user(user_name) values(‘eva’)</p>
-<p>注意：因为ID设置为自增，所以user_id不为null</p>
-<p>九、Update</p>
-<p>修改user_id为6的数据user_age为14</p>
-<p>Update user set user_age=14 where user_id=6</p>
-<p>修改user_id为1的数据user_name为ann，user_age为11</p>
-<p>Update user set user_name=’ann’,user_age=11 where user_id=1</p>
-<p>十、Delete</p>
-<p>User表中的所有数据信息如下</p>
-<p>删除user_age为12的数据</p>
-<p>Delete from user where user_age=12</p>
-<p>删除表中的所有数据</p>
-<p>Delete from user</p>
-<p>第二章 SQL高级教程</p>
-<p>一、Top</p>
-<p>Top子句用于返回要返回的记录的数目，但并不是所有的数据库都支持top子句</p>
-<p>1：SQL Server</p>
-<p>Select top 5 * from user</p>
-<p>2：MySQL</p>
-<p>Select * from user limit 5</p>
-<p>3：Oracle</p>
-<p>Select * from user where ROWNUM &lt;= 5</p>
-<p>二、Like</p>
-<p>User表的初始数据如下</p>
-<p>1：找出以li开头的数据</p>
-<p>Select * from user where user_name like ‘li%’</p>
-<p>2：找出以ry结尾的数据</p>
-<p>Select * from user where user_name like ‘%ry’</p>
-<p>3：找出含有a的数据</p>
-<p>Select * from user where user_name like ‘%a%’</p>
-<p>4：找出第二个字母是a第四个字母是y的数据</p>
-<p>Select * from user where user_name like ‘_a_y’</p>
-<p>三、通配符</p>
-<p>在搜索数据库中的数据的时候SQL通配符可以替代一个或多个字符。SQL通配符必须与like运算符一起使用</p>
-<p>1: _ 替代一个字符</p>
-<p>找出第二个字母是a第四个字母是y的数据</p>
-<p>Select * from user where user_name like ‘_a_y’</p>
-<p>2: % 替代一个或多个字符</p>
-<p>找出以ry结尾的数据</p>
-<p>Select * from user where user_name like ‘%ry’</p>
-<p>3: [] 字符列中的任意一个单字符</p>
+<h2 id="4、AND-和-OR"><a href="#4、AND-和-OR" class="headerlink" title="4、AND 和 OR"></a>4、AND 和 OR</h2><p>And和or在where子语句中把两个或多个条件结合起来。如果需要两个条件都成立就是用and如果只需要其中一个条件成立就使用or.<br>1，查询user_name是mary或user_age是12的。</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_name = <span class="string">&#x27;mary&#x27;</span> <span class="keyword">and</span> user_age = 12</span><br></pre></td></tr></table></figure>
+<p><strong>需要注意的是SQL使用单引号来环绕文本值，如果是数值则不需要引号</strong><br>2，查询user_name是mary和user_age是13的。</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where <span class="attribute">user_name</span>=<span class="string">&#x27;mary&#x27;</span> <span class="keyword">or</span> user_age =13</span><br></pre></td></tr></table></figure>
+<p>结合and和or使用圆括号来组成复杂的表达式。<br>3，查询user_name是mary和user_age是12的，或user_age是13的。</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where (user_name = <span class="string">&#x27;mary&#x27;</span> <span class="keyword">and</span> user_age = 12) <span class="keyword">or</span>(user_age =13)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5，Order-by"><a href="#5，Order-by" class="headerlink" title="5，Order by"></a>5，Order by</h2><p>1，对指定列进行升序排列</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>order by user_name</span><br></pre></td></tr></table></figure>
+<p>2，按照user_id逆序排列</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>order by user_id DESC</span><br></pre></td></tr></table></figure>
+<p>3，按照升序排列user_id逆序排列user_age</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">SELECT * <span class="keyword">FROM</span><span class="built_in"> user </span>order by user_id ASC,user_age DESC</span><br></pre></td></tr></table></figure>
+<p>4，按照升序排列user_id逆序排列user_age</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">SELECT * <span class="keyword">FROM</span><span class="built_in"> user </span>order by user_age DESC,user_id ASC</span><br></pre></td></tr></table></figure>
+<p><strong>注意：前面的条件优先级更高！！</strong></p>
+<h2 id="6，Insert"><a href="#6，Insert" class="headerlink" title="6，Insert"></a>6，Insert</h2><p>User表：</p>
+<table>
+    <thead>
+        <tr>
+            <th>user_id</th>
+            <th>user_name</th>
+            <th>user_age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>mary</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>mary</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>alice</td>
+            <td>14</td>
+        </tr>
+         <tr>
+            <td>5</td>
+            <td>luna</td>
+            <td>13</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>1，插入一行数据 user_id为2 user_name为tom，user_age为12<br><strong>注意：如果每一项都有插入的话就不需要在前面列出列名！！</strong></p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Insert into<span class="built_in"> user </span>values(2,<span class="string">&#x27;tom&#x27;</span>,12)</span><br></pre></td></tr></table></figure>
+<p>2，新插入一行数据，只要求user_name为eva</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Insert</span> <span class="keyword">into</span> <span class="keyword">user</span>(user_name) <span class="keyword">values</span>(<span class="string">&#x27;eva&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<table>
+    <thead>
+        <tr>
+            <th>user_id</th>
+            <th>user_name</th>
+            <th>user_age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>mary</td>
+            <td>10</td>
+        </tr>
+         <tr>
+            <td>2</td>
+            <td>tom</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>mary</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>alice</td>
+            <td>14</td>
+        </tr>
+         <tr>
+            <td>5</td>
+            <td>luna</td>
+            <td>13</td>
+        </tr>
+         <tr>
+            <td>6</td>
+            <td>eva</td>
+            <td>(NULL)</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>注意：因为ID设置为自增，所以user_id不为null</strong></p>
+<h2 id="7，Update"><a href="#7，Update" class="headerlink" title="7，Update"></a>7，Update</h2><p>1，修改user_id为6的数据user_age为14</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Update<span class="built_in"> user </span><span class="builtin-name">set</span> <span class="attribute">user_age</span>=14 where <span class="attribute">user_id</span>=6</span><br></pre></td></tr></table></figure>
+<p>2，修改user_id为1的数据user_name为ann，user_age为11</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Update<span class="built_in"> user </span><span class="builtin-name">set</span> <span class="attribute">user_name</span>=<span class="string">&#x27;ann&#x27;</span>,user_age=11 where <span class="attribute">user_id</span>=1</span><br></pre></td></tr></table></figure>
+
+<h2 id="8，Delete"><a href="#8，Delete" class="headerlink" title="8，Delete"></a>8，Delete</h2><p>User表中的所有数据信息如下</p>
+<table>
+    <thead>
+        <tr>
+            <th>user_id</th>
+            <th>user_name</th>
+            <th>user_age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>ann</td>
+            <td>11</td>
+        </tr>
+         <tr>
+            <td>2</td>
+            <td>tom</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>mary</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>alice</td>
+            <td>14</td>
+        </tr>
+         <tr>
+            <td>5</td>
+            <td>luna</td>
+            <td>13</td>
+        </tr>
+         <tr>
+            <td>6</td>
+            <td>eva</td>
+            <td>14</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>1，删除user_age为12的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Delete <span class="keyword">from</span><span class="built_in"> user </span>where <span class="attribute">user_age</span>=12</span><br></pre></td></tr></table></figure>
+<p>2，删除表中的所有数据</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Delete</span> <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="五，数据表（SQL高级教程）"><a href="#五，数据表（SQL高级教程）" class="headerlink" title="五，数据表（SQL高级教程）"></a>五，数据表（SQL高级教程）</h1><h2 id="1、Top"><a href="#1、Top" class="headerlink" title="1、Top"></a>1、Top</h2><p>Top子句用于返回要返回的记录的数目，但并不是所有的数据库都支持top子句</p>
+<p>1，SQL Server</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> top <span class="number">5</span> * <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+<p>2，MySQL</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>limit 5</span><br></pre></td></tr></table></figure>
+<p>3，Oracle</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where ROWNUM &lt;= 5</span><br></pre></td></tr></table></figure>
+<h2 id="2、Like"><a href="#2、Like" class="headerlink" title="2、Like"></a>2、Like</h2><p>User表的初始数据如下</p>
+<table>
+    <thead>
+        <tr>
+            <th>user_id</th>
+            <th>user_name</th>
+            <th>user_age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>mary</td>
+            <td>10</td>
+        </tr>
+         <tr>
+            <td>2</td>
+            <td>lili</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>linda</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>harry</td>
+            <td>13</td>
+        </tr>
+         <tr>
+    </tbody>
+</table>
+
+<p>1，找出以li开头的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_name like <span class="string">&#x27;li%&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>2，找出以ry结尾的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_name like <span class="string">&#x27;%ry&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>3，找出含有a的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_name like <span class="string">&#x27;%a%&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>4，找出第二个字母是a第四个字母是y的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_name like <span class="string">&#x27;_a_y&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3、通配符"><a href="#3、通配符" class="headerlink" title="3、通配符"></a>3、通配符</h2><p><strong>在搜索数据库中的数据的时候SQL通配符可以替代一个或多个字符。SQL通配符必须与like运算符一起使用</strong></p>
+<p>1， _ 替代一个字符<br>找出第二个字母是a第四个字母是y的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_name like <span class="string">&#x27;_a_y&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>2， % 替代一个或多个字符<br>找出以ry结尾的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_name like <span class="string">&#x27;%ry&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>3， [] 字符列中的任意一个单字符</p>
 <p>找出以a或者l开头的数据</p>
-<p>Select * from user where user_name like ‘[al]%’</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_name like <span class="string">&#x27;[al]%&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>找出不是a或者l开头的数据</p>
-<p>Select * from user where user_name like ‘[!al]%’</p>
-<p>四、In</p>
-<p>只要数据满足in里面的一个条件就可以了</p>
-<p>找到user_age是12或者13的数据</p>
-<p>Select * from user where user_age in (12,13)</p>
-<p>找到user_name是Harry和Mary的数据</p>
-<p>Select * from user where user_name IN (‘mary’,’harry’)</p>
-<p>五、Between</p>
-<p>选取两个值之间的数据</p>
-<p>查询年龄在12和14之间的数据</p>
-<p>Select * from user where user_age between 12 and 14</p>
-<p>查询字母在Alice和John之间的数据</p>
-<p>Select * from user where user_name between ‘alice’ AND’john’</p>
-<p>六、Aliases</p>
-<p>指定别名</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_name like <span class="string">&#x27;[!al]%&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="4、In"><a href="#4、In" class="headerlink" title="4、In"></a>4、In</h2><p><strong>只要数据满足in里面的一个条件就可以了</strong></p>
+<p>1，找到user_age是12或者13的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_age <span class="keyword">in</span> (12,13)</span><br></pre></td></tr></table></figure>
+<p>2，找到user_name是Harry和Mary的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_name <span class="keyword">IN</span> (<span class="string">&#x27;mary&#x27;</span>,<span class="string">&#x27;harry&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、Between"><a href="#5、Between" class="headerlink" title="5、Between"></a>5、Between</h2><p><strong>选取两个值之间的数据</strong></p>
+<p>1，查询年龄在12和14之间的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_age between 12 <span class="keyword">and</span> 14</span><br></pre></td></tr></table></figure>
+<p>2，查询字母在Alice和John之间的数据</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>where user_name between <span class="string">&#x27;alice&#x27;</span> <span class="keyword">AND</span><span class="string">&#x27;john&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6、Aliases"><a href="#6、Aliases" class="headerlink" title="6、Aliases"></a>6、Aliases</h2><p><strong>指定别名</strong></p>
 <p>假设我们有两个表分别是user和Room 。我们分别指定他们为u和r。</p>
-<p>1：不使用别名</p>
-<p>Select room.room_name,user.user_name,user.user_age from user ,room  Where user.user_age=12 and room.room_id = 1</p>
-<p>2：使用别名</p>
-<p>使用别名的时候直接将别名跟在后面，不使用as也可以</p>
-<p>Select r.room_name,u.user_name,u.user_age from user as u,room as r  Where u.user_age=12 and r.room_id = 1</p>
-<p>七、Join</p>
-<p>数据库中的表可以通过键将彼此联系起来，主键是一个列，在这个列中的每一行的值都是唯一的，在表中，每个主键的值都是唯一的，这样就可以在不重复每个表中的所有数据的情况下，把表间的数据交叉捆绑在一起。</p>
-<p>以下为表user和表Room的数据</p>
-<p>1：引用两个表</p>
-<p>找出在Room of boy相关联的用户信息</p>
-<p>Select u.user_name,u.user_age,r.room_name from user as u,room as r </p>
-<p>Where u.room_id = r.room_id and r.room_name=’room of boy’</p>
-<p>2：使用关键字join来连接两张表</p>
-<p>Select u.user_name,u.user_age,r.room_name</p>
-<p>from user as u</p>
-<p>join room as r</p>
-<p>on u.room_id = r.room_id and r.room_name=’room of boy’</p>
-<p>八、Inner join</p>
-<p>Inner join 与 join 用法一致</p>
-<p>Select u.user_name,u.user_age,r.room_name</p>
-<p>from user as u</p>
-<p>inner join room as r</p>
-<p>on u.room_id = r.room_id and r.room_name=’room of boy’</p>
-<p>九、Left join</p>
-<p>注意：左连接以左边的表为主体，也就是说会列出左边的表中的所有的数据，无论它是否满足条件。</p>
-<p>1：user在左边</p>
-<p>Select u.user_name,u.user_age,r.room_name</p>
-<p>from user as u</p>
-<p>Left join room as r</p>
-<p>on u.room_id = r.room_id and r.room_name=’room of boy’</p>
-<p>2：Room在左边</p>
-<p>Select u.user_name,u.user_age,r.room_name</p>
-<p>From room as r</p>
-<p>Left join user as u</p>
-<p>on u.room_id = r.room_id and r.room_name=’room of boy’</p>
-<p>十、Right join</p>
-<p>注意：左连接以右边的表为主体，也就是说会列出左边的表中的所有的数据，无论它是否满足条件。</p>
-<p>1：Room在右边</p>
-<p>Select u.user_name,u.user_age,r.room_name</p>
-<p>from user as u</p>
-<p>Right join room as r</p>
-<p>on u.room_id = r.room_id and r.room_name=’room of boy’</p>
-<p>2：user在右边</p>
-<p>Select u.user_name,u.user_age,r.room_name</p>
-<p>from  room as r</p>
-<p>Right join user as u</p>
-<p>on u.room_id = r.room_id and r.room_name=’room of boy’</p>
-<p>十一、Full join</p>
-<p>1：user在左边</p>
-<p>Select * from user Full join room</p>
-<p>2：Room在左边</p>
-<p>Select * From room full join user</p>
-<p>注意：SQL错误码1054表示没有找到对应的字段名；错误码1064表示用户输入的SQL语句有语法错误</p>
-<p>十二、Union</p>
-<p>Union操作符用于合并两个或者多个SELECT语句的结果集</p>
+<p>1，不使用别名</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select room.room_name,user.user_name,user.user_age <span class="keyword">from</span><span class="built_in"> user </span>,room  Where user.<span class="attribute">user_age</span>=12 <span class="keyword">and</span> room.room_id = 1</span><br></pre></td></tr></table></figure>
+<p>2，使用别名<br>使用别名的时候直接将别名跟在后面，不使用as也可以</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select r.room_name,u.user_name,u.user_age <span class="keyword">from</span><span class="built_in"> user </span>as u,room as r  Where u.<span class="attribute">user_age</span>=12 <span class="keyword">and</span> r.room_id = 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、Join"><a href="#7、Join" class="headerlink" title="7、Join"></a>7、Join</h2><p><strong>数据库中的表可以通过键将彼此联系起来，主键是一个列，在这个列中的每一行的值都是唯一的，在表中，每个主键的值都是唯一的，这样就可以在不重复每个表中的所有数据的情况下，把表间的数据交叉捆绑在一起。</strong><br>以下为表user和表Room的数据</p>
+<table>
+    <thead>
+        <tr>
+            <th>user_id</th>
+            <th>user_name</th>
+            <th>user_age</th>
+            <th>room_id</th>
+        </tr>
+    </thead>
+    <tbody>
+         <tr>
+            <td>1</td>
+            <td>lili</td>
+            <td>12</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>tom</td>
+            <td>14</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>alice</td>
+            <td>11</td>
+            <td>1</td>
+        </tr>
+         <tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <th>room_id</th>
+            <th>room_name</th>
+        </tr>
+    </thead>
+    <tbody>
+         <tr>
+            <td>1</td>
+            <td>room of girl</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>room of boy</td>
+        </tr>
+         <tr>
+    </tbody>
+</table>
+
+<p>1，引用两个表<br>找出在Room of boy相关联的用户信息</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select u.user_name,u.user_age,r.room_name <span class="keyword">from</span><span class="built_in"> user </span>as u,room as r Where u.room_id = r.room_id <span class="keyword">and</span> r.<span class="attribute">room_name</span>=<span class="string">&#x27;room of boy&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201102205911534.png#pic_center"><br>2，使用关键字join来连接两张表</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select u.user_name,u.user_age,r.room_name</span><br><span class="line"><span class="keyword">from</span><span class="built_in"> user </span>as u</span><br><span class="line">join room as r</span><br><span class="line">on u.room_id = r.room_id <span class="keyword">and</span> r.<span class="attribute">room_name</span>=<span class="string">&#x27;room of boy&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8、Inner-join"><a href="#8、Inner-join" class="headerlink" title="8、Inner join"></a>8、Inner join</h2><p><strong>Inner join 与 join 用法一致</strong></p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select u.user_name,u.user_age,r.room_name</span><br><span class="line"><span class="keyword">from</span><span class="built_in"> user </span>as u</span><br><span class="line">inner join room as r</span><br><span class="line">on u.room_id = r.room_id <span class="keyword">and</span> r.<span class="attribute">room_name</span>=<span class="string">&#x27;room of boy&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9、Left-join"><a href="#9、Left-join" class="headerlink" title="9、Left join"></a>9、Left join</h2><p>注意：左连接以左边的表为主体，也就是说会列出左边的表中的所有的数据，无论它是否满足条件。</p>
+<p>1，user在左边</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select u.user_name,u.user_age,r.room_name</span><br><span class="line"><span class="keyword">from</span><span class="built_in"> user </span>as u</span><br><span class="line">Left join room as r</span><br><span class="line">on u.room_id = r.room_id <span class="keyword">and</span> r.<span class="attribute">room_name</span>=<span class="string">&#x27;room of boy&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>2，Room在左边</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select u.user_name,u.user_age,r.room_name</span><br><span class="line"><span class="keyword">From</span> room as r</span><br><span class="line">Left join<span class="built_in"> user </span>as u</span><br><span class="line">on u.room_id = r.room_id <span class="keyword">and</span> r.<span class="attribute">room_name</span>=<span class="string">&#x27;room of boy&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="10、Right-join"><a href="#10、Right-join" class="headerlink" title="10、Right join"></a>10、Right join</h2><p>注意：左连接以右边的表为主体，也就是说会列出左边的表中的所有的数据，无论它是否满足条件。</p>
+<p>1，Room在右边</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select u.user_name,u.user_age,r.room_name</span><br><span class="line"><span class="keyword">from</span><span class="built_in"> user </span>as u</span><br><span class="line">Right join room as r</span><br><span class="line">on u.room_id = r.room_id <span class="keyword">and</span> r.<span class="attribute">room_name</span>=<span class="string">&#x27;room of boy&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>2，user在右边</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select u.user_name,u.user_age,r.room_name</span><br><span class="line"><span class="keyword">from</span> room as r</span><br><span class="line">Right join<span class="built_in"> user </span>as u</span><br><span class="line">on u.room_id = r.room_id <span class="keyword">and</span> r.<span class="attribute">room_name</span>=<span class="string">&#x27;room of boy&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="11、Full-join"><a href="#11、Full-join" class="headerlink" title="11、Full join"></a>11、Full join</h2><p>1，user在左边</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> user </span>Full join room</span><br></pre></td></tr></table></figure>
+<p>2，Room在左边</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> * <span class="keyword">From</span> room <span class="keyword">full</span> <span class="keyword">join</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：SQL错误码1054表示没有找到对应的字段名；错误码1064表示用户输入的SQL语句有语法错误</strong></p>
+<h2 id="12、Union"><a href="#12、Union" class="headerlink" title="12、Union"></a>12、Union</h2><p><strong>Union操作符用于合并两个或者多个SELECT语句的结果集</strong></p>
 <p>请注意，UNION内部的select语句必须拥有相同数量的列。列也必须拥有相同的数据类型。同时，每条select语句中的列的顺序必须相同。</p>
 <p>下面是Room表和color表的数据</p>
 <p>Select room_name from room</p>
@@ -705,128 +906,78 @@
 <p>十三、Now()</p>
 <p>返回当前时间</p>
 <p>SELECT NOW() FROM user</p>
-<p>示例:</p>
-<p>–查找emp表</p>
-<p>select * from emp;</p>
-<p>–查找emp表的sal</p>
-<p>select a.SAL from emp a;</p>
-<p>–查找emp表的ename</p>
-<p>select a.ename from emp a;</p>
-<p>–emp表的sal*10</p>
-<p>select a.SAL*10 from emp a;</p>
-<p>–emp表的sal的平均值</p>
-<p>select avg(a.sal) from emp a;</p>
-<p>–emp表的sal的总和</p>
-<p>select sum(a.sal) from emp a;</p>
-<p>–emp表的sal的max</p>
-<p>select max(a.sal) from emp a;</p>
-<p>–emp表的sal的min</p>
-<p>select min(a.sal) from emp a;</p>
-<p>–emp表中sal&lt;1000的信息</p>
-<p>select * from emp where sal&lt;1000;</p>
-<p>–ename中含有A的信息</p>
-<p>select ename  from emp where ename like’%A%’;</p>
-<p>–emp中ename不含有A的信息</p>
-<p>select * from emp where ename not like’%A%’;</p>
-<p>–查询系统时间</p>
-<p>select sysdate from dual;</p>
-<p>–计算薪资小于5000的员工的工资总和</p>
-<p>select sum(sal) from emp where sal&lt;5000 ;</p>
-<p>–计算工资不高于平均工资的工资总和</p>
-<p>select sum(sal) from emp where sal&lt;(select avg(sal) from emp);</p>
-<p>–计算工资小于4000的员工的平均工资</p>
-<p>select avg((select sum(sal) from emp where sal&lt;4000)) from emp;</p>
-<p>–查询薪水低于100000的员工姓名和sal</p>
-<p>select ename,sal from emp where  sal&lt;100000;</p>
-<p>–计算20号部门的员工的最高工资和最低工资</p>
-<p>select max(sal),min(sal) from emp where deptno=20;</p>
-<p>–查询工资大于1000，并且是20号部门的员工的全部信息</p>
-<p>select * from emp where sal&gt;1000 and deptno=20;</p>
-<p>–求最高工资的员工的员工姓名和部门名称</p>
-<p>select ename,deptno,sal from emp where sal=(select max(sal) from emp);</p>
-<p>–将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序</p>
-<p>select deptno from emp where sal&lt;5000  group by deptno having avg(sal) &gt;1000;</p>
-<p>select sal from emp order by sal desc;</p>
-<p>Order by *** desc</p>
-<p>–查找表emp</p>
-<p>select * from emp ;</p>
-<p>–根据用户名“Smiths”查找他所在的部门</p>
-<p>select deptno from emp where ename=’SMITH’;</p>
-<p>–查询每个部门的最高工资的人员名称</p>
-<p>select e.ename,e.deptno,e.sal from (select deptno as did ,max(sal) as m from emp group by deptno )  s,emp e,dept d where e.sal=s.m and s.did=e.deptno and d.deptno=e.deptno;</p>
-<p>–查询“Jones”之后第一个进入公司的人</p>
-<p>select * from emp where hiredate=(select min(hiredate) from emp where hiredate&gt;(select hiredate from emp where ename=’JONES’)) ;</p>
-<p>–5.查找工资最高的部门名称和工资最低的部门名称及工资</p>
-<p>select d.dname,e.sal from emp e,dept d where e.deptno=d.deptno and sal=(select max(m) from (select deptno,max(sal) as m from emp e group by deptno) s)</p>
-<p>union</p>
-<p>select d.dname,e.sal from emp e,dept d where e.deptno=d.deptno and sal=(select min(m) from (select deptno,min(sal) as m from emp e group by deptno) s)</p>
-<p>–创建表</p>
-<p>create table student(</p>
-<pre><code>   StudentId number (6),--学号
-
-   LoginPwd varchar(20),--密码
-
-   StudentName varchar(50),--姓名
-
-   Sex char(2),--性别
-
-   Gradeld Number(6),--所在年级
-
-   Phone number(15),--联系电话
-
-   Address varchar2(255),--现住址
-
-   BornDate Date,--出生日期
-
-   Emile varchar2(50)--电子邮件</code></pre>
-<p>);</p>
-<p>–添加数据</p>
-<p>insert into student values(1001,’123456’,’赵六’,’男’,1507,120,’北京’,’23-5月-1995’,‘@10422’);</p>
-<p>insert into student values(1002,’123456’,’王五’,’女’,1507,110,’北京’,’23-5月-1995’,‘@10422’);</p>
-<p>insert into student values(1003,’123456’,’张三’,’男’,1507,120,’北京’,’23-5月-1995’,‘@10422’);</p>
-<p>insert into student values(1004,’123456’,’李四’,’女’,1507,110,’北京’,’23-5月-1995’,‘@10422’);</p>
-<p>–提交</p>
-<p>commit;</p>
-<p>–查询此表</p>
-<p>select * from student;</p>
-<p>–根据条件修改</p>
-<p> update student set studentname=’孙七’,loginpwd=’666666’ where studentid=1001;</p>
-<p> select * from student;</p>
-<p>–根据条件删除</p>
-<p>delete from student where studentid=1002;</p>
-<p>select * from student;</p>
-<p>–增加字段</p>
-<p>ALTER TABLE 表名称 ADD(列名称 数据类型 [DEFAULT 默认值],列名称 数据类型 [DEFAULT 默认值],…)</p>
-<p>–删除此表</p>
-<p>drop table student;</p>
-<p>–B卷 创建表空间</p>
-<p>create tablespace mytestspace datafile ‘e:week3.dbf’ size 2M;</p>
-<p>–创建用户</p>
-<p>create user zhangsan identified by zhangsan default tablespace mytestspace</p>
-<p>temporary tablespace temp;</p>
-<p>–创建角色并授权</p>
-<p>create role fang;</p>
-<p>grant create table to fang;</p>
-<p>grant fang to zhangsan;</p>
-<p>grant dba to zhangsan;</p>
-<p>–创建表</p>
-<p>create table teacher (</p>
-<p>tid number primary key,</p>
-<p>tname varchar2(50),</p>
-<p>tdate date,</p>
-<p>address varchar2(100)</p>
-<p>);</p>
-<p>select * from teacher;</p>
-<p>–创建序列</p>
-<p>create sequence teachers_sequence minvalue 1 maxvalue 100 (最小值，最大值)cycle (循环)increment by 1(步长值) start with 1（从1开始）;</p>
-<p>insert into teacher values(teachers_sequence.nextval,’小李’,’01-1月-1999’,’北京’);</p>
-<p>insert into teacher values(teachers_sequence.nextval,’小张’,to_date(‘1982-1-1’,’yyyy-mm-dd’),’北京’);</p>
 ]]></content>
       <categories>
         <category>SQL</category>
+        <category>数据表</category>
+        <category>数据库</category>
       </categories>
       <tags>
         <tag>SQL</tag>
+        <tag>数据表</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL数据表示例</title>
+    <url>/2020/11/02/SQL%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E4%BE%8B/</url>
+    <content><![CDATA[<p>关于SQL数据表的实例</p>
+<a id="more"></a>
+
+<p>示例:</p>
+<h2 id="查找emp表"><a href="#查找emp表" class="headerlink" title="查找emp表"></a>查找emp表</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
+<h2 id="查找emp表的sal"><a href="#查找emp表的sal" class="headerlink" title="查找emp表的sal"></a>查找emp表的sal</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> a.SAL <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="查找emp表的ename"><a href="#查找emp表的ename" class="headerlink" title="查找emp表的ename"></a>查找emp表的ename</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> a.ename <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表的sal-10"><a href="#emp表的sal-10" class="headerlink" title="emp表的sal*10"></a>emp表的sal*10</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> a.SAL*<span class="number">10</span> <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表的sal的平均值"><a href="#emp表的sal的平均值" class="headerlink" title="emp表的sal的平均值"></a>emp表的sal的平均值</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">avg</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表的sal的总和"><a href="#emp表的sal的总和" class="headerlink" title="emp表的sal的总和"></a>emp表的sal的总和</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表的sal的max"><a href="#emp表的sal的max" class="headerlink" title="emp表的sal的max"></a>emp表的sal的max</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">max</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表的sal的min"><a href="#emp表的sal的min" class="headerlink" title="emp表的sal的min"></a>emp表的sal的min</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">min</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表中sal-lt-1000的信息"><a href="#emp表中sal-lt-1000的信息" class="headerlink" title="emp表中sal&lt;1000的信息"></a>emp表中sal&lt;1000的信息</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="ename中含有A的信息"><a href="#ename中含有A的信息" class="headerlink" title="ename中含有A的信息"></a>ename中含有A的信息</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename  <span class="keyword">from</span> emp <span class="keyword">where</span> ename lik<span class="string">e&#x27;%A%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="emp中ename不含有A的信息"><a href="#emp中ename不含有A的信息" class="headerlink" title="emp中ename不含有A的信息"></a>emp中ename不含有A的信息</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> ename <span class="keyword">not</span> lik<span class="string">e&#x27;%A%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="查询系统时间"><a href="#查询系统时间" class="headerlink" title="查询系统时间"></a>查询系统时间</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span> <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
+<h2 id="计算薪资小于5000的员工的工资总和"><a href="#计算薪资小于5000的员工的工资总和" class="headerlink" title="计算薪资小于5000的员工的工资总和"></a>计算薪资小于5000的员工的工资总和</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">5000</span> ;</span><br></pre></td></tr></table></figure>
+<h2 id="计算工资不高于平均工资的工资总和"><a href="#计算工资不高于平均工资的工资总和" class="headerlink" title="计算工资不高于平均工资的工资总和"></a>计算工资不高于平均工资的工资总和</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;(<span class="keyword">select</span> <span class="built_in">avg</span>(sal) <span class="keyword">from</span> emp);</span><br></pre></td></tr></table></figure>
+<h2 id="计算工资小于4000的员工的平均工资"><a href="#计算工资小于4000的员工的平均工资" class="headerlink" title="计算工资小于4000的员工的平均工资"></a>计算工资小于4000的员工的平均工资</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">avg</span>((<span class="keyword">select</span> <span class="built_in">sum</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">4000</span>)) <span class="keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
+<h2 id="查询薪水低于100000的员工姓名和sal"><a href="#查询薪水低于100000的员工姓名和sal" class="headerlink" title="查询薪水低于100000的员工姓名和sal"></a>查询薪水低于100000的员工姓名和sal</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal <span class="keyword">from</span> emp <span class="keyword">where</span>  sal&lt;<span class="number">100000</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="计算20号部门的员工的最高工资和最低工资"><a href="#计算20号部门的员工的最高工资和最低工资" class="headerlink" title="计算20号部门的员工的最高工资和最低工资"></a>计算20号部门的员工的最高工资和最低工资</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">max</span>(sal),<span class="built_in">min</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> deptno=<span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="查询工资大于1000，并且是20号部门的员工的全部信息"><a href="#查询工资大于1000，并且是20号部门的员工的全部信息" class="headerlink" title="查询工资大于1000，并且是20号部门的员工的全部信息"></a>查询工资大于1000，并且是20号部门的员工的全部信息</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> sal&gt;<span class="number">1000</span> <span class="keyword">and</span> deptno=<span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="求最高工资的员工的员工姓名和部门名称"><a href="#求最高工资的员工的员工姓名和部门名称" class="headerlink" title="求最高工资的员工的员工姓名和部门名称"></a>求最高工资的员工的员工姓名和部门名称</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,deptno,sal <span class="keyword">from</span> emp <span class="keyword">where</span> sal=(<span class="keyword">select</span> <span class="built_in">max</span>(sal) <span class="keyword">from</span> emp);</span><br></pre></td></tr></table></figure>
+<h2 id="将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序"><a href="#将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序" class="headerlink" title="将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序"></a>将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> deptno <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">5000</span>  <span class="keyword">group</span> <span class="keyword">by</span> deptno <span class="keyword">having</span> avg(sal) &gt;<span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> sal <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">Order</span> <span class="keyword">by</span> *** <span class="keyword">desc</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查找表emp"><a href="#查找表emp" class="headerlink" title="查找表emp"></a>查找表emp</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="根据用户名“Smiths”查找他所在的部门"><a href="#根据用户名“Smiths”查找他所在的部门" class="headerlink" title="根据用户名“Smiths”查找他所在的部门"></a>根据用户名“Smiths”查找他所在的部门</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> deptno <span class="keyword">from</span> emp <span class="keyword">where</span> ename=<span class="string">&#x27;SMITH&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询每个部门的最高工资的人员名称"><a href="#查询每个部门的最高工资的人员名称" class="headerlink" title="查询每个部门的最高工资的人员名称"></a>查询每个部门的最高工资的人员名称</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">e</span>.ename,<span class="built_in">e</span>.deptno,<span class="built_in">e</span>.sal <span class="keyword">from</span> (<span class="keyword">select</span> deptno <span class="keyword">as</span> did ,<span class="built_in">max</span>(sal) <span class="keyword">as</span> m <span class="keyword">from</span> emp <span class="keyword">group</span> <span class="keyword">by</span> deptno )  s,emp <span class="built_in">e</span>,dept d <span class="keyword">where</span> <span class="built_in">e</span>.sal=s.m <span class="keyword">and</span> s.did=<span class="built_in">e</span>.deptno <span class="keyword">and</span> d.deptno=<span class="built_in">e</span>.deptno;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询“Jones”之后第一个进入公司的人"><a href="#查询“Jones”之后第一个进入公司的人" class="headerlink" title="查询“Jones”之后第一个进入公司的人"></a>查询“Jones”之后第一个进入公司的人</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> hiredate=(<span class="keyword">select</span> <span class="keyword">min</span>(hiredate) <span class="keyword">from</span> emp <span class="keyword">where</span> hiredate&gt;(<span class="keyword">select</span> hiredate <span class="keyword">from</span> emp <span class="keyword">where</span> ename=<span class="string">&#x27;JONES&#x27;</span>)) ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查找工资最高的部门名称和工资最低的部门名称及工资"><a href="#查找工资最高的部门名称和工资最低的部门名称及工资" class="headerlink" title="查找工资最高的部门名称和工资最低的部门名称及工资"></a>查找工资最高的部门名称和工资最低的部门名称及工资</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> d.dname,<span class="built_in">e</span>.sal <span class="keyword">from</span> emp <span class="built_in">e</span>,dept d <span class="keyword">where</span> <span class="built_in">e</span>.deptno=d.deptno <span class="keyword">and</span> sal=(<span class="keyword">select</span> <span class="built_in">max</span>(m) <span class="keyword">from</span> (<span class="keyword">select</span> deptno,<span class="built_in">max</span>(sal) <span class="keyword">as</span> m <span class="keyword">from</span> emp <span class="built_in">e</span> <span class="keyword">group</span> <span class="keyword">by</span> deptno) s)</span><br><span class="line"></span><br><span class="line"><span class="keyword">union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> d.dname,<span class="built_in">e</span>.sal <span class="keyword">from</span> emp <span class="built_in">e</span>,dept d <span class="keyword">where</span> <span class="built_in">e</span>.deptno=d.deptno <span class="keyword">and</span> sal=(<span class="keyword">select</span> <span class="built_in">min</span>(m) <span class="keyword">from</span> (<span class="keyword">select</span> deptno,<span class="built_in">min</span>(sal) <span class="keyword">as</span> m <span class="keyword">from</span> emp <span class="built_in">e</span> <span class="keyword">group</span> <span class="keyword">by</span> deptno) s)</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student(</span><br><span class="line"></span><br><span class="line">       StudentId <span class="built_in">number</span> (<span class="number">6</span>),<span class="comment">--学号</span></span><br><span class="line"></span><br><span class="line">       LoginPwd <span class="built_in">varchar</span>(<span class="number">20</span>),<span class="comment">--密码</span></span><br><span class="line"></span><br><span class="line">       StudentName <span class="built_in">varchar</span>(<span class="number">50</span>),<span class="comment">--姓名</span></span><br><span class="line"></span><br><span class="line">       Sex <span class="built_in">char</span>(<span class="number">2</span>),<span class="comment">--性别</span></span><br><span class="line"></span><br><span class="line">       Gradeld <span class="built_in">Number</span>(<span class="number">6</span>),<span class="comment">--所在年级</span></span><br><span class="line"></span><br><span class="line">       Phone <span class="built_in">number</span>(<span class="number">15</span>),<span class="comment">--联系电话</span></span><br><span class="line"></span><br><span class="line">       Address <span class="built_in">varchar2</span>(<span class="number">255</span>),<span class="comment">--现住址</span></span><br><span class="line"></span><br><span class="line">       BornDate <span class="built_in">Date</span>,<span class="comment">--出生日期</span></span><br><span class="line"></span><br><span class="line">       Emile <span class="built_in">varchar2</span>(<span class="number">50</span>)<span class="comment">--电子邮件</span></span><br><span class="line"></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;赵六&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">1507</span>,<span class="number">120</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;王五&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">1507</span>,<span class="number">110</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1003</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">1507</span>,<span class="number">120</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1004</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">1507</span>,<span class="number">110</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="查询此表"><a href="#查询此表" class="headerlink" title="查询此表"></a>查询此表</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
+<h2 id="根据条件修改"><a href="#根据条件修改" class="headerlink" title="根据条件修改"></a>根据条件修改</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> student <span class="keyword">set</span> studentname=<span class="string">&#x27;孙七&#x27;</span>,loginpwd=<span class="string">&#x27;666666&#x27;</span> <span class="keyword">where</span> studentid=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
+<h2 id="根据条件删除"><a href="#根据条件删除" class="headerlink" title="根据条件删除"></a>根据条件删除</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> student <span class="keyword">where</span> studentid=<span class="number">1002</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
+<h2 id="增加字段"><a href="#增加字段" class="headerlink" title="增加字段"></a>增加字段</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 <span class="keyword">ADD</span>(列名称 数据类型 [<span class="keyword">DEFAULT</span> 默认值],列名称 数据类型 [<span class="keyword">DEFAULT</span> 默认值],…)</span><br></pre></td></tr></table></figure>
+<h2 id="删除此表"><a href="#删除此表" class="headerlink" title="删除此表"></a>删除此表</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> student;</span><br></pre></td></tr></table></figure>
+<h2 id="B卷-创建表空间"><a href="#B卷-创建表空间" class="headerlink" title="B卷 创建表空间"></a>B卷 创建表空间</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> mytestspace <span class="keyword">datafile</span> <span class="string">&#x27;e:week3.dbf&#x27;</span> <span class="keyword">size</span> <span class="number">2</span>M;</span><br></pre></td></tr></table></figure>
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">create<span class="built_in"> user </span>zhangsan identified by zhangsan<span class="built_in"> default </span>tablespace mytestspace</span><br><span class="line"></span><br><span class="line">temporary tablespace temp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建角色并授权"><a href="#创建角色并授权" class="headerlink" title="创建角色并授权"></a>创建角色并授权</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">role</span> fang;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">to</span> fang;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> fang <span class="keyword">to</span> zhangsan;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> dba <span class="keyword">to</span> zhangsan;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建表-1"><a href="#创建表-1" class="headerlink" title="创建表"></a>创建表</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">create table teacher (</span><br><span class="line"></span><br><span class="line">tid number primary key,</span><br><span class="line"></span><br><span class="line">tname varchar2(50),</span><br><span class="line"></span><br><span class="line">tdate date,</span><br><span class="line"></span><br><span class="line">address varchar2(100)</span><br><span class="line"></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">select * <span class="keyword">from</span> teacher;</span><br></pre></td></tr></table></figure>
+<h2 id="创建序列"><a href="#创建序列" class="headerlink" title="创建序列"></a>创建序列</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">sequence</span> teachers_sequence <span class="keyword">minvalue</span> <span class="number">1</span> <span class="keyword">maxvalue</span> <span class="number">100</span> (最小值，最大值)<span class="keyword">cycle</span> (循环)<span class="keyword">increment</span> <span class="keyword">by</span> <span class="number">1</span>(步长值) <span class="keyword">start</span> <span class="keyword">with</span> <span class="number">1</span>（从<span class="number">1</span>开始）;</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> teacher <span class="keyword">values</span>(teachers_sequence.nextval,<span class="string">&#x27;小李&#x27;</span>,<span class="string">&#x27;01-1月-1999&#x27;</span>,<span class="string">&#x27;北京&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> teacher <span class="keyword">values</span>(teachers_sequence.nextval,<span class="string">&#x27;小张&#x27;</span>,to_date(<span class="string">&#x27;1982-1-1&#x27;</span>,<span class="string">&#x27;yyyy-mm-dd&#x27;</span>),<span class="string">&#x27;北京&#x27;</span>);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>SQL</category>
+        <category>数据表</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>数据表</tag>
       </tags>
   </entry>
 </search>
