@@ -748,45 +748,41 @@
 <figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Create</span> <span class="keyword">database</span> mysqltest</span><br></pre></td></tr></table></figure>
 <p><img src="https://img-blog.csdnimg.cn/20201104133921520.png#pic_center"></p>
 <h2 id="14、Create-table"><a href="#14、Create-table" class="headerlink" title="14、Create table"></a>14、Create table</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Create</span> <span class="keyword">table</span> sqltest(</span><br><span class="line"><span class="keyword">Id</span> <span class="built_in">int</span>,</span><br><span class="line"><span class="keyword">Name</span> <span class="built_in">varchar</span>(<span class="number">45</span>),</span><br><span class="line">Age <span class="built_in">int</span>,</span><br><span class="line">Salary <span class="built_in">float</span>,</span><br><span class="line"><span class="built_in">Time</span> <span class="built_in">Date</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-
-<p>十五、Constraints</p>
-<p>SQL约束，用于限制加入表的数据的类型</p>
+<p><img src="https://img-blog.csdnimg.cn/20201104222523336.png#pic_center"></p>
+<p><img src="https://img-blog.csdnimg.cn/20201104222535592.png#pic_center"></p>
+<h2 id="15、Constraints"><a href="#15、Constraints" class="headerlink" title="15、Constraints"></a>15、Constraints</h2><p>SQL约束，用于限制加入表的数据的类型</p>
 <p>常见约束：not noll、unique、primary key、foreign key、check、default</p>
-<p>十六、Not null</p>
-<p>Not null 约束强制列不接受NULL值。Not null 约束强制字段始终包含值，这意味着，如果不向字段添加值，就无法插入新的字段或者更新记录</p>
-<p>用法，在字段后面加上 not null</p>
-<p>十七、Unique</p>
-<p>Unique约束唯一标识数据库中的每一条记录。Primary key约束拥有自动的unique约束。需要注意的是，每个表里面可以拥有多个unique约束，但只能有一个primary key约束</p>
-<p>1：MySQL用法，unique(字段名)</p>
-<p>2：SQL Server 、 Oracle 、 MS Access在字段后面加</p>
-<p>3：命名约束使用constraint</p>
-<p>4：已经创建了表之后需要添加约束</p>
-<p>ALTER TABLE sqltest ADD UNIQUE(Age)</p>
-<p>5：给已经创建了的表添加约束并命名</p>
-<p>ALTER TABLE sqltest ADD constraint unique_name UNIQUE(Age,salary)</p>
-<p>6：撤销约束</p>
+<h2 id="16、Not-null"><a href="#16、Not-null" class="headerlink" title="16、Not null"></a>16、Not null</h2><p>Not null 约束强制列不接受NULL值。Not null 约束强制字段始终包含值，这意味着，如果不向字段添加值，就无法插入新的字段或者更新记录</p>
+<p>用法，在字段后面加上 not null<br><img src="https://img-blog.csdnimg.cn/2020110422273716.png#pic_center"></p>
+<h2 id="17、Unique"><a href="#17、Unique" class="headerlink" title="17、Unique"></a>17、Unique</h2><p><strong>Unique约束唯一标识数据库中的每一条记录。Primary key约束拥有自动的unique约束。需要注意的是，每个表里面可以拥有多个unique约束，但只能有一个primary key约束</strong></p>
+<p>1，MySQL用法，unique(字段名)<br><img src="https://img-blog.csdnimg.cn/20201104223412762.png#pic_center"></p>
+<p>2，SQL Server 、 Oracle 、 MS Access在字段后面加<br><img src="https://img-blog.csdnimg.cn/20201104223503549.png#pic_center"></p>
+<p>3，命名约束使用constraint<br><img src="https://img-blog.csdnimg.cn/20201104223547357.png#pic_center"></p>
+<p>4，已经创建了表之后需要添加约束</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> sqltest <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span>(Age)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201104223705158.png#pic_center"></p>
+<p>5，给已经创建了的表添加约束并命名</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> sqltest <span class="keyword">ADD</span> <span class="keyword">constraint</span> unique_name <span class="keyword">UNIQUE</span>(Age,salary)</span><br></pre></td></tr></table></figure>
+
+<p>6，撤销约束</p>
 <p>MySQL</p>
 <p>在没有给约束命名的情况下（上面的age约束）直接使用字段名就可以了</p>
-<p>ALTER TABLE sqltest DROP INDEX age</p>
-<p>  删除后   </p>
-<p>在约束有名字的情况下，直接使用名字就可以了</p>
-<p>ALTER table sqltest  drop index unique_name</p>
-<p>   删除后  </p>
-<p>SQL Server 、 Oracle 、 MS Access</p>
-<p>ALTER table 表名 drop constraint 约束名</p>
-<p>十八、Primary key</p>
-<p>Primary key约束唯一标识数据库表中的每一条记录，组件必须包含唯一的值。组件列不能包含NULL值。每个表都应该有一个主键，并且每一个表都只能有一个主键</p>
-<p>1：在MySQL中的用法</p>
-<p>2：在SQL Server 、 Oracle 和MS Access中的用法</p>
-<p>3：为已经创建成功的表创建primary key约束</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> sqltest <span class="keyword">DROP</span> <span class="keyword">INDEX</span> age</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201104223947411.png#pic_center"><br>  删除后<br><img src="https://img-blog.csdnimg.cn/20201104224002185.png#pic_center"><br>在约束有名字的情况下，直接使用名字就可以了</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> sqltest  <span class="keyword">drop</span> <span class="keyword">index</span> unique_name</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201104224136125.png#pic_center"><br>   删除后<br><img src="https://img-blog.csdnimg.cn/20201104224159791.png#pic_center"><br>SQL Server 、 Oracle 、 MS Access</p>
+<p><strong>ALTER table 表名 drop constraint 约束名</strong></p>
+<h2 id="18、Primary-key"><a href="#18、Primary-key" class="headerlink" title="18、Primary key"></a>18、Primary key</h2><p><strong>Primary key约束唯一标识数据库表中的每一条记录，组件必须包含唯一的值。组件列不能包含NULL值。每个表都应该有一个主键，并且每一个表都只能有一个主键</strong></p>
+<p>1，在MySQL中的用法<br><img src="https://img-blog.csdnimg.cn/2020110422450050.png#pic_center"></p>
+<p>2，在SQL Server 、 Oracle 和MS Access中的用法</p>
+<p>3，为已经创建成功的表创建primary key约束</p>
 <p>Alter table sqltest add primary key(id)</p>
-<p>4：为已经创建成功的表添加主键约束，以及为多个列定义主键约束</p>
+<p>4，为已经创建成功的表添加主键约束，以及为多个列定义主键约束</p>
 <p>Alter table sqltest add constraint pk_name primary key (id,name)</p>
-<p>5：在MySQL中撤销主键</p>
+<p>5，在MySQL中撤销主键</p>
 <p>ALTER  TABLE sqltest DROP PRIMARY KEY</p>
 <p>   删除后   </p>
-<p>6：在SQL Server、Oracle、MS Access中撤销主键</p>
+<p>6，在SQL Server、Oracle、MS Access中撤销主键</p>
 <p>Alter table 表名 drop constraint 主键名</p>
 <p>十九、Foreign key</p>
 <p>所谓的外键，即一个表的外键指向另一个表的主键</p>
