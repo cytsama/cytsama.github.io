@@ -869,34 +869,33 @@
 <h2 id="4、Max"><a href="#4、Max" class="headerlink" title="4、Max()"></a>4、Max()</h2><p><strong>返回最大值，NULL不包括在计算中</strong><br><img src="https://img-blog.csdnimg.cn/20201107234056810.png#pic_center"></p>
 <figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="built_in">max</span>(price) <span class="keyword">as</span> max_price <span class="keyword">from</span> commodity</span><br></pre></td></tr></table></figure>
 <p><img src="https://img-blog.csdnimg.cn/20201107234130364.png#pic_center"></p>
-<h2 id="5、Min"><a href="#5、Min" class="headerlink" title="5、Min()"></a>5、Min()</h2><p>返回最小值，NULL不包括在计算中</p>
-<p>Select min(salary) poor_man from user</p>
-<p>六、Sum()</p>
-<p>返回该列值的总额</p>
-<p>Select sum(salary) from user</p>
-<p>七、Group By </p>
-<p>用于结合合计函数，根据一个或多个列对结果集进行分组</p>
-<p>SELECT cname,SUM(price) FROM commodity GROUP BY cname</p>
-<p>八、Having</p>
-<p>在SQL中增加having子句的原因是where不能与合计函数一起使用。用法和where 一样</p>
-<p>SELECT cname,SUM(price) FROM commodity</p>
-<p>GROUP BY cname</p>
-<p>HAVING  SUM(price)&gt;20</p>
-<p>九、Ucase()</p>
-<p>把函数字段的值转化为大写</p>
-<p>SELECT UCASE(user_name) FROM user</p>
-<p>十、Lcase()</p>
-<p>将函数字段转化为小写</p>
-<p>Select lcase(user_name) from user</p>
-<p>十一、Mid()</p>
-<p>从文本字段中提取字符</p>
-<p>Select mid(user_name,2,2) from user</p>
-<p>十二、Round()</p>
-<p>Round函数把数值字段舍入为指定的小数位数</p>
-<p>Select round(salary,2) from user</p>
-<p>十三、Now()</p>
-<p>返回当前时间</p>
-<p>SELECT NOW() FROM user</p>
+<h2 id="5、Min"><a href="#5、Min" class="headerlink" title="5、Min()"></a>5、Min()</h2><p><strong>返回最小值，NULL不包括在计算中</strong><br><img src="https://img-blog.csdnimg.cn/20201107234520742.png#pic_center"></p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="built_in">min</span>(salary) poor_man <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020110723455875.png#pic_center"></p>
+<h2 id="6、Sum"><a href="#6、Sum" class="headerlink" title="6、Sum()"></a>6、Sum()</h2><p><strong>返回该列值的总额</strong><br><img src="https://img-blog.csdnimg.cn/20201107234704185.png#pic_center"></p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="built_in">sum</span>(salary) <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201107234736508.png#pic_center"></p>
+<h2 id="7、Group-By"><a href="#7、Group-By" class="headerlink" title="7、Group By"></a>7、Group By</h2><p><strong>用于结合合计函数，根据一个或多个列对结果集进行分组</strong><br><img src="https://img-blog.csdnimg.cn/20201107234850372.png#pic_center"></p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">SELECT cname,SUM(price) <span class="keyword">FROM</span> commodity<span class="built_in"> GROUP </span>BY cname</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201107234922458.png#pic_center"></p>
+<h2 id="8、Having"><a href="#8、Having" class="headerlink" title="8、Having"></a>8、Having</h2><p><strong>在SQL中增加having子句的原因是where不能与合计函数一起使用。用法和where一样</strong></p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">SELECT cname,SUM(price) <span class="keyword">FROM</span> commodity</span><br><span class="line">GROUP BY cname</span><br><span class="line">HAVING  SUM(price)&gt;20</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020110723501273.png#pic_center"></p>
+<h2 id="9、Ucase"><a href="#9、Ucase" class="headerlink" title="9、Ucase()"></a>9、Ucase()</h2><p><strong>把函数字段的值转化为大写</strong><br><img src="https://img-blog.csdnimg.cn/20201107235119818.png#pic_center"></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">UCASE</span>(user_name) <span class="keyword">FROM</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201107235153313.png#pic_center"></p>
+<h2 id="10、Lcase"><a href="#10、Lcase" class="headerlink" title="10、Lcase()"></a>10、Lcase()</h2><p><strong>将函数字段转化为小写</strong><br><img src="https://img-blog.csdnimg.cn/20201107235235423.png#pic_center"></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="keyword">lcase</span>(user_name) <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201107235320816.png#pic_center"></p>
+<h2 id="11、Mid"><a href="#11、Mid" class="headerlink" title="11、Mid()"></a>11、Mid()</h2><p><strong>从文本字段中提取字符</strong><br><img src="https://img-blog.csdnimg.cn/20201107235408183.png#pic_center"></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="keyword">mid</span>(user_name,<span class="number">2</span>,<span class="number">2</span>) <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201107235437917.png#pic_center"></p>
+<h1 id="12、Round"><a href="#12、Round" class="headerlink" title="12、Round()"></a>12、Round()</h1><p><strong>Round函数把数值字段舍入为指定的小数位数</strong><br><img src="https://img-blog.csdnimg.cn/20201107235524367.png#pic_center"></p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="built_in">round</span>(salary,<span class="number">2</span>) <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201107235548462.png#pic_center"></p>
+<h2 id="13、Now"><a href="#13、Now" class="headerlink" title="13、Now()"></a>13、Now()</h2><p><strong>返回当前时间</strong></p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> NOW() <span class="keyword">FROM</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201107235633488.png#pic_center"></p>
 ]]></content>
       <categories>
         <category>SQL</category>
