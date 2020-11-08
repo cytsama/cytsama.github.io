@@ -890,7 +890,7 @@
 <h2 id="11、Mid"><a href="#11、Mid" class="headerlink" title="11、Mid()"></a>11、Mid()</h2><p><strong>从文本字段中提取字符</strong><br><img src="https://img-blog.csdnimg.cn/20201107235408183.png#pic_center"></p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="keyword">mid</span>(user_name,<span class="number">2</span>,<span class="number">2</span>) <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://img-blog.csdnimg.cn/20201107235437917.png#pic_center"></p>
-<h1 id="12、Round"><a href="#12、Round" class="headerlink" title="12、Round()"></a>12、Round()</h1><p><strong>Round函数把数值字段舍入为指定的小数位数</strong><br><img src="https://img-blog.csdnimg.cn/20201107235524367.png#pic_center"></p>
+<h2 id="12、Round"><a href="#12、Round" class="headerlink" title="12、Round()"></a>12、Round()</h2><p><strong>Round函数把数值字段舍入为指定的小数位数</strong><br><img src="https://img-blog.csdnimg.cn/20201107235524367.png#pic_center"></p>
 <figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="built_in">round</span>(salary,<span class="number">2</span>) <span class="keyword">from</span> <span class="keyword">user</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://img-blog.csdnimg.cn/20201107235548462.png#pic_center"></p>
 <h2 id="13、Now"><a href="#13、Now" class="headerlink" title="13、Now()"></a>13、Now()</h2><p><strong>返回当前时间</strong></p>
