@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="不想做一条咸鱼">
+  <meta name="description" content="欲买桂花同载酒，终不似，少年游。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="sakuraのblog">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="sakuraのblog">
-<meta property="og:description" content="不想做一条咸鱼">
+<meta property="og:description" content="欲买桂花同载酒，终不似，少年游。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="chenyongtao">
 <meta name="twitter:card" content="summary">
@@ -197,386 +197,12 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/a1.jpg">
-      <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="sakuraのblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Hadoop安装笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-12-01 22:01:34 / 修改时间：22:04:24" itemprop="dateCreated datePublished" datetime="2020-12-01T22:01:34+08:00">2020-12-01</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>16k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <a id="more"></a>
-
-
-<h1 id="hadoop-v3-2-1分布式安装"><a href="#hadoop-v3-2-1分布式安装" class="headerlink" title="hadoop-v3.2.1分布式安装"></a>hadoop-v3.2.1分布式安装</h1><p>（注：本文参照厦门大学数据库实验室教程）</p>
-<p>内容大多转载于<a target="_blank" rel="noopener" href="http://dblab.xmu.edu.cn/blog/install-hadoop-cluster/">http://dblab.xmu.edu.cn/blog/install-hadoop-cluster/</a></p>
-<p><strong>本博客用于存档做hadoop部署的回顾学习笔记，且共享</strong></p>
-<p>由于做分布式部署笔记，看完2-(2)可直接跳至3-(5)，部署过程中有问题也可私聊Q1824301866</p>
-<h2 id="1-准备"><a href="#1-准备" class="headerlink" title="1.准备"></a>1.准备</h2><p><strong>首先准备三台linux(CentOS7)</strong></p>
-<blockquote>
-<p>master: 192.168.170.160</p>
-</blockquote>
-<blockquote>
-<p>slave2: 192.168.170.162</p>
-</blockquote>
-<blockquote>
-<p>slave1: 192.168.170.163</p>
-</blockquote>
-<p>==三台主机必须开启ssh，其次要支持ftp传输(不用FTP的话也可以使用lrzsz工具的rz来上传资源)==</p>
-<p>==其次要保证三台主机能够相互ping通，即主机已有网卡，并获取到ip==</p>
-<p>==最重要：三台机器都要安装jdk，我是手动装。hadoop要基于jvm运行，需要java路径==</p>
-<p><img src="images/hadoop_jdk_1.png"></p>
-<p><strong>然后下载hadoopx.x.tar.gz</strong></p>
-<p><img src="images/download_url_1.png" alt="下载页面"></p>
-<p>我这边用的是version3.2.1，<a target="_blank" rel="noopener" href="https://mirror.bit.edu.cn/apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz"><strong>点此下载hadoop3.2.1</strong></a></p>
-<h2 id="2-创建hadoop用户，解压hadoop二进制安装包"><a href="#2-创建hadoop用户，解压hadoop二进制安装包" class="headerlink" title="2.创建hadoop用户，解压hadoop二进制安装包"></a>2.创建hadoop用户，解压hadoop二进制安装包</h2><h3 id="1-登录Master主机，设置ssh无密码登录"><a href="#1-登录Master主机，设置ssh无密码登录" class="headerlink" title="(1).登录Master主机，设置ssh无密码登录"></a>(1).登录Master主机，设置ssh无密码登录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 向系统添加一个名为hadoop的用户</span></span><br><span class="line">useradd -m hadoop -s /bin/bash</span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后更改它的密码，随意，我设为123456，一会还要将这个用户设为无密的</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> （若提示“无效的密码，过于简单”则再次输入确认就行）</span></span><br><span class="line">passwd hadoop</span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后可为 hadoop 用户增加管理员权限，方便部署，避免一些对新手来说比较棘手的权限问题，执行：</span></span><br><span class="line">visudo</span><br><span class="line"><span class="meta">#</span><span class="bash"> 可以看到第98行，然后我们在该行下再添加一行：hadoop ALL=(ALL) ALL</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="images%5Chadop_sudo_1.png"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 增加该行之后按ESC, Shift+:, 输入wq保存并退出vi编辑器</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后退出系统，xshell使用创建好的hadoop用户来登录</span></span><br><span class="line">ssh hadoop@192.168.170.163 -p 22</span><br><span class="line"><span class="meta">#</span><span class="bash"> 出现未知证书，就输入yes再回车，然后再输入密码，在linux登录输入密码是不可视的，输完回车即可</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ----------回车完之后，你已经用hadoop账户登录了系统-----------------------</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> linux为每个非root用户在/home目录下创建了一个目录，每次登录后你都会在这个目录，输入<span class="built_in">pwd</span>查看</span></span><br><span class="line">pwd</span><br></pre></td></tr></table></figure>
-
-<p><img src="images/hadoop_ssh_2.png"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下边这个命令，即进入当前用户的ssh目录，原命令全路径为：<span class="comment"># cd /home/hadoop/.ssh/</span></span></span><br><span class="line">cd ~/.ssh/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果没有.ssh这个目录，那么我们使用下图命令来初始化，初始化后再<span class="built_in">exit</span>回到原来的系统</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="images/hadoop_ssh_3.png"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 这样我们已经进入.ssh目录下了</span></span><br><span class="line">ssh-keygen -t rsa              # 生成公匙：会有提示，都按回车就可以</span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys  # 加入授权</span><br><span class="line">chmod 600 ./authorized_keys    # 修改文件权限</span><br></pre></td></tr></table></figure>
-
-<p><img src="images/hadoop_ssh_4.png"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 这时我们当前主机上有本机的密匙文件，所以，我们直接登录，而不需要输入密码</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 其他主机想要在该机进行无密登录，我们只需要把前几步生成的密匙文件发过去即可，下图为无密登录效果</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="images/hadoop_ssh_1.png"></p>
-<h3 id="（2-解压安装hadoop"><a href="#（2-解压安装hadoop" class="headerlink" title="（2). 解压安装hadoop"></a>（2). 解压安装hadoop</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 现在使用rz命令上传hadoop二进制安装包到linux服务器上</span></span><br><span class="line">rz      # 直接回车后会有个文件资源管理器，选择好文件后就开始上传了</span><br></pre></td></tr></table></figure>
-
-<p><img src="images/hadoop_rz_1.png"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 可以看到文件已经上传到当前目录了</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="images/hadoop_rz_2.png"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 现在运行以下命令将该文件解压到/usr/<span class="built_in">local</span>目录下</span></span><br><span class="line">sudo tar -zvxf hadoop-3.2.1.tar.gz -C /usr/local</span><br><span class="line"><span class="meta">#</span><span class="bash">----------------------------</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压完了，你可以使用$ rm -f hadoop-3.2.1.tar.gz  删除掉该安装资源</span></span><br><span class="line"><span class="meta">#</span><span class="bash">----------------------------</span></span><br><span class="line">cd /usr/local/                              # 进入解压目录下</span><br><span class="line">sudo mv ./hadoop-3.2.1/ ./hadoop            # 将文件夹名改为hadoop</span><br><span class="line">sudo chown -R hadoop:hadoop ./hadoop        # 修改文件权限</span><br><span class="line"><span class="meta">#</span><span class="bash"> 现在我们检验下hadoop是否可用，可用会显示版本号</span></span><br><span class="line">cd /usr/local/hadoop</span><br><span class="line">./bin/hadoop version</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-Hadoop配置-分类"><a href="#3-Hadoop配置-分类" class="headerlink" title="3.Hadoop配置-分类"></a>3.Hadoop配置-分类</h2><h3 id="（1）简述"><a href="#（1）简述" class="headerlink" title="（1）简述"></a>（1）简述</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hadoop的配置有三种类型：</span><br><span class="line">    <span class="number">1.</span>单机版：即在一个节点(主机)上进行配置一个Hadoop应用使用</span><br><span class="line">    <span class="number">2.</span>伪分布式：即在一台高性能主机上模拟分布式部署去安装多个Hadoop应用</span><br><span class="line">    <span class="number">3.</span>分布式：即在多台主机，各主机之间配置可差异化，每台主机部署一个Hadoop应用</span><br></pre></td></tr></table></figure>
-
-<h3 id="（2）单机版"><a href="#（2）单机版" class="headerlink" title="（2）单机版"></a>（2）单机版</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Hadoop 默认模式为非分布式模式，无需进行其他配置即可运行。非分布式即单 Java 进程，方便进行调试。</span><br><span class="line">现在我们可以执行例子来感受下 Hadoop 的运行。Hadoop 附带了丰富的例子</span><br><span class="line">（运行 `./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-<span class="number">2.6</span>.<span class="number">0.</span>jar` 可以看到所有例子），包括 wordcount、terasort、join、grep 等。</span><br><span class="line">    </span><br><span class="line">在此我们选择运行 grep 例子，我们将 input 文件夹中的所有文件作为输入，筛选当中符合正则表达式 `dfs[a-z.]+` 的单词并统计出现的次数，最后输出结果到 output 文件夹中。</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop</span><br><span class="line">mkdir ./input</span><br><span class="line">cp ./etc/hadoop/*.xml ./input   # 将配置文件作为输入文件</span><br><span class="line">./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar grep ./input ./output &#x27;dfs[a-z.]+&#x27;</span><br><span class="line">cat ./output/*          # 查看运行结果</span><br></pre></td></tr></table></figure>
-
-<p>成功效果如下图：</p>
-<p><img src="images/hadoop_single_1.png"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">如果出现下图所示的错误，可以参照以下辦法：</span><br><span class="line">    </span><br><span class="line"><span class="number">1.</span>若出现提示 “WARN util.NativeCodeLoader: Unable to load <span class="keyword">native</span>-hadoop library <span class="keyword">for</span> your platform… using builtin-java classes where applicable”，该 WARN 提示可以忽略，不会影响 Hadoop 正常运行（可通过编译 Hadoop 源码解决，解决方法请自行搜索）。</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>若出现提示 “INFO metrics.MetricsUtil: Unable to obtain hostName java.net.UnknowHostException”，这需要执行如下命令修改 hosts 文件，为你的主机名增加IP映射：</span><br><span class="line">    [hadoop<span class="meta">@localhost</span> hadoop]$    <span class="comment">// 就这句话的localhost就是主机名,example1</span></span><br><span class="line">	[hadoop<span class="meta">@dblab</span> hadoop]$    <span class="comment">// 就这句话的dblab就是主机名,example2</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="images/hadoop_single_2.png"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 需要在/etc/hosts增加主机名映射</span></span><br><span class="line">sudo vim /etc/hosts</span><br></pre></td></tr></table></figure>
-
-<p><img src="images/hadoop_single_3.png"></p>
-<p><strong>注意</strong>，Hadoop 默认不会覆盖结果文件，因此再次运行上面实例会提示出错，需要先将 <code>./output</code> 删除。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 再次运行实例，即可看到成功效果</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="（3）伪分布式"><a href="#（3）伪分布式" class="headerlink" title="（3）伪分布式"></a>（3）伪分布式</h3><h4 id="lt-1-gt-伪分布式的安装和部署"><a href="#lt-1-gt-伪分布式的安装和部署" class="headerlink" title="&lt;1&gt; 伪分布式的安装和部署"></a>&lt;1&gt; 伪分布式的安装和部署</h4><p>Hadoop 可以在单节点上以伪分布式的方式运行，Hadoop 进程以分离的 Java 进程来运行，节点既作为 NameNode 也作为 DataNode，同时，读取的是 HDFS 中的文件。</p>
-<p>在设置 Hadoop 伪分布式配置前，我们还需要设置 HADOOP 环境变量，执行如下命令在 ~/.bashrc 中设置：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>这次我们选择用 gedit 而不是 vim 来编辑。gedit 是文本编辑器，类似于 Windows 中的记事本，会比较方便。保存后记得关掉整个 gedit 程序，否则会占用终端。在文件最后面增加如下内容：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Hadoop Environment Variables</span><br><span class="line">export HADOOP_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;hadoop</span><br><span class="line">export HADOOP_INSTALL&#x3D;$HADOOP_HOME</span><br><span class="line">export HADOOP_MAPRED_HOME&#x3D;$HADOOP_HOME</span><br><span class="line">export HADOOP_COMMON_HOME&#x3D;$HADOOP_HOME</span><br><span class="line">export HADOOP_HDFS_HOME&#x3D;$HADOOP_HOME</span><br><span class="line">export YARN_HOME&#x3D;$HADOOP_HOME</span><br><span class="line">export HADOOP_COMMON_LIB_NATIVE_DIR&#x3D;$HADOOP_HOME&#x2F;lib&#x2F;native</span><br><span class="line">export PATH&#x3D;$PATH:$HADOOP_HOME&#x2F;sbin:$HADOOP_HOME&#x2F;bin</span><br></pre></td></tr></table></figure>
-
-<p>保存后，不要忘记执行如下命令使配置生效：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>这些变量在启动 Hadoop 进程时需要用到，不设置的话可能会报错（这些变量也可以通过修改 ./etc/hadoop/hadoop-env.sh 实现）。</p>
-<p>Hadoop 的配置文件位于 <code>/usr/local/hadoop/etc/hadoop/</code> 中，伪分布式需要修改2个配置文件 <strong>core-site.xml</strong> 和 <strong>hdfs-site.xml</strong> 。Hadoop的配置文件是 xml 格式，每个配置以声明 property 的 name 和 value 的方式来实现。</p>
-<p>修改配置文件 <strong>core-site.xml</strong> (通过 gedit 编辑会比较方便: <code>gedit ./etc/hadoop/core-site.xml</code>)，将当中的</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>修改为如下配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>Abase for other temporary directories.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>同样的，修改配置文件 <strong>hdfs-site.xml</strong>：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/tmp/dfs/name<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/tmp/dfs/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>配置完成后，执行shell命令进行NameNode 的格式化:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs namenode -format</span><br></pre></td></tr></table></figure>
-
-<p>成功的话，会看到 “successfully formatted” 和 “Exitting with status 0” 的提示，若为 “Exitting with status 1” 则是出错。</p>
-<p><img src="images/hadoop_distinguish_1.png"></p>
-<p>接着开启 <code>NaneNode</code> 和 <code>DataNode</code> 守护进程：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./sbin/start-dfs.sh</span><br><span class="line"><span class="meta">#</span><span class="bash"> 若出现 SSH 的提示 “Are you sure you want to <span class="built_in">continue</span> connecting”，输入 yes 即可。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动时可能会有 WARN 提示 “WARN util.NativeCodeLoader…” 如前面提到的，这个提示不会影响正常使用。</span></span><br></pre></td></tr></table></figure>
-
-<p>启动完成后，可以通过命令 <code>jps</code> 来判断是否成功启动，若成功启动则会列出如下进程: “NameNode”、”DataNode”和<code>SecondaryNameNode</code>（如果 SecondaryNameNode 没有启动，请运行 sbin/stop-dfs.sh 关闭进程，然后再次尝试启动尝试）。如果没有 NameNode 或 DataNode ，那就是配置不成功，请仔细检查之前步骤，或通过查看启动日志排查原因。</p>
-<p><img src="images/hadoop_distinguish_2.png"></p>
-<p>==<em>通过查看启动日志分析启动失败原因</em>==：</p>
-<p>有时 Hadoop 无法正确启动，如 NameNode 进程没有顺利启动，这时可以查看启动日志来排查原因，注意几点：</p>
-<ul>
-<li>启动时会提示形如 “dblab: starting namenode, logging to /usr/local/hadoop/logs/hadoop-hadoop-namenode-dblab.out”，其中 dblab 对应你的主机名，但启动的日志信息是记录在 /usr/local/hadoop/logs/hadoop-hadoop-namenode-dblab.log 中，所以应该查看这个后缀为 <strong>.log</strong> 的文件；</li>
-<li>每一次的启动日志都是追加在日志文件之后，所以得拉到最后面看，看下记录的时间就知道了。</li>
-<li>一般出错的提示在最后面，也就是写着 Fatal、Error 或者 Java Exception 的地方。</li>
-<li>可以在网上搜索一下出错信息，看能否找到一些相关的解决方法。</li>
-</ul>
-<p>==成功启动后，可以访问 Web 界面 <a target="_blank" rel="noopener" href="http://localhost:50070/">http://localhost:50070</a> 查看 NameNode 和 Datanode 信息，还可以在线查看 HDFS 中的文件。==</p>
-<p><img src="images/hadoop_distinguish_3.png"></p>
-<h4 id="lt-2-gt-运行Hadoop伪分布式实例"><a href="#lt-2-gt-运行Hadoop伪分布式实例" class="headerlink" title="&lt;2&gt; 运行Hadoop伪分布式实例"></a>&lt;2&gt; 运行Hadoop伪分布式实例</h4><p>上面的单机模式，grep 例子读取的是本地数据，伪分布式读取的则是 HDFS 上的数据。要使用 HDFS，首先需要在 HDFS 中创建用户目录：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -mkdir -p /user/hadoop</span><br></pre></td></tr></table></figure>
-
-<p>接着将 ./etc/hadoop 中的 xml 文件作为输入文件复制到分布式文件系统中，即将 /usr/local/hadoop/etc/hadoop 复制到分布式文件系统中的 /user/hadoop/input 中。我们使用的是 hadoop 用户，并且已创建相应的用户目录 /user/hadoop ，因此在命令中就可以使用相对路径如 input，其对应的绝对路径就是 /user/hadoop/input:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -mkdir input</span><br><span class="line">./bin/hdfs dfs -put ./etc/hadoop/*.xml input</span><br></pre></td></tr></table></figure>
-
-<p>复制完成后，可以通过如下命令查看 HDFS 中的文件列表：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -ls input</span><br></pre></td></tr></table></figure>
-
-<p>伪分布式运行 MapReduce 作业的方式跟单机模式相同，区别在于伪分布式读取的是HDFS中的文件（可以将单机步骤中创建的本地 input 文件夹，输出结果 output 文件夹都删掉来验证这一点）。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar grep input output &#x27;dfs[a-z.]+&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>查看运行结果的命令（查看的是位于 HDFS 中的输出结果）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -cat output/*</span><br></pre></td></tr></table></figure>
-
-<p>结果如下，注意到刚才我们已经更改了配置文件，所以运行结果不同。</p>
-<p><img src="images/hadoop_run_distinguish_1.png"></p>
-<p>我们也可以将运行结果取回到本地：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -r ./output    # 先删除本地的 output 文件夹（如果存在）</span><br><span class="line">./bin/hdfs dfs -get output ./output     # 将 HDFS 上的 output 文件夹拷贝到本机</span><br><span class="line">cat ./output/*</span><br></pre></td></tr></table></figure>
-
-<p>Hadoop 运行程序时，输出目录不能存在，否则会提示错误 “org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://localhost:9000/user/hadoop/output already exists” ，因此若要再次执行，需要执行如下命令删除 output 文件夹:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -rm -r output    # 删除 output 文件夹</span><br></pre></td></tr></table></figure>
-
-<p>==Java中运行 Hadoop 程序时==，为了防止覆盖结果，程序指定的输出目录（如 output）不能存在，否则会提示错误，因此运行前需要先删除输出目录。在实际开发应用程序时，可考虑在程序中加上如下代码，能在每次运行时自动删除输出目录，避免繁琐的命令行操作：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">Job job = <span class="keyword">new</span> Job(conf);</span><br><span class="line"><span class="comment">/* 删除输出目录 */</span></span><br><span class="line">Path outputPath = <span class="keyword">new</span> Path(args[<span class="number">1</span>]);</span><br><span class="line">outputPath.getFileSystem(conf).delete(outputPath, <span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
-
-<p>linux若要关闭 Hadoop，则运行:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./sbin/stop-dfs.sh</span><br><span class="line"><span class="meta">#</span><span class="bash">下次启动 hadoop 时，无需进行 NameNode 的初始化，只需要运行 ./sbin/start-dfs.sh 就可以！</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="（4）-YARN"><a href="#（4）-YARN" class="headerlink" title="（4）  YARN"></a>（4）  YARN</h3><p>（伪分布式不启动 YARN 也可以，一般不会影响程序执行）</p>
-<p>有的读者可能会疑惑，怎么启动 Hadoop 后，见不到书上所说的 JobTracker 和 TaskTracker，这是因为新版的 Hadoop 使用了新的 MapReduce 框架（MapReduce V2，也称为 YARN，Yet Another Resource Negotiator）。</p>
-<p>==YARN 是从 MapReduce 中分离出来的，负责资源管理与任务调度。==YARN 运行于 MapReduce 之上，提供了高可用性、高扩展性，YARN 的更多介绍在此不展开，有兴趣的可查阅相关资料。</p>
-<p>上述通过 <code>./sbin/start-dfs.sh</code> 启动 Hadoop，仅仅是启动了 MapReduce 环境，我们可以启动 YARN ，让 YARN 来负责资源管理与任务调度。</p>
-<p>首先修改配置文件 <strong>mapred-site.xml</strong>，这边需要先进行重命名：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv ./etc/hadoop/mapred-site.xml.template ./etc/hadoop/mapred-site.xml</span><br></pre></td></tr></table></figure>
-
-<p>然后再进行编辑，同样使用 gedit 编辑会比较方便些 <code>gedit ./etc/hadoop/mapred-site.xml</code> ：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>接着修改配置文件 <strong>yarn-site.xml</strong>：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后就可以启动 YARN 了（需要先执行过 <code>./sbin/start-dfs.sh</code>）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./sbin/start-yarn.sh      $ 启动YARN</span><br><span class="line">./sbin/mr-jobhistory-daemon.sh start historyserver  # 开启历史服务器，才能在Web中查看任务运行情况</span><br></pre></td></tr></table></figure>
-
-<p>开启后通过 <code>jps</code> 查看，可以看到多了 NodeManager 和 ResourceManager 两个后台进程，如下图所示。</p>
-<p><img src="images/hadoop-yarn_1.png"></p>
-<p>启动 YARN 之后，运行实例的方法还是一样的，仅仅是资源管理方式、任务调度不同。观察日志信息可以发现，不启用 YARN 时，是 “mapred.LocalJobRunner” 在跑任务，启用 YARN 之后，是 “mapred.YARNRunner” 在跑任务。启动 YARN 有个好处是可以通过 Web 界面查看任务的运行情况：<a target="_blank" rel="noopener" href="http://localhost:8088/cluster%EF%BC%8C%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%E3%80%82">http://localhost:8088/cluster，如下图所示。</a></p>
-<p><img src="images/hadoop-yarn-cluster.png"></p>
-<p>但 YARN 主要是为集群提供更好的资源管理与任务调度，然而这在单机上体现不出价值，反而会使程序跑得稍慢些。因此在单机上是否开启 YARN 就看实际情况了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">不启动 YARN 需重命名 mapred-site.xml</span><br><span class="line">如果不想启动 YARN，务必把配置文件 mapred-site.xml 重命名，改成 mapred-site.xml.template，需要用时改回来就行。否则在该配置文件存在，而未开启 YARN 的情况下，运行程序会提示 “Retrying connect to server: 0.0.0.0&#x2F;0.0.0.0:8032” 的错误，这也是为何该配置文件初始文件名为 mapred-site.xml.template。</span><br></pre></td></tr></table></figure>
-
-<p>同样的，关闭 YARN 的脚本如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./sbin/stop-yarn.sh</span><br><span class="line">./sbin/mr-jobhistory-daemon.sh stop historyserver</span><br></pre></td></tr></table></figure>
-
-<p>自此，已经掌握 Hadoop 的配置和基本使用了。</p>
-<h3 id="（5）分布式-【主教程】"><a href="#（5）分布式-【主教程】" class="headerlink" title="（5）分布式 【主教程】"></a>（5）分布式 【主教程】</h3><p>Hadoop 集群的安装配置大致为如下流程:</p>
-<ol>
-<li><ul>
-<li>选定一台机器作为 Master</li>
-</ul>
-</li>
-<li><ul>
-<li>在 Master 节点上配置 hadoop 用户、安装 SSH server、安装 Java 环境</li>
-</ul>
-</li>
-<li><ul>
-<li>在 Master 节点上安装 Hadoop，并完成配置</li>
-</ul>
-</li>
-<li><ul>
-<li>在其他 Slave 节点上配置 hadoop 用户、安装 SSH server、安装 Java 环境</li>
-</ul>
-</li>
-<li><ul>
-<li>将 Master 节点上的 /usr/local/hadoop 目录复制到其他 Slave 节点上</li>
-</ul>
-</li>
-<li><ul>
-<li>在 Master 节点上开启 Hadoop</li>
-</ul>
-</li>
-</ol>
-<p>我们需要对三台主机或多台主机修改以下两个位置：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1.修改hostname</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 把localhost.localdomain修改成Master，注意大小写敏感，伺服武器改成Slave1或Slave2等</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> CentOS 6.x 系统，则是修改 /etc/sysconfig/network 文件，改 HOSTNAME=Master</span></span><br><span class="line">sudo vi /etc/hostname</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2.修改/etc/hosts，追加信息，ip和别称之间三个空格</span></span><br><span class="line">sudo vi /etc/hosts</span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改如下图：</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="images/cluster_1.png"></p>
-<p>然后重启主机，可以看到，伺服武器则显示Slave1或Slave2：</p>
-<p><img src="images/cluster_2.png"></p>
-<p>配置好后需要在各个节点上执行如下命令，测试是否相互 ping 得通，如果 ping 不通，后面就无法顺利配置成功：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ping Master -c 3   # 只ping 3次，否则要按 Ctrl+c 中断</span><br><span class="line">ping Slave1 -c 3</span><br><span class="line">ping Slave2 -c 3</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>到这里，我们需要用到Master节点上的ssh公匙了，在以上2-(1)有配置过，但需要重新生成。(前提是三台主机都创建了hadoop用户，若伺服务器无hadoop账户，请参照2-(1))     // 如果出现“/home/hadoop 目录不存在，则$ userdel hadoop删除用户后再创建一次”</p>
-<p>==首先生成 Master 节点的公匙，在 Master 节点的终端中执行（因为改过主机名，所以还需要删掉原有的再重新生成一次）：==</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh               # 如果没有该目录，先执行一次ssh localhost</span><br><span class="line">rm ./id_rsa*            # 删除之前生成的公匙（如果有）</span><br><span class="line">ssh-keygen -t rsa       # 一直按回车就可以</span><br></pre></td></tr></table></figure>
-
-<p>然后Master信任自己生成的公匙</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ./id_rsa.pub &gt;&gt; ./authorized_keys</span><br></pre></td></tr></table></figure>
-
-<p>接着在 Master 节点将上公匙传输到 Slave1 节点：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">scp ~/.ssh/id_rsa.pub hadoop@Slave1:/home/hadoop/</span><br><span class="line">scp ~/.ssh/id_rsa.pub hadoop@Slave2:/home/hadoop/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 中途需要信任证书：输入yes,再回车</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后输入改slave节点hadoop的密码，才能将id_rsa.pub发送到slave的/home/hadoop目录下</span></span><br><span class="line">----------------------------</span><br><span class="line">其实道理很简单，就是三台主机上的~/.ssh/authorized_keys文件内容一致</span><br><span class="line">可以直接用下面的指令，然后忽略以下【甲】方法教程</span><br><span class="line">scp -rp authorized_keys Slave1:~/.ssh/</span><br><span class="line">----------------------------</span><br></pre></td></tr></table></figure>
-
-<p>【甲】接着在各slave节点上信任master生成的公匙</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.ssh       # 如果不存在该文件夹需先创建，若已存在则忽略</span><br><span class="line">cat ~/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line">rm ~/id_rsa.pub    # 用完就可以删掉了</span><br></pre></td></tr></table></figure>
-
-<p>至此，我们在master上可以用以下命令，直接无密连接Slave*</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh Slave1</span><br><span class="line">ssh Slave2</span><br></pre></td></tr></table></figure>
-
-<h4 id="lt-1-gt-配置PATH变量"><a href="#lt-1-gt-配置PATH变量" class="headerlink" title="&lt;1&gt;配置PATH变量"></a>&lt;1&gt;配置PATH变量</h4><p>前提是已经安装好hadoop，参照2-(2)，很简单就几行命令</p>
-<p>现在我两台slave上并没有安装hadoop，所以我需要用rz命令上传，现在我是hadoop用户，不是root用户，然后它直接提示我”传输失败”，通过百度我了解到，CentOS7非root用户使用lrzsz上传文件有权限问题</p>
-<p>方法一：增加权限执行   $ sudo rz</p>
-<p>方法二：进入到所需权限最低的/tmp目录进行上传，再使用移动命令</p>
-<p><strong>两台伺服务器参照2-(2)将hadoop安装至/usr/local完成之后</strong>，将 Hadoop 安装目录加入 PATH 变量中，这样就可以在任意目录中直接使用 hadoo、hdfs 等命令了，如果还没有配置的，需要在 Master 节点上进行配置。</p>
-<p>首先执行 </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>追加两行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin</span><br><span class="line">export JAVA_HOME=/usr/local/jdk1.8.0_241</span><br></pre></td></tr></table></figure>
-
-<p>保存后执行以下命令使配置生效</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc </span><br></pre></td></tr></table></figure>
-
-<h4 id="lt-2-gt-配置hadoop分布式集群"><a href="#lt-2-gt-配置hadoop分布式集群" class="headerlink" title="&lt;2&gt;配置hadoop分布式集群"></a>&lt;2&gt;配置hadoop分布式集群</h4><p>首先关闭各节点的防火墙</p>
-<p>CentOS系统默认开启了防火墙，在开启 Hadoop 集群之前，<strong>需要关闭集群中每个节点的防火墙</strong>。有防火墙会导致 ping 得通但 telnet 端口不通，从而导致 DataNode 启动了，但 Live datanodes 为 0 的情况。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> telnet命令示范，测试某一主机8080端口是否开启</span></span><br><span class="line">telnet 49.233.164.24 8080</span><br><span class="line"><span class="meta">#</span><span class="bash"> 出现以下内容则通</span></span><br><span class="line">Trying 49.233.164.24...</span><br><span class="line">Connected to 49.233.164.24.</span><br><span class="line">Escape character is &#x27;^]&#x27;.</span><br><span class="line"><span class="meta">#</span><span class="bash"> 而只出现以下内容则不通</span></span><br><span class="line">Trying 49.233.164.24...</span><br></pre></td></tr></table></figure>
-
-<p>关闭防火墙，所有节点都需要关闭</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 在 CentOS 6.x 中，可以通过如下命令关闭防火墙：</span></span><br><span class="line">sudo service iptables stop   # 关闭防火墙服务</span><br><span class="line">sudo chkconfig iptables off  # 禁止防火墙开机自启，就不用手动关闭了</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 若用是 CentOS 7，需通过如下命令关闭（防火墙服务改成了 firewall）：</span></span><br><span class="line">systemctl stop firewalld.service    # 关闭firewall</span><br><span class="line">systemctl disable firewalld.service # 禁止firewall开机启动</span><br></pre></td></tr></table></figure>
-
-<p>现在展示下防火墙关闭的过程</p>
-<p><img src="images/firewall_close_1.png"></p>
-<p><strong>我们需要修改以下五个文件</strong></p>
-<p>==只需在Master上修改，然后把Master修改好的文件Copy至各主机即可==</p>
-<p><img src="images/cluster_config_1.png"></p>
-<h5 id="lt-2-gt-1-workers"><a href="#lt-2-gt-1-workers" class="headerlink" title="&lt;2&gt;-1.  workers"></a>&lt;2&gt;-1.  workers</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">文件 slaves，将作为 DataNode 的主机名写入该文件，每行一个，默认为 localhost，所以在伪分布式配置时，节点即作为 NameNode 也作为 DataNode。分布式配置可以保留 localhost，也可以删掉，让 Master 节点仅作为 NameNode 使用。</span><br><span class="line"></span><br><span class="line">本教程让 Master 节点仅作为 NameNode 使用，因此将文件中原来的 localhost 删除，只留下两行内容：Slave1和Slave2</span><br></pre></td></tr></table></figure>
-
-<p>linux shell下执行以下EOF命令覆写workers文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo tee /usr/local/hadoop/etc/hadoop/workers &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">Slave1</span><br><span class="line">Slave2</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-
-<p>效果图如下</p>
-<p><img src="images/cluster_config_2.png"></p>
-<h5 id="lt-2-gt-2-修改core-site-xml文件内容如下"><a href="#lt-2-gt-2-修改core-site-xml文件内容如下" class="headerlink" title="&lt;2&gt;-2. 修改core-site.xml文件内容如下"></a>&lt;2&gt;-2. <strong>修改core-site.xml文件内容如下</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://Master:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">description</span>&gt;</span>Abase for other temporary directories.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="lt-2-gt-3-文件-hdfs-site-xml，dfs-replication-一般设为-3，但我们有两个-Slave-节点，所以-dfs-replication-的值设为-2："><a href="#lt-2-gt-3-文件-hdfs-site-xml，dfs-replication-一般设为-3，但我们有两个-Slave-节点，所以-dfs-replication-的值设为-2：" class="headerlink" title="&lt;2&gt;-3.  文件 hdfs-site.xml，dfs.replication 一般设为 3，但我们有两个 Slave 节点，所以 dfs.replication 的值设为 2："></a>&lt;2&gt;-3.  文件 <strong>hdfs-site.xml</strong>，dfs.replication 一般设为 3，但我们有两个 Slave 节点，所以 dfs.replication 的值设为 2：</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.secondary.http-address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>Master:50090<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/tmp/dfs/name<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/tmp/dfs/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="lt-2-gt-4-文件-mapred-site-xml-（可能需要先重命名，默认文件名为-mapred-site-xml-template），然后配置修改如下："><a href="#lt-2-gt-4-文件-mapred-site-xml-（可能需要先重命名，默认文件名为-mapred-site-xml-template），然后配置修改如下：" class="headerlink" title="&lt;2&gt;-4. 文件 mapred-site.xml （可能需要先重命名，默认文件名为 mapred-site.xml.template），然后配置修改如下："></a>&lt;2&gt;-4. 文件 <strong>mapred-site.xml</strong> （可能需要先重命名，默认文件名为 mapred-site.xml.template），然后配置修改如下：</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>Master:10020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>Master:19888<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="lt-2-gt-5-文件-yarn-site-xml"><a href="#lt-2-gt-5-文件-yarn-site-xml" class="headerlink" title="&lt;2&gt;-5. 文件 yarn-site.xml"></a>&lt;2&gt;-5. 文件 <strong>yarn-site.xml</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>Master<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>配置好后，将 Master 上的 /usr/local/Hadoop 文件夹复制到各个节点上。因为之前有跑过伪分布式模式，建议在切换到集群模式前先删除之前的临时文件。如果之前没有运行过伪分布式，直接忽略前三条命令即可。在 Master 节点上执行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local</span><br><span class="line">sudo rm -r ./hadoop/tmp     # 删除 Hadoop 临时文件</span><br><span class="line">sudo rm -r ./hadoop/logs/*   # 删除日志文件</span><br><span class="line"></span><br><span class="line">tar -zcf ~/hadoop.master.tar.gz ./hadoop   # 先压缩再复制</span><br><span class="line">cd ~</span><br><span class="line">scp ./hadoop.master.tar.gz Slave1:/home/hadoop</span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果有多个节点，继续</span></span><br><span class="line">scp ./hadoop.master.tar.gz Slave2:/home/hadoop</span><br></pre></td></tr></table></figure>
-
-<p>然后在各个slave节点上执行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -r /usr/local/hadoop    # 删掉旧的（如果存在）</span><br><span class="line">sudo tar -zxf ~/hadoop.master.tar.gz -C /usr/local</span><br><span class="line">sudo chown -R hadoop /usr/local/hadoop</span><br></pre></td></tr></table></figure>
-
-<p>首次启动需要先在 Master 节点执行 NameNode 的格式化：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs namenode -format       # 首次运行需要执行初始化，之后不需要</span><br></pre></td></tr></table></figure>
-
-<p>接着可以启动 hadoop 了，启动需要在 Master 节点上进行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">start-dfs.sh</span><br><span class="line">start-yarn.sh</span><br><span class="line">mr-jobhistory-daemon.sh start historyserver</span><br></pre></td></tr></table></figure>
-
-<p>关闭 Hadoop 集群也是在 Master 节点上执行的：如果启动没出错，可以先不关闭</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stop-yarn.sh</span><br><span class="line">stop-dfs.sh</span><br><span class="line">mr-jobhistory-daemon.sh stop historyserver</span><br></pre></td></tr></table></figure>
-
-<p>通过命令 <code>jps</code> 可以查看各个节点所启动的进程。==缺少任一进程都表示出错==</p>
-<p>正确的话，在 Master 节点上可以看到 NameNode、ResourceManager、SecondrryNameNode、JobHistoryServer 进程，如下图所示：</p>
-<p><img src="images/hadoop_jps-master.png"></p>
-<p>在 Slave 节点可以看到 DataNode 和 NodeManager 进程，如下图所示：</p>
-<p><img src="images/hadoop-jps-slave.png"></p>
-<p>Master可以执行以下命令，看各个节点的状态</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -report</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 DataNode 是否正常启动，如果 Live datanodes 不为 0 ，则说明集群启动成功。例如我这边一共有 2个 Datanodes：</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="images/hadoop_status.png"></p>
-<p>我们拥有网页监控接口</p>
-<p><img src="images/web_monitor_interface.png"></p>
-<p>举个例子，如果我想要看名称节点</p>
-<p>我在浏览器上输入<a href="http://MASTER_IP:9870，因为防火墙已关闭，所以我能浏览到它，效果如下">http://MASTER_IP:9870，因为防火墙已关闭，所以我能浏览到它，效果如下</a></p>
-<p><img src="images/web_interface_1.png"></p>
-<p><a target="_blank" rel="noopener" href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html">官方文档连接</a></p>
-<h4 id="lt-3-gt-执行分布式实例"><a href="#lt-3-gt-执行分布式实例" class="headerlink" title="&lt;3&gt;执行分布式实例"></a>&lt;3&gt;执行分布式实例</h4><p>执行分布式实例过程与伪分布式模式一样，首先创建 HDFS 上的用户目录：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -mkdir -p /user/hadoop</span><br></pre></td></tr></table></figure>
-
-<p>将 /usr/local/hadoop/etc/hadoop 中的配置文件作为输入文件复制到分布式文件系统中：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -mkdir input</span><br><span class="line">hdfs dfs -put /usr/local/hadoop/etc/hadoop/*.xml input</span><br></pre></td></tr></table></figure>
-
-<p>通过查看 DataNode 的状态（占用大小有改变），输入文件确实复制到了 DataNode 中，如下图所示：</p>
-<p><img src="images/web_interface_2.png"></p>
-<hr>
-<p>接着就可以运行 MapReduce 作业了：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar grep input output &#x27;dfs[a-z.]+&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>运行时的输出信息与伪分布式类似，会显示 Job 的进度。</p>
-<p>可能会有点慢，但如果迟迟没有进度，比如 5 分钟都没看到进度，那不妨重启 Hadoop 再试试。若重启还不行，则很有可能是内存不足引起，建议增大虚拟机的内存，或者通过更改 YARN 的内存配置解决。</p>
-<p><img src="images/install-hadoop-cluster-11-running-job.png"></p>
-<p>同样可以通过 Web 界面查看任务进度 <a target="_blank" rel="noopener" href="http://master:8088/cluster%EF%BC%8C%E5%9C%A8">http://master:8088/cluster，在</a> Web 界面点击 “Tracking UI” 这一列的 History 连接，可以看到任务的运行信息，如下图所示：</p>
-<p><img src="images/install-hadoop-cluster-12-web-cluster.png"></p>
-<p>执行完毕后的输出结果：</p>
-<p><img src="images/install-hadoop-cluster-13-grep-output.png"></p>
-<hr>
-<p>如果不用的话，可以关闭了，在Master节点上执行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stop-yarn.sh</span><br><span class="line">stop-dfs.sh</span><br><span class="line">mr-jobhistory-daemon.sh stop historyserver</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-  
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/18/%E5%89%8D%E7%AB%AFhtml%E4%B8%8Ecss%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93%E7%AF%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/a1.jpg">
       <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
+      <meta itemprop="description" content="欲买桂花同载酒，终不似，少年游。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -664,102 +290,12 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/04/%E5%88%B7%E7%BD%91%E8%AF%BE%E4%BB%A3%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/a1.jpg">
-      <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="sakuraのblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/04/%E5%88%B7%E7%BD%91%E8%AF%BE%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">刷网课代码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-04 23:16:19" itemprop="dateCreated datePublished" datetime="2020-11-04T23:16:19+08:00">2020-11-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-05 21:31:43" itemprop="dateModified" datetime="2020-11-05T21:31:43+08:00">2020-11-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">脚本语言</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>24k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>刷网课代码</p>
-<p><strong>此代码为刷智慧树/知到的脚本代码，随着时间的流逝，渐渐的对网课的兴趣变弱，然后发现网上有收费刷课的代理，我又不想出钱，又不想看，写下此脚本</strong><br><strong>代码分为第一版和第二版，第一版B站搜学习资料自学写的，第二版通过一系列资料改版来的</strong><br><strong><em>注意！！！代码第二版建议1.5倍（别弄个50倍，几分钟就刷完），别半夜刷课，会被检测出来的</em></strong><br>本代码仅供个人使用，禁止用于商业用途，出事概不负责。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/04/%E5%88%B7%E7%BD%91%E8%AF%BE%E4%BB%A3%E7%A0%81/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-  
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/02/SQL%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/a1.jpg">
       <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
+      <meta itemprop="description" content="欲买桂花同载酒，终不似，少年游。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -846,7 +382,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/a1.jpg">
       <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
+      <meta itemprop="description" content="欲买桂花同载酒，终不似，少年游。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -943,7 +479,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/a1.jpg">
       <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
+      <meta itemprop="description" content="欲买桂花同载酒，终不似，少年游。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1032,7 +568,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/a1.jpg">
       <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
+      <meta itemprop="description" content="欲买桂花同载酒，终不似，少年游。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1125,7 +661,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/a1.jpg">
       <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
+      <meta itemprop="description" content="欲买桂花同载酒，终不似，少年游。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1257,27 +793,27 @@
     <img class="site-author-image" itemprop="image" alt="chenyongtao"
       src="/images/a1.jpg">
   <p class="site-author-name" itemprop="name">chenyongtao</p>
-  <div class="site-description" itemprop="description">不想做一条咸鱼</div>
+  <div class="site-description" itemprop="description">欲买桂花同载酒，终不似，少年游。</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1305,7 +841,7 @@
         <h3 class="widget-title">标签云</h3>
         <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width=100%">
-                <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E8%A1%A8/" rel="tag">数据表</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BE%8E%E5%8C%96/" rel="tag">美化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/" rel="tag">脚本语言</a><span class="tag-list-count">1</span></li></ul>
+                <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E8%A1%A8/" rel="tag">数据表</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BE%8E%E5%8C%96/" rel="tag">美化</a><span class="tag-list-count">1</span></li></ul>
             </canvas>
         </div>
     </div>
@@ -1329,7 +865,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-fa fa-heart"></i>
   </span>
@@ -1339,7 +875,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">94k</span>
+    <span title="站点总字数">54k</span>
 
 
 
