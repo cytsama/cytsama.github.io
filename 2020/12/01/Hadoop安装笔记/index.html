@@ -23,30 +23,65 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="不想做一条咸鱼">
-<meta property="og:type" content="website">
-<meta property="og:title" content="sakuraのblog">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="hadoop-v3.2.1分布式安装（注：本文参照厦门大学数据库实验室教程） 内容大多转载于http:&#x2F;&#x2F;dblab.xmu.edu.cn&#x2F;blog&#x2F;install-hadoop-cluster&#x2F; 本博客用于存档做hadoop部署的回顾学习笔记，且共享 由于做分布式部署笔记，看完2-(2)可直接跳至3-(5)，部署过程中有问题也可私聊Q1824301866 1.准备首先准备三台linux(C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop安装笔记">
+<meta property="og:url" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="sakuraのblog">
-<meta property="og:description" content="不想做一条咸鱼">
+<meta property="og:description" content="hadoop-v3.2.1分布式安装（注：本文参照厦门大学数据库实验室教程） 内容大多转载于http:&#x2F;&#x2F;dblab.xmu.edu.cn&#x2F;blog&#x2F;install-hadoop-cluster&#x2F; 本博客用于存档做hadoop部署的回顾学习笔记，且共享 由于做分布式部署笔记，看完2-(2)可直接跳至3-(5)，部署过程中有问题也可私聊Q1824301866 1.准备首先准备三台linux(C">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_jdk_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/download_url_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images%5Chadop_sudo_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_ssh_2.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_ssh_3.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_ssh_4.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_ssh_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_rz_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_rz_2.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_single_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_single_2.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_single_3.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_distinguish_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_distinguish_2.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_distinguish_3.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_run_distinguish_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop-yarn_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop-yarn-cluster.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/cluster_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/cluster_2.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/firewall_close_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/cluster_config_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/cluster_config_2.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_jps-master.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop-jps-slave.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_status.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/web_monitor_interface.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/web_interface_1.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/web_interface_2.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/install-hadoop-cluster-11-running-job.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/install-hadoop-cluster-12-web-cluster.png">
+<meta property="og:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/install-hadoop-cluster-13-grep-output.png">
+<meta property="article:published_time" content="2020-12-01T14:01:34.000Z">
+<meta property="article:modified_time" content="2020-12-01T14:04:24.496Z">
 <meta property="article:author" content="chenyongtao">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/images/hadoop_jdk_1.png">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>sakuraのblog</title>
+  <title>Hadoop安装笔记 | sakuraのblog</title>
   
 
 
@@ -191,9 +226,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -209,10 +245,9 @@
       <meta itemprop="name" content="sakuraのblog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/01/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Hadoop安装笔记</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Hadoop安装笔记
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -225,7 +260,14 @@
               <time title="创建时间：2020-12-01 22:01:34 / 修改时间：22:04:24" itemprop="dateCreated datePublished" datetime="2020-12-01T22:01:34+08:00">2020-12-01</time>
             </span>
 
-          <br>
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -243,7 +285,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <a id="more"></a>
+        <a id="more"></a>
 
 
 <h1 id="hadoop-v3-2-1分布式安装"><a href="#hadoop-v3-2-1分布式安装" class="headerlink" title="hadoop-v3.2.1分布式安装"></a>hadoop-v3.2.1分布式安装</h1><p>（注：本文参照厦门大学数据库实验室教程）</p>
@@ -552,653 +594,35 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stop-yarn.sh</span><br><span class="line">stop-dfs.sh</span><br><span class="line">mr-jobhistory-daemon.sh stop historyserver</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
     
     
     
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束 <i class="fa fa-heart"></i> 感谢阅读-------------</div>
+    
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-  
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/18/%E5%89%8D%E7%AB%AFhtml%E4%B8%8Ecss%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93%E7%AF%87/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/a1.jpg">
-      <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="sakuraのblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/18/%E5%89%8D%E7%AB%AFhtml%E4%B8%8Ecss%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93%E7%AF%87/" class="post-title-link" itemprop="url">前端html与css学习笔记总结篇</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-18 12:34:06" itemprop="dateCreated datePublished" datetime="2020-11-18T12:34:06+08:00">2020-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-23 22:43:43" itemprop="dateModified" datetime="2020-11-23T22:43:43+08:00">2020-11-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/HTML/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>21k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>只涉及到HTML和CSS的属性，标签，元素等</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/18/%E5%89%8D%E7%AB%AFhtml%E4%B8%8Ecss%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93%E7%AF%87/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-  
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/04/%E5%88%B7%E7%BD%91%E8%AF%BE%E4%BB%A3%E7%A0%81/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/a1.jpg">
-      <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="sakuraのblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/04/%E5%88%B7%E7%BD%91%E8%AF%BE%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">刷网课代码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-04 23:16:19" itemprop="dateCreated datePublished" datetime="2020-11-04T23:16:19+08:00">2020-11-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-05 21:31:43" itemprop="dateModified" datetime="2020-11-05T21:31:43+08:00">2020-11-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">脚本语言</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>24k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>刷网课代码</p>
-<p><strong>此代码为刷智慧树/知到的脚本代码，随着时间的流逝，渐渐的对网课的兴趣变弱，然后发现网上有收费刷课的代理，我又不想出钱，又不想看，写下此脚本</strong><br><strong>代码分为第一版和第二版，第一版B站搜学习资料自学写的，第二版通过一系列资料改版来的</strong><br><strong><em>注意！！！代码第二版建议1.5倍（别弄个50倍，几分钟就刷完），别半夜刷课，会被检测出来的</em></strong><br>本代码仅供个人使用，禁止用于商业用途，出事概不负责。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/04/%E5%88%B7%E7%BD%91%E8%AF%BE%E4%BB%A3%E7%A0%81/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/18/%E5%89%8D%E7%AB%AFhtml%E4%B8%8Ecss%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93%E7%AF%87/" rel="prev" title="前端html与css学习笔记总结篇">
+      <i class="fa fa-chevron-left"></i> 前端html与css学习笔记总结篇
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
   
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/02/SQL%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E4%BE%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/a1.jpg">
-      <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="sakuraのblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/02/SQL%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E4%BE%8B/" class="post-title-link" itemprop="url">SQL数据表示例</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-11-02 19:24:35 / 修改时间：20:42:01" itemprop="dateCreated datePublished" datetime="2020-11-02T19:24:35+08:00">2020-11-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SQL/" itemprop="url" rel="index"><span itemprop="name">SQL</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SQL/%E6%95%B0%E6%8D%AE%E8%A1%A8/" itemprop="url" rel="index"><span itemprop="name">数据表</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>关于SQL数据表的实例</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/02/SQL%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E4%BE%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-  
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/31/SQL%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/a1.jpg">
-      <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="sakuraのblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/31/SQL%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">SQL语句基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-31 14:56:07" itemprop="dateCreated datePublished" datetime="2020-10-31T14:56:07+08:00">2020-10-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-08 00:18:34" itemprop="dateModified" datetime="2020-11-08T00:18:34+08:00">2020-11-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SQL/" itemprop="url" rel="index"><span itemprop="name">SQL</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SQL/%E6%95%B0%E6%8D%AE%E8%A1%A8/" itemprop="url" rel="index"><span itemprop="name">数据表</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SQL/%E6%95%B0%E6%8D%AE%E8%A1%A8/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>14k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>SQL语句的语法及使用<br><strong>主要使用SQL sever 2012</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/31/SQL%E8%AF%AD%E5%8F%A5%E5%9F%BA%E7%A1%80/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-  
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/a1.jpg">
-      <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="sakuraのblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87blog/" class="post-title-link" itemprop="url">我的第一篇blog</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-26 10:24:05" itemprop="dateCreated datePublished" datetime="2020-10-26T10:24:05+08:00">2020-10-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-28 19:18:28" itemprop="dateModified" datetime="2020-10-28T19:18:28+08:00">2020-10-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>868</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>hexo博客安装的简要笔记</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87blog/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-  
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/26/next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BE%8E%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/a1.jpg">
-      <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="sakuraのblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/26/next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BE%8E%E5%8C%96/" class="post-title-link" itemprop="url">hexo博客next主题美化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-26 10:24:05" itemprop="dateCreated datePublished" datetime="2020-10-26T10:24:05+08:00">2020-10-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-30 21:50:52" itemprop="dateModified" datetime="2020-10-30T21:50:52+08:00">2020-10-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BE%8E%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">美化</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BE%8E%E5%8C%96/next/" itemprop="url" rel="index"><span itemprop="name">next</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>15k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>hexo 主题 next7.8 版本配置美化</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/26/next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%BE%8E%E5%8C%96/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-  
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/25/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/a1.jpg">
-      <meta itemprop="name" content="chenyongtao">
-      <meta itemprop="description" content="不想做一条咸鱼">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="sakuraのblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/25/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-25 22:57:33" itemprop="dateCreated datePublished" datetime="2020-10-25T22:57:33+08:00">2020-10-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-27 13:27:13" itemprop="dateModified" datetime="2020-10-27T13:27:13+08:00">2020-10-27</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>367</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/25/hello-world/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -1249,6 +673,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hadoop-v3-2-1%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">hadoop-v3.2.1分布式安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%87%86%E5%A4%87"><span class="nav-number">1.1.</span> <span class="nav-text">1.准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BAhadoop%E7%94%A8%E6%88%B7%EF%BC%8C%E8%A7%A3%E5%8E%8Bhadoop%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">1.2.</span> <span class="nav-text">2.创建hadoop用户，解压hadoop二进制安装包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%99%BB%E5%BD%95Master%E4%B8%BB%E6%9C%BA%EF%BC%8C%E8%AE%BE%E7%BD%AEssh%E6%97%A0%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">(1).登录Master主机，设置ssh无密码登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882-%E8%A7%A3%E5%8E%8B%E5%AE%89%E8%A3%85hadoop"><span class="nav-number">1.2.2.</span> <span class="nav-text">（2). 解压安装hadoop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Hadoop%E9%85%8D%E7%BD%AE-%E5%88%86%E7%B1%BB"><span class="nav-number">1.3.</span> <span class="nav-text">3.Hadoop配置-分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E7%AE%80%E8%BF%B0"><span class="nav-number">1.3.1.</span> <span class="nav-text">（1）简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%8D%95%E6%9C%BA%E7%89%88"><span class="nav-number">1.3.2.</span> <span class="nav-text">（2）单机版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F"><span class="nav-number">1.3.3.</span> <span class="nav-text">（3）伪分布式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-1-gt-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E9%83%A8%E7%BD%B2"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">&lt;1&gt; 伪分布式的安装和部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-2-gt-%E8%BF%90%E8%A1%8CHadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">&lt;2&gt; 运行Hadoop伪分布式实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%884%EF%BC%89-YARN"><span class="nav-number">1.3.4.</span> <span class="nav-text">（4）  YARN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%885%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F-%E3%80%90%E4%B8%BB%E6%95%99%E7%A8%8B%E3%80%91"><span class="nav-number">1.3.5.</span> <span class="nav-text">（5）分布式 【主教程】</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-1-gt-%E9%85%8D%E7%BD%AEPATH%E5%8F%98%E9%87%8F"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">&lt;1&gt;配置PATH变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-2-gt-%E9%85%8D%E7%BD%AEhadoop%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">&lt;2&gt;配置hadoop分布式集群</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-2-gt-1-workers"><span class="nav-number">1.3.5.2.1.</span> <span class="nav-text">&lt;2&gt;-1.  workers</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-2-gt-2-%E4%BF%AE%E6%94%B9core-site-xml%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E5%A6%82%E4%B8%8B"><span class="nav-number">1.3.5.2.2.</span> <span class="nav-text">&lt;2&gt;-2. 修改core-site.xml文件内容如下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-2-gt-3-%E6%96%87%E4%BB%B6-hdfs-site-xml%EF%BC%8Cdfs-replication-%E4%B8%80%E8%88%AC%E8%AE%BE%E4%B8%BA-3%EF%BC%8C%E4%BD%86%E6%88%91%E4%BB%AC%E6%9C%89%E4%B8%A4%E4%B8%AA-Slave-%E8%8A%82%E7%82%B9%EF%BC%8C%E6%89%80%E4%BB%A5-dfs-replication-%E7%9A%84%E5%80%BC%E8%AE%BE%E4%B8%BA-2%EF%BC%9A"><span class="nav-number">1.3.5.2.3.</span> <span class="nav-text">&lt;2&gt;-3.  文件 hdfs-site.xml，dfs.replication 一般设为 3，但我们有两个 Slave 节点，所以 dfs.replication 的值设为 2：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-2-gt-4-%E6%96%87%E4%BB%B6-mapred-site-xml-%EF%BC%88%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E5%85%88%E9%87%8D%E5%91%BD%E5%90%8D%EF%BC%8C%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%BA-mapred-site-xml-template%EF%BC%89%EF%BC%8C%E7%84%B6%E5%90%8E%E9%85%8D%E7%BD%AE%E4%BF%AE%E6%94%B9%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.3.5.2.4.</span> <span class="nav-text">&lt;2&gt;-4. 文件 mapred-site.xml （可能需要先重命名，默认文件名为 mapred-site.xml.template），然后配置修改如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-2-gt-5-%E6%96%87%E4%BB%B6-yarn-site-xml"><span class="nav-number">1.3.5.2.5.</span> <span class="nav-text">&lt;2&gt;-5. 文件 yarn-site.xml</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-3-gt-%E6%89%A7%E8%A1%8C%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">&lt;3&gt;执行分布式实例</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
