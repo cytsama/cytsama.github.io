@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="hadoop-v3.2.1分布式安装本博客用于存档做hadoop部署的回顾学习笔记，且共享文章使用root用户登录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop安装笔记">
+<meta property="og:url" content="http://example.com/2021/05/13/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="sakuraのblog">
+<meta property="og:description" content="hadoop-v3.2.1分布式安装本博客用于存档做hadoop部署的回顾学习笔记，且共享文章使用root用户登录">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210514230753204.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210517105144254.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1OTc1MzU3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210517103947851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1OTc1MzU3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021051712341477.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1OTc1MzU3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-05-13T01:33:31.000Z">
+<meta property="article:modified_time" content="2021-05-17T12:23:00.378Z">
+<meta property="article:author" content="chenyongtao">
+<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="分布式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210514230753204.png#pic_center">
+
+<link rel="canonical" href="http://example.com/2021/05/13/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Hadoop安装笔记 | sakuraのblog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">sakuraのblog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">The world is gentle, but it does not like me  🌸</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/cytsama" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/13/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/a1.jpg">
+      <meta itemprop="name" content="chenyongtao">
+      <meta itemprop="description" content="欲买桂花同载酒，终不似，少年游。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="sakuraのblog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hadoop安装笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-13 09:33:31" itemprop="dateCreated datePublished" datetime="2021-05-13T09:33:31+08:00">2021-05-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-17 20:23:00" itemprop="dateModified" datetime="2021-05-17T20:23:00+08:00">2021-05-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index"><span itemprop="name">Hadoop</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hadoop/%E5%88%86%E5%B8%83%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">分布式</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>hadoop-v3.2.1分布式安装<br><strong>本博客用于存档做hadoop部署的回顾学习笔记，且共享</strong><br>文章使用root用户登录</p>
+<a id="more"></a>
+
+<p><strong>hadoop-v3.2.1分布式安装</strong></p>
+<h2 id="1-准备"><a href="#1-准备" class="headerlink" title="1.准备"></a>1.准备</h2><p>如不使用root自行创建用户：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 向系统添加一个名为hadoop的用户</span></span><br><span class="line">useradd -m hadoop -s /bin/bash</span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后更改它的密码，随意，我设为123456，一会还要将这个用户设为无密的</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> （若提示“无效的密码，过于简单”则再次输入确认就行）</span></span><br><span class="line">passwd hadoop</span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后可为 hadoop 用户增加管理员权限，方便部署，避免一些对新手来说比较棘手的权限问题，执行：</span></span><br><span class="line">visudo</span><br><span class="line"><span class="meta">#</span><span class="bash"> 可以看到第98行，然后我们在该行下再添加一行：hadoop ALL=(ALL) ALL</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210514230753204.png#pic_center"></p>
+<p><strong>首先准备三台linux(CentOS7)</strong></p>
+<blockquote>
+<p>Hadoop1: 192.168.49.160</p>
+</blockquote>
+<blockquote>
+<p>Hadoop2: 192.168.49.170</p>
+</blockquote>
+<blockquote>
+<p>Hadoop1: 192.168.49.180</p>
+</blockquote>
+<h3 id="1-1修改为静态IP"><a href="#1-1修改为静态IP" class="headerlink" title="1.1修改为静态IP"></a>1.1修改为静态IP</h3><p><em>先去查询当前的网关</em><br><strong>修改配置文件</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/sysconfig/network<span class="literal">-scripts</span>	<span class="comment">#进入网络配置目录</span></span><br><span class="line"><span class="built_in">dir</span> ifcfg*								<span class="comment">#找到网卡配置文件</span></span><br><span class="line">ifcfg<span class="literal">-ens33</span>							<span class="comment">#找到版本最新的文件并修改</span></span><br><span class="line">vim ifcfg<span class="literal">-ens33</span></span><br><span class="line">或者</span><br><span class="line">vim /etc/sysconfig/network<span class="literal">-scripts</span>/ifcfg<span class="literal">-ens33</span></span><br></pre></td></tr></table></figure>
+<p><strong>配置文件内容</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">TYPE=Ethernet</span><br><span class="line">BOOTPROTO=static									#改成static，针对NAT</span><br><span class="line">NAME=eno16777736</span><br><span class="line">UUID=4cc9c89b-cf9e-4847-b9ea-ac713baf4cc8</span><br><span class="line">DEVICE=eno16777736</span><br><span class="line">DNS1=114.114.114.114		#和网关相同</span><br><span class="line">ONBOOT=yes					#开机启动此网卡</span><br><span class="line">IPADDR=192.168.65.161		#固定IP地址</span><br><span class="line">NETMASK=255.255.255.0		#子网掩码</span><br><span class="line">GATEWAY=192.168.65.2		#网关和NAT自动配置的相同，不同则无法登录</span><br></pre></td></tr></table></figure>
+<p><strong>重启网络</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service network restart	<span class="comment">#重启网络</span></span><br><span class="line">systemctl restart network.service	<span class="comment">#重启网络centos7</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>查看IP</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr						<span class="comment">#查看IP地址 ip add</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-２关闭防火墙"><a href="#1-２关闭防火墙" class="headerlink" title="1.２关闭防火墙"></a>1.２关闭防火墙</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service			<span class="comment">#关闭防火墙服务</span></span><br><span class="line">systemctl disable firewalld.service		<span class="comment">#禁止防火墙开启启动</span></span><br><span class="line">systemctl restart iptables.service		<span class="comment">#重启防火墙使配置生效</span></span><br><span class="line">systemctl enable iptables.service 		<span class="comment">#设置防火墙开机启动</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>检查防火墙状态</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-state</span>		<span class="comment">#检查防火墙状态</span></span><br><span class="line">not running					<span class="comment">#返回值，未运行</span></span><br></pre></td></tr></table></figure>
+<p><strong>下载安装上传文件插件</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install <span class="literal">-y</span> lrzsz</span><br></pre></td></tr></table></figure>
+<h3 id="1-3修改主机名"><a href="#1-3修改主机名" class="headerlink" title="1.3修改主机名"></a>1.3修改主机名</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hostname</span><br></pre></td></tr></table></figure>
+<p>删掉原来的内容修改为Hadoop1<br><strong>查看主机名</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname</span><br></pre></td></tr></table></figure>
+<h3 id="1-4修改hosts文件"><a href="#1-4修改hosts文件" class="headerlink" title="1.4修改hosts文件"></a>1.4修改hosts文件</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts				<span class="comment">#127.0.0.1 dredis</span></span><br></pre></td></tr></table></figure>
+<p>删掉原来所有内容，改为以下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1   localhost</span><br><span class="line">::1       	 localhost</span><br><span class="line">192.168.49.160 Hadoop1</span><br><span class="line">192.168.49.170 hadoop2</span><br><span class="line">192.168.49.180 Hadoop3</span><br></pre></td></tr></table></figure>
+<h3 id="1-5设置免密登录"><a href="#1-5设置免密登录" class="headerlink" title="1.5设置免密登录"></a>1.5设置免密登录</h3><p><strong>三台</strong>都执行以下操作：<br>在白框任意路径执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+<p><strong>然后三次直接回车不输入任何内容</strong><br>得到秘钥后执行：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh<span class="literal">-copy</span><span class="literal">-id</span> root@Hadoop1			<span class="comment">#Hadoop2、Hadoop3</span></span><br></pre></td></tr></table></figure>
+<p><strong>测试</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh Hadoop02</span><br></pre></td></tr></table></figure>
+<p>不需要输入密码直接进入说明成功，exit退出</p>
+<h3 id="1-6时钟同步"><a href="#1-6时钟同步" class="headerlink" title="1.6时钟同步"></a>1.6时钟同步</h3><p> <strong>安装</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install <span class="literal">-y</span> ntp</span><br></pre></td></tr></table></figure>
+<p> <strong>启动定时任务</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab <span class="literal">-e</span></span><br></pre></td></tr></table></figure>
+<p><strong>随后在输入界面键入</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*/<span class="number">1</span> * * * * /usr/sbin/ntpdate ntp4.aliyun.com;</span><br></pre></td></tr></table></figure>
+<h2 id="2-hadoop-jdk-zoopkeeper压缩包d等的上传及安装"><a href="#2-hadoop-jdk-zoopkeeper压缩包d等的上传及安装" class="headerlink" title="2.hadoop jdk zoopkeeper压缩包d等的上传及安装"></a>2.hadoop jdk zoopkeeper压缩包d等的上传及安装</h2><h3 id="2-1上传hadoop-jdk-zookeeper等的压缩包"><a href="#2-1上传hadoop-jdk-zookeeper等的压缩包" class="headerlink" title="2.1上传hadoop jdk zookeeper等的压缩包"></a>2.1上传hadoop jdk zookeeper等的压缩包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 现在使用rz命令上传hadoop jdk zookeeper二进制安装包到linux服务器上</span></span><br><span class="line">rz      # 直接回车后会有个文件资源管理器，选择好文件后就开始上传了</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或使用winSCP上传至Linux上</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210517105144254.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1OTc1MzU3,size_16,color_FFFFFF,t_70#pic_center"><br><img src="https://img-blog.csdnimg.cn/20210517103947851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1OTc1MzU3,size_16,color_FFFFFF,t_70#pic_center"></p>
+<h3 id="2-2解压缩hadoop-jdk-zookeeper等的压缩包"><a href="#2-2解压缩hadoop-jdk-zookeeper等的压缩包" class="headerlink" title="2.2解压缩hadoop jdk zookeeper等的压缩包"></a>2.2解压缩hadoop jdk zookeeper等的压缩包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 现在运行以下命令将该文件解压到/<span class="built_in">export</span>/servers目录下</span></span><br><span class="line">tar -zvxf hadoop-3.1.1.tar.gz -C /export/servers</span><br><span class="line">tar -zvxf jdk1.8.0_141.tar.gz -C /export/servers</span><br><span class="line"><span class="meta">#</span><span class="bash">----------------------------</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压完了，你可以使用$ rm -f hadoop-3.1.1.tar.gz  删除掉该安装资源</span></span><br><span class="line"><span class="meta">#</span><span class="bash">----------------------------</span></span><br><span class="line">cd /export/servers                             # 进入解压目录下</span><br><span class="line">chown -R 777 /export/servers/hadoop-3.1.1 </span><br><span class="line">chown -R 777 /export/servers/jdk1.8.0_141       # 修改文件权限</span><br><span class="line">ll                                            #查看解压文件夹</span><br><span class="line">drwxr-xr-x. 12 wanght zhangsan 187 4月  20 17:28 hadoop-3.1.1</span><br><span class="line">drwxr-xr-x.  8     10      143 255 7月  12 2017 jdk1.8.0_141</span><br></pre></td></tr></table></figure>
+<h3 id="2-3配置hadoop-jdk等的环境变量"><a href="#2-3配置hadoop-jdk等的环境变量" class="headerlink" title="2.3配置hadoop jdk等的环境变量"></a>2.3配置hadoop jdk等的环境变量</h3><h4 id="2-3-1配置jdk的环境变量"><a href="#2-3-1配置jdk的环境变量" class="headerlink" title="2.3.1配置jdk的环境变量"></a>2.3.1配置jdk的环境变量</h4><h5 id="（1）先获取JDK路径"><a href="#（1）先获取JDK路径" class="headerlink" title="（1）先获取JDK路径"></a>（1）先获取JDK路径</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br><span class="line">/export/servers/jdk1.<span class="number">8.0</span>_141</span><br></pre></td></tr></table></figure>
+<h5 id="（2）打开-etc-profile文件"><a href="#（2）打开-etc-profile文件" class="headerlink" title="（2）打开/etc/profile文件"></a>（2）打开/etc/profile文件</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure>
+<p> 在profile文件末尾添加JDK路径</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#JAVA_HOME</span></span><br><span class="line">export JAVA_HOME=/export/servers/jdk1.<span class="number">8.0</span>_141</span><br><span class="line">export PATH=<span class="variable">$PATH:</span><span class="variable">$JAVA_HOME</span>/bin</span><br></pre></td></tr></table></figure>
+<h5 id="（3）保存后退出"><a href="#（3）保存后退出" class="headerlink" title="（3）保存后退出"></a>（3）保存后退出</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:wq</span><br></pre></td></tr></table></figure>
+<h5 id="（4）让修改后的文件生效"><a href="#（4）让修改后的文件生效" class="headerlink" title="（4）让修改后的文件生效"></a>（4）让修改后的文件生效</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<h5 id="（5）-测试JDK是否安装成功"><a href="#（5）-测试JDK是否安装成功" class="headerlink" title="（5）    测试JDK是否安装成功"></a>（5）    测试JDK是否安装成功</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java <span class="literal">-version</span></span><br><span class="line">java version <span class="string">&quot;1.8.0_141&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-3-2配置Hadoop的环境变量"><a href="#2-3-2配置Hadoop的环境变量" class="headerlink" title="2.3.2配置Hadoop的环境变量"></a>2.3.2配置Hadoop的环境变量</h4><h5 id="（1）获取Hadoop安装路径"><a href="#（1）获取Hadoop安装路径" class="headerlink" title="（1）获取Hadoop安装路径"></a>（1）获取Hadoop安装路径</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br><span class="line">/export/servers/hadoop<span class="literal">-3</span>.<span class="number">1.1</span></span><br></pre></td></tr></table></figure>
+<h5 id="（2）打开-etc-profile文件-1"><a href="#（2）打开-etc-profile文件-1" class="headerlink" title="（2）打开/etc/profile文件"></a>（2）打开/etc/profile文件</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure>
+<p>在profile文件末尾添加JDK路径：（shitf+g）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##HADOOP_HOME</span></span><br><span class="line">export HADOOP_HOME=/export/servers/hadoop<span class="literal">-3</span>.<span class="number">1.1</span></span><br><span class="line">export PATH=<span class="variable">$PATH:</span><span class="variable">$HADOOP_HOME</span>/bin</span><br><span class="line">export PATH=<span class="variable">$PATH:</span><span class="variable">$HADOOP_HOME</span>/sbin</span><br></pre></td></tr></table></figure>
+<h5 id="（3）保存后退出-1"><a href="#（3）保存后退出-1" class="headerlink" title="（3）保存后退出"></a>（3）保存后退出</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:wq</span><br></pre></td></tr></table></figure>
+<h5 id="（4）让修改后的文件生效-1"><a href="#（4）让修改后的文件生效-1" class="headerlink" title="（4）让修改后的文件生效"></a>（4）让修改后的文件生效</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<h5 id="（5）测试是否安装成功"><a href="#（5）测试是否安装成功" class="headerlink" title="（5）测试是否安装成功"></a>（5）测试是否安装成功</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop version</span><br><span class="line">Hadoop <span class="number">3.1</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>/etc/profile配置文件<br><img src="https://img-blog.csdnimg.cn/2021051712341477.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1OTc1MzU3,size_16,color_FFFFFF,t_70#pic_center" alt="/etc/profile"></p>
+<h2 id="3-Hadoop配置-分类"><a href="#3-Hadoop配置-分类" class="headerlink" title="3.Hadoop配置-分类"></a>3.Hadoop配置-分类</h2><h3 id="3-1简述"><a href="#3-1简述" class="headerlink" title="3.1简述"></a>3.1简述</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hadoop的配置有三种类型：</span><br><span class="line">    <span class="number">1.</span>单机版：即在一个节点(主机)上进行配置一个Hadoop应用使用</span><br><span class="line">    <span class="number">2.</span>伪分布式：即在一台高性能主机上模拟分布式部署去安装多个Hadoop应用</span><br><span class="line">    <span class="number">3.</span>分布式：即在多台主机，各主机之间配置可差异化，每台主机部署一个Hadoop应用</span><br></pre></td></tr></table></figure>
+<h3 id="3-2单机版"><a href="#3-2单机版" class="headerlink" title="3.2单机版"></a>3.2单机版</h3>
+    </div>
+
+    
+    
+    
+    
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束 <i class="fa fa-heart"></i> 感谢阅读-------------</div>
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Hadoop/" rel="tag"><i class="fa fa-tag"></i> Hadoop</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/18/%E5%89%8D%E7%AB%AFhtml%E4%B8%8Ecss%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93%E7%AF%87/" rel="prev" title="前端html与css学习笔记总结篇">
+      <i class="fa fa-chevron-left"></i> 前端html与css学习笔记总结篇
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+  
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">1.准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1%E4%BF%AE%E6%94%B9%E4%B8%BA%E9%9D%99%E6%80%81IP"><span class="nav-number">1.1.</span> <span class="nav-text">1.1修改为静态IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%EF%BC%92%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">1.2.</span> <span class="nav-text">1.２关闭防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="nav-number">1.3.</span> <span class="nav-text">1.3修改主机名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4%E4%BF%AE%E6%94%B9hosts%E6%96%87%E4%BB%B6"><span class="nav-number">1.4.</span> <span class="nav-text">1.4修改hosts文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5%E8%AE%BE%E7%BD%AE%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="nav-number">1.5.</span> <span class="nav-text">1.5设置免密登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5"><span class="nav-number">1.6.</span> <span class="nav-text">1.6时钟同步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-hadoop-jdk-zoopkeeper%E5%8E%8B%E7%BC%A9%E5%8C%85d%E7%AD%89%E7%9A%84%E4%B8%8A%E4%BC%A0%E5%8F%8A%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">2.hadoop jdk zoopkeeper压缩包d等的上传及安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E4%B8%8A%E4%BC%A0hadoop-jdk-zookeeper%E7%AD%89%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%8C%85"><span class="nav-number">2.1.</span> <span class="nav-text">2.1上传hadoop jdk zookeeper等的压缩包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E8%A7%A3%E5%8E%8B%E7%BC%A9hadoop-jdk-zookeeper%E7%AD%89%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%8C%85"><span class="nav-number">2.2.</span> <span class="nav-text">2.2解压缩hadoop jdk zookeeper等的压缩包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3%E9%85%8D%E7%BD%AEhadoop-jdk%E7%AD%89%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.3.</span> <span class="nav-text">2.3配置hadoop jdk等的环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1%E9%85%8D%E7%BD%AEjdk%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1配置jdk的环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%85%88%E8%8E%B7%E5%8F%96JDK%E8%B7%AF%E5%BE%84"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">（1）先获取JDK路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E6%89%93%E5%BC%80-etc-profile%E6%96%87%E4%BB%B6"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">（2）打开&#x2F;etc&#x2F;profile文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E4%BF%9D%E5%AD%98%E5%90%8E%E9%80%80%E5%87%BA"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">（3）保存后退出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E8%AE%A9%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E6%96%87%E4%BB%B6%E7%94%9F%E6%95%88"><span class="nav-number">2.3.1.4.</span> <span class="nav-text">（4）让修改后的文件生效</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%885%EF%BC%89-%E6%B5%8B%E8%AF%95JDK%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-number">2.3.1.5.</span> <span class="nav-text">（5）    测试JDK是否安装成功</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2%E9%85%8D%E7%BD%AEHadoop%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2配置Hadoop的环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E8%8E%B7%E5%8F%96Hadoop%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">（1）获取Hadoop安装路径</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E6%89%93%E5%BC%80-etc-profile%E6%96%87%E4%BB%B6-1"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">（2）打开&#x2F;etc&#x2F;profile文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E4%BF%9D%E5%AD%98%E5%90%8E%E9%80%80%E5%87%BA-1"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">（3）保存后退出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E8%AE%A9%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E6%96%87%E4%BB%B6%E7%94%9F%E6%95%88-1"><span class="nav-number">2.3.2.4.</span> <span class="nav-text">（4）让修改后的文件生效</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%EF%BC%885%EF%BC%89%E6%B5%8B%E8%AF%95%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-number">2.3.2.5.</span> <span class="nav-text">（5）测试是否安装成功</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Hadoop%E9%85%8D%E7%BD%AE-%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">3.Hadoop配置-分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1%E7%AE%80%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">3.1简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2%E5%8D%95%E6%9C%BA%E7%89%88"><span class="nav-number">3.2.</span> <span class="nav-text">3.2单机版</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="chenyongtao"
+      src="/images/a1.jpg">
+  <p class="site-author-name" itemprop="name">chenyongtao</p>
+  <div class="site-description" itemprop="description">欲买桂花同载酒，终不似，少年游。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/cytsama" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;cytsama" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2201664030@qq.com" title="E-Mail → mailto:2201664030@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/107703468" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;107703468" rel="noopener" target="_blank"><i class="fa fa-tv fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+          
+    <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag">分布式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E8%A1%A8/" rel="tag">数据表</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BE%8E%E5%8C%96/" rel="tag">美化</a><span class="tag-list-count">1</span></li></ul>
+            </canvas>
+        </div>
+    </div>
+    
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        <!--
+-->
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈永涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">57k</span>
+
+
+
+<!--统计浏览次数（本站总访客数，本站总访问量）-->
+<span class="post-meta-divider">|</span>
+<span id="busuanzi_container_site_pv">
+	<span class="post-meta-item-icon">
+		<i class="fa fa-eye"></i>
+	</span>
+	访问量: <span id="busuanzi_value_site_pv"></span> 次数
+</span>
+
+<span class="post-meta-divider">|</span>
+	<span id="busuanzi_container_site_uv">
+	访客数：<span id="busuanzi_value_site_uv"></span> 人次<br>
+</span>
+
+    <!-- 网站运行时间的设置 -->
+    <span id="timeDate">载入天数...</span>
+    <span id="times">载入时分秒...</span>        
+    <br>Sometimes your whole life boils down to one insame move.
+    <script>
+        var now = new Date();
+        function createtime() {
+            var grt= new Date("01/01/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+            now.setTime(now.getTime()+250);
+            days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+            if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+            document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+    setInterval("createtime()",250);
+    </script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+
+
+    <!-- 页面点击小红心 -->
+    <script type="text/javascript" src="/js/clicklove.js"></script>
+
