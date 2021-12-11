@@ -1,88 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>SQL数据表示例</title>
-    <url>/2020/11/02/SQL%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E4%BE%8B/</url>
-    <content><![CDATA[<p>关于SQL数据表的实例</p>
-<a id="more"></a>
-
-<p>示例:</p>
-<h2 id="查找emp表"><a href="#查找emp表" class="headerlink" title="查找emp表"></a>查找emp表</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
-<h2 id="查找emp表的sal"><a href="#查找emp表的sal" class="headerlink" title="查找emp表的sal"></a>查找emp表的sal</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> a.SAL <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
-<h2 id="查找emp表的ename"><a href="#查找emp表的ename" class="headerlink" title="查找emp表的ename"></a>查找emp表的ename</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> a.ename <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
-<h2 id="emp表的sal-10"><a href="#emp表的sal-10" class="headerlink" title="emp表的sal*10"></a>emp表的sal*10</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> a.SAL*<span class="number">10</span> <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
-<h2 id="emp表的sal的平均值"><a href="#emp表的sal的平均值" class="headerlink" title="emp表的sal的平均值"></a>emp表的sal的平均值</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">avg</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
-<h2 id="emp表的sal的总和"><a href="#emp表的sal的总和" class="headerlink" title="emp表的sal的总和"></a>emp表的sal的总和</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
-<h2 id="emp表的sal的max"><a href="#emp表的sal的max" class="headerlink" title="emp表的sal的max"></a>emp表的sal的max</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">max</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
-<h2 id="emp表的sal的min"><a href="#emp表的sal的min" class="headerlink" title="emp表的sal的min"></a>emp表的sal的min</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">min</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
-<h2 id="emp表中sal-lt-1000的信息"><a href="#emp表中sal-lt-1000的信息" class="headerlink" title="emp表中sal&lt;1000的信息"></a>emp表中sal&lt;1000的信息</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="ename中含有A的信息"><a href="#ename中含有A的信息" class="headerlink" title="ename中含有A的信息"></a>ename中含有A的信息</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename  <span class="keyword">from</span> emp <span class="keyword">where</span> ename lik<span class="string">e&#x27;%A%&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="emp中ename不含有A的信息"><a href="#emp中ename不含有A的信息" class="headerlink" title="emp中ename不含有A的信息"></a>emp中ename不含有A的信息</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> ename <span class="keyword">not</span> lik<span class="string">e&#x27;%A%&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="查询系统时间"><a href="#查询系统时间" class="headerlink" title="查询系统时间"></a>查询系统时间</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span> <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
-<h2 id="计算薪资小于5000的员工的工资总和"><a href="#计算薪资小于5000的员工的工资总和" class="headerlink" title="计算薪资小于5000的员工的工资总和"></a>计算薪资小于5000的员工的工资总和</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">5000</span> ;</span><br></pre></td></tr></table></figure>
-<h2 id="计算工资不高于平均工资的工资总和"><a href="#计算工资不高于平均工资的工资总和" class="headerlink" title="计算工资不高于平均工资的工资总和"></a>计算工资不高于平均工资的工资总和</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;(<span class="keyword">select</span> <span class="built_in">avg</span>(sal) <span class="keyword">from</span> emp);</span><br></pre></td></tr></table></figure>
-<h2 id="计算工资小于4000的员工的平均工资"><a href="#计算工资小于4000的员工的平均工资" class="headerlink" title="计算工资小于4000的员工的平均工资"></a>计算工资小于4000的员工的平均工资</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">avg</span>((<span class="keyword">select</span> <span class="built_in">sum</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">4000</span>)) <span class="keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
-<h2 id="查询薪水低于100000的员工姓名和sal"><a href="#查询薪水低于100000的员工姓名和sal" class="headerlink" title="查询薪水低于100000的员工姓名和sal"></a>查询薪水低于100000的员工姓名和sal</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal <span class="keyword">from</span> emp <span class="keyword">where</span>  sal&lt;<span class="number">100000</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="计算20号部门的员工的最高工资和最低工资"><a href="#计算20号部门的员工的最高工资和最低工资" class="headerlink" title="计算20号部门的员工的最高工资和最低工资"></a>计算20号部门的员工的最高工资和最低工资</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">max</span>(sal),<span class="built_in">min</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> deptno=<span class="number">20</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="查询工资大于1000，并且是20号部门的员工的全部信息"><a href="#查询工资大于1000，并且是20号部门的员工的全部信息" class="headerlink" title="查询工资大于1000，并且是20号部门的员工的全部信息"></a>查询工资大于1000，并且是20号部门的员工的全部信息</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> sal&gt;<span class="number">1000</span> <span class="keyword">and</span> deptno=<span class="number">20</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="求最高工资的员工的员工姓名和部门名称"><a href="#求最高工资的员工的员工姓名和部门名称" class="headerlink" title="求最高工资的员工的员工姓名和部门名称"></a>求最高工资的员工的员工姓名和部门名称</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,deptno,sal <span class="keyword">from</span> emp <span class="keyword">where</span> sal=(<span class="keyword">select</span> <span class="built_in">max</span>(sal) <span class="keyword">from</span> emp);</span><br></pre></td></tr></table></figure>
-<h2 id="将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序"><a href="#将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序" class="headerlink" title="将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序"></a>将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> deptno <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">5000</span>  <span class="keyword">group</span> <span class="keyword">by</span> deptno <span class="keyword">having</span> avg(sal) &gt;<span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> sal <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">Order</span> <span class="keyword">by</span> *** <span class="keyword">desc</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="查找表emp"><a href="#查找表emp" class="headerlink" title="查找表emp"></a>查找表emp</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp ;</span><br></pre></td></tr></table></figure>
-
-<h2 id="根据用户名“Smiths”查找他所在的部门"><a href="#根据用户名“Smiths”查找他所在的部门" class="headerlink" title="根据用户名“Smiths”查找他所在的部门"></a>根据用户名“Smiths”查找他所在的部门</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> deptno <span class="keyword">from</span> emp <span class="keyword">where</span> ename=<span class="string">&#x27;SMITH&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="查询每个部门的最高工资的人员名称"><a href="#查询每个部门的最高工资的人员名称" class="headerlink" title="查询每个部门的最高工资的人员名称"></a>查询每个部门的最高工资的人员名称</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">e</span>.ename,<span class="built_in">e</span>.deptno,<span class="built_in">e</span>.sal <span class="keyword">from</span> (<span class="keyword">select</span> deptno <span class="keyword">as</span> did ,<span class="built_in">max</span>(sal) <span class="keyword">as</span> m <span class="keyword">from</span> emp <span class="keyword">group</span> <span class="keyword">by</span> deptno )  s,emp <span class="built_in">e</span>,dept d <span class="keyword">where</span> <span class="built_in">e</span>.sal=s.m <span class="keyword">and</span> s.did=<span class="built_in">e</span>.deptno <span class="keyword">and</span> d.deptno=<span class="built_in">e</span>.deptno;</span><br></pre></td></tr></table></figure>
-
-<h2 id="查询“Jones”之后第一个进入公司的人"><a href="#查询“Jones”之后第一个进入公司的人" class="headerlink" title="查询“Jones”之后第一个进入公司的人"></a>查询“Jones”之后第一个进入公司的人</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> hiredate=(<span class="keyword">select</span> <span class="keyword">min</span>(hiredate) <span class="keyword">from</span> emp <span class="keyword">where</span> hiredate&gt;(<span class="keyword">select</span> hiredate <span class="keyword">from</span> emp <span class="keyword">where</span> ename=<span class="string">&#x27;JONES&#x27;</span>)) ;</span><br></pre></td></tr></table></figure>
-
-<h2 id="查找工资最高的部门名称和工资最低的部门名称及工资"><a href="#查找工资最高的部门名称和工资最低的部门名称及工资" class="headerlink" title="查找工资最高的部门名称和工资最低的部门名称及工资"></a>查找工资最高的部门名称和工资最低的部门名称及工资</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> d.dname,<span class="built_in">e</span>.sal <span class="keyword">from</span> emp <span class="built_in">e</span>,dept d <span class="keyword">where</span> <span class="built_in">e</span>.deptno=d.deptno <span class="keyword">and</span> sal=(<span class="keyword">select</span> <span class="built_in">max</span>(m) <span class="keyword">from</span> (<span class="keyword">select</span> deptno,<span class="built_in">max</span>(sal) <span class="keyword">as</span> m <span class="keyword">from</span> emp <span class="built_in">e</span> <span class="keyword">group</span> <span class="keyword">by</span> deptno) s)</span><br><span class="line"></span><br><span class="line"><span class="keyword">union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> d.dname,<span class="built_in">e</span>.sal <span class="keyword">from</span> emp <span class="built_in">e</span>,dept d <span class="keyword">where</span> <span class="built_in">e</span>.deptno=d.deptno <span class="keyword">and</span> sal=(<span class="keyword">select</span> <span class="built_in">min</span>(m) <span class="keyword">from</span> (<span class="keyword">select</span> deptno,<span class="built_in">min</span>(sal) <span class="keyword">as</span> m <span class="keyword">from</span> emp <span class="built_in">e</span> <span class="keyword">group</span> <span class="keyword">by</span> deptno) s)</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student(</span><br><span class="line"></span><br><span class="line">       StudentId <span class="built_in">number</span> (<span class="number">6</span>),<span class="comment">--学号</span></span><br><span class="line"></span><br><span class="line">       LoginPwd <span class="built_in">varchar</span>(<span class="number">20</span>),<span class="comment">--密码</span></span><br><span class="line"></span><br><span class="line">       StudentName <span class="built_in">varchar</span>(<span class="number">50</span>),<span class="comment">--姓名</span></span><br><span class="line"></span><br><span class="line">       Sex <span class="built_in">char</span>(<span class="number">2</span>),<span class="comment">--性别</span></span><br><span class="line"></span><br><span class="line">       Gradeld <span class="built_in">Number</span>(<span class="number">6</span>),<span class="comment">--所在年级</span></span><br><span class="line"></span><br><span class="line">       Phone <span class="built_in">number</span>(<span class="number">15</span>),<span class="comment">--联系电话</span></span><br><span class="line"></span><br><span class="line">       Address <span class="built_in">varchar2</span>(<span class="number">255</span>),<span class="comment">--现住址</span></span><br><span class="line"></span><br><span class="line">       BornDate <span class="built_in">Date</span>,<span class="comment">--出生日期</span></span><br><span class="line"></span><br><span class="line">       Emile <span class="built_in">varchar2</span>(<span class="number">50</span>)<span class="comment">--电子邮件</span></span><br><span class="line"></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h2 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;赵六&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">1507</span>,<span class="number">120</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;王五&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">1507</span>,<span class="number">110</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1003</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">1507</span>,<span class="number">120</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1004</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">1507</span>,<span class="number">110</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="查询此表"><a href="#查询此表" class="headerlink" title="查询此表"></a>查询此表</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
-<h2 id="根据条件修改"><a href="#根据条件修改" class="headerlink" title="根据条件修改"></a>根据条件修改</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> student <span class="keyword">set</span> studentname=<span class="string">&#x27;孙七&#x27;</span>,loginpwd=<span class="string">&#x27;666666&#x27;</span> <span class="keyword">where</span> studentid=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
-<h2 id="根据条件删除"><a href="#根据条件删除" class="headerlink" title="根据条件删除"></a>根据条件删除</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> student <span class="keyword">where</span> studentid=<span class="number">1002</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
-<h2 id="增加字段"><a href="#增加字段" class="headerlink" title="增加字段"></a>增加字段</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 <span class="keyword">ADD</span>(列名称 数据类型 [<span class="keyword">DEFAULT</span> 默认值],列名称 数据类型 [<span class="keyword">DEFAULT</span> 默认值],…)</span><br></pre></td></tr></table></figure>
-<h2 id="删除此表"><a href="#删除此表" class="headerlink" title="删除此表"></a>删除此表</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> student;</span><br></pre></td></tr></table></figure>
-<h2 id="B卷-创建表空间"><a href="#B卷-创建表空间" class="headerlink" title="B卷 创建表空间"></a>B卷 创建表空间</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> mytestspace <span class="keyword">datafile</span> <span class="string">&#x27;e:week3.dbf&#x27;</span> <span class="keyword">size</span> <span class="number">2</span>M;</span><br></pre></td></tr></table></figure>
-<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">create<span class="built_in"> user </span>zhangsan identified by zhangsan<span class="built_in"> default </span>tablespace mytestspace</span><br><span class="line"></span><br><span class="line">temporary tablespace temp;</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建角色并授权"><a href="#创建角色并授权" class="headerlink" title="创建角色并授权"></a>创建角色并授权</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">role</span> fang;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">to</span> fang;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> fang <span class="keyword">to</span> zhangsan;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> dba <span class="keyword">to</span> zhangsan;</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建表-1"><a href="#创建表-1" class="headerlink" title="创建表"></a>创建表</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">create table teacher (</span><br><span class="line"></span><br><span class="line">tid number primary key,</span><br><span class="line"></span><br><span class="line">tname varchar2(50),</span><br><span class="line"></span><br><span class="line">tdate date,</span><br><span class="line"></span><br><span class="line">address varchar2(100)</span><br><span class="line"></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">select * <span class="keyword">from</span> teacher;</span><br></pre></td></tr></table></figure>
-<h2 id="创建序列"><a href="#创建序列" class="headerlink" title="创建序列"></a>创建序列</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">sequence</span> teachers_sequence <span class="keyword">minvalue</span> <span class="number">1</span> <span class="keyword">maxvalue</span> <span class="number">100</span> (最小值，最大值)<span class="keyword">cycle</span> (循环)<span class="keyword">increment</span> <span class="keyword">by</span> <span class="number">1</span>(步长值) <span class="keyword">start</span> <span class="keyword">with</span> <span class="number">1</span>（从<span class="number">1</span>开始）;</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> teacher <span class="keyword">values</span>(teachers_sequence.nextval,<span class="string">&#x27;小李&#x27;</span>,<span class="string">&#x27;01-1月-1999&#x27;</span>,<span class="string">&#x27;北京&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> teacher <span class="keyword">values</span>(teachers_sequence.nextval,<span class="string">&#x27;小张&#x27;</span>,to_date(<span class="string">&#x27;1982-1-1&#x27;</span>,<span class="string">&#x27;yyyy-mm-dd&#x27;</span>),<span class="string">&#x27;北京&#x27;</span>);</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>SQL</category>
-        <category>数据表</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-        <tag>数据表</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/10/25/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Hadoop安装笔记</title>
     <url>/2021/05/13/Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>hadoop-3.1.3分布式安装<br><strong>本博客用于存档做hadoop部署的回顾学习笔记，且共享</strong><br>文章使用root用户登录</p>
@@ -264,6 +182,88 @@
         <tag>Hadoop</tag>
         <tag>分布式</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>SQL数据表示例</title>
+    <url>/2020/11/02/SQL%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E4%BE%8B/</url>
+    <content><![CDATA[<p>关于SQL数据表的实例</p>
+<a id="more"></a>
+
+<p>示例:</p>
+<h2 id="查找emp表"><a href="#查找emp表" class="headerlink" title="查找emp表"></a>查找emp表</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
+<h2 id="查找emp表的sal"><a href="#查找emp表的sal" class="headerlink" title="查找emp表的sal"></a>查找emp表的sal</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> a.SAL <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="查找emp表的ename"><a href="#查找emp表的ename" class="headerlink" title="查找emp表的ename"></a>查找emp表的ename</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> a.ename <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表的sal-10"><a href="#emp表的sal-10" class="headerlink" title="emp表的sal*10"></a>emp表的sal*10</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> a.SAL*<span class="number">10</span> <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表的sal的平均值"><a href="#emp表的sal的平均值" class="headerlink" title="emp表的sal的平均值"></a>emp表的sal的平均值</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">avg</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表的sal的总和"><a href="#emp表的sal的总和" class="headerlink" title="emp表的sal的总和"></a>emp表的sal的总和</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表的sal的max"><a href="#emp表的sal的max" class="headerlink" title="emp表的sal的max"></a>emp表的sal的max</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">max</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表的sal的min"><a href="#emp表的sal的min" class="headerlink" title="emp表的sal的min"></a>emp表的sal的min</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">min</span>(a.sal) <span class="keyword">from</span> emp a;</span><br></pre></td></tr></table></figure>
+<h2 id="emp表中sal-lt-1000的信息"><a href="#emp表中sal-lt-1000的信息" class="headerlink" title="emp表中sal&lt;1000的信息"></a>emp表中sal&lt;1000的信息</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="ename中含有A的信息"><a href="#ename中含有A的信息" class="headerlink" title="ename中含有A的信息"></a>ename中含有A的信息</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename  <span class="keyword">from</span> emp <span class="keyword">where</span> ename lik<span class="string">e&#x27;%A%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="emp中ename不含有A的信息"><a href="#emp中ename不含有A的信息" class="headerlink" title="emp中ename不含有A的信息"></a>emp中ename不含有A的信息</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> ename <span class="keyword">not</span> lik<span class="string">e&#x27;%A%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="查询系统时间"><a href="#查询系统时间" class="headerlink" title="查询系统时间"></a>查询系统时间</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span> <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
+<h2 id="计算薪资小于5000的员工的工资总和"><a href="#计算薪资小于5000的员工的工资总和" class="headerlink" title="计算薪资小于5000的员工的工资总和"></a>计算薪资小于5000的员工的工资总和</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">5000</span> ;</span><br></pre></td></tr></table></figure>
+<h2 id="计算工资不高于平均工资的工资总和"><a href="#计算工资不高于平均工资的工资总和" class="headerlink" title="计算工资不高于平均工资的工资总和"></a>计算工资不高于平均工资的工资总和</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;(<span class="keyword">select</span> <span class="built_in">avg</span>(sal) <span class="keyword">from</span> emp);</span><br></pre></td></tr></table></figure>
+<h2 id="计算工资小于4000的员工的平均工资"><a href="#计算工资小于4000的员工的平均工资" class="headerlink" title="计算工资小于4000的员工的平均工资"></a>计算工资小于4000的员工的平均工资</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">avg</span>((<span class="keyword">select</span> <span class="built_in">sum</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">4000</span>)) <span class="keyword">from</span> emp;</span><br></pre></td></tr></table></figure>
+<h2 id="查询薪水低于100000的员工姓名和sal"><a href="#查询薪水低于100000的员工姓名和sal" class="headerlink" title="查询薪水低于100000的员工姓名和sal"></a>查询薪水低于100000的员工姓名和sal</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal <span class="keyword">from</span> emp <span class="keyword">where</span>  sal&lt;<span class="number">100000</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="计算20号部门的员工的最高工资和最低工资"><a href="#计算20号部门的员工的最高工资和最低工资" class="headerlink" title="计算20号部门的员工的最高工资和最低工资"></a>计算20号部门的员工的最高工资和最低工资</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">max</span>(sal),<span class="built_in">min</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> deptno=<span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="查询工资大于1000，并且是20号部门的员工的全部信息"><a href="#查询工资大于1000，并且是20号部门的员工的全部信息" class="headerlink" title="查询工资大于1000，并且是20号部门的员工的全部信息"></a>查询工资大于1000，并且是20号部门的员工的全部信息</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> sal&gt;<span class="number">1000</span> <span class="keyword">and</span> deptno=<span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="求最高工资的员工的员工姓名和部门名称"><a href="#求最高工资的员工的员工姓名和部门名称" class="headerlink" title="求最高工资的员工的员工姓名和部门名称"></a>求最高工资的员工的员工姓名和部门名称</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,deptno,sal <span class="keyword">from</span> emp <span class="keyword">where</span> sal=(<span class="keyword">select</span> <span class="built_in">max</span>(sal) <span class="keyword">from</span> emp);</span><br></pre></td></tr></table></figure>
+<h2 id="将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序"><a href="#将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序" class="headerlink" title="将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序"></a>将员工薪水小于5000且部门平均薪水大于1000的部门标号列出，按部门平均薪水降序排序</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> deptno <span class="keyword">from</span> emp <span class="keyword">where</span> sal&lt;<span class="number">5000</span>  <span class="keyword">group</span> <span class="keyword">by</span> deptno <span class="keyword">having</span> avg(sal) &gt;<span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> sal <span class="keyword">from</span> emp <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">Order</span> <span class="keyword">by</span> *** <span class="keyword">desc</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查找表emp"><a href="#查找表emp" class="headerlink" title="查找表emp"></a>查找表emp</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="根据用户名“Smiths”查找他所在的部门"><a href="#根据用户名“Smiths”查找他所在的部门" class="headerlink" title="根据用户名“Smiths”查找他所在的部门"></a>根据用户名“Smiths”查找他所在的部门</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> deptno <span class="keyword">from</span> emp <span class="keyword">where</span> ename=<span class="string">&#x27;SMITH&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询每个部门的最高工资的人员名称"><a href="#查询每个部门的最高工资的人员名称" class="headerlink" title="查询每个部门的最高工资的人员名称"></a>查询每个部门的最高工资的人员名称</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">e</span>.ename,<span class="built_in">e</span>.deptno,<span class="built_in">e</span>.sal <span class="keyword">from</span> (<span class="keyword">select</span> deptno <span class="keyword">as</span> did ,<span class="built_in">max</span>(sal) <span class="keyword">as</span> m <span class="keyword">from</span> emp <span class="keyword">group</span> <span class="keyword">by</span> deptno )  s,emp <span class="built_in">e</span>,dept d <span class="keyword">where</span> <span class="built_in">e</span>.sal=s.m <span class="keyword">and</span> s.did=<span class="built_in">e</span>.deptno <span class="keyword">and</span> d.deptno=<span class="built_in">e</span>.deptno;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询“Jones”之后第一个进入公司的人"><a href="#查询“Jones”之后第一个进入公司的人" class="headerlink" title="查询“Jones”之后第一个进入公司的人"></a>查询“Jones”之后第一个进入公司的人</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp <span class="keyword">where</span> hiredate=(<span class="keyword">select</span> <span class="keyword">min</span>(hiredate) <span class="keyword">from</span> emp <span class="keyword">where</span> hiredate&gt;(<span class="keyword">select</span> hiredate <span class="keyword">from</span> emp <span class="keyword">where</span> ename=<span class="string">&#x27;JONES&#x27;</span>)) ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查找工资最高的部门名称和工资最低的部门名称及工资"><a href="#查找工资最高的部门名称和工资最低的部门名称及工资" class="headerlink" title="查找工资最高的部门名称和工资最低的部门名称及工资"></a>查找工资最高的部门名称和工资最低的部门名称及工资</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> d.dname,<span class="built_in">e</span>.sal <span class="keyword">from</span> emp <span class="built_in">e</span>,dept d <span class="keyword">where</span> <span class="built_in">e</span>.deptno=d.deptno <span class="keyword">and</span> sal=(<span class="keyword">select</span> <span class="built_in">max</span>(m) <span class="keyword">from</span> (<span class="keyword">select</span> deptno,<span class="built_in">max</span>(sal) <span class="keyword">as</span> m <span class="keyword">from</span> emp <span class="built_in">e</span> <span class="keyword">group</span> <span class="keyword">by</span> deptno) s)</span><br><span class="line"></span><br><span class="line"><span class="keyword">union</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> d.dname,<span class="built_in">e</span>.sal <span class="keyword">from</span> emp <span class="built_in">e</span>,dept d <span class="keyword">where</span> <span class="built_in">e</span>.deptno=d.deptno <span class="keyword">and</span> sal=(<span class="keyword">select</span> <span class="built_in">min</span>(m) <span class="keyword">from</span> (<span class="keyword">select</span> deptno,<span class="built_in">min</span>(sal) <span class="keyword">as</span> m <span class="keyword">from</span> emp <span class="built_in">e</span> <span class="keyword">group</span> <span class="keyword">by</span> deptno) s)</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student(</span><br><span class="line"></span><br><span class="line">       StudentId <span class="built_in">number</span> (<span class="number">6</span>),<span class="comment">--学号</span></span><br><span class="line"></span><br><span class="line">       LoginPwd <span class="built_in">varchar</span>(<span class="number">20</span>),<span class="comment">--密码</span></span><br><span class="line"></span><br><span class="line">       StudentName <span class="built_in">varchar</span>(<span class="number">50</span>),<span class="comment">--姓名</span></span><br><span class="line"></span><br><span class="line">       Sex <span class="built_in">char</span>(<span class="number">2</span>),<span class="comment">--性别</span></span><br><span class="line"></span><br><span class="line">       Gradeld <span class="built_in">Number</span>(<span class="number">6</span>),<span class="comment">--所在年级</span></span><br><span class="line"></span><br><span class="line">       Phone <span class="built_in">number</span>(<span class="number">15</span>),<span class="comment">--联系电话</span></span><br><span class="line"></span><br><span class="line">       Address <span class="built_in">varchar2</span>(<span class="number">255</span>),<span class="comment">--现住址</span></span><br><span class="line"></span><br><span class="line">       BornDate <span class="built_in">Date</span>,<span class="comment">--出生日期</span></span><br><span class="line"></span><br><span class="line">       Emile <span class="built_in">varchar2</span>(<span class="number">50</span>)<span class="comment">--电子邮件</span></span><br><span class="line"></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1001</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;赵六&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">1507</span>,<span class="number">120</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1002</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;王五&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">1507</span>,<span class="number">110</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1003</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">1507</span>,<span class="number">120</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(<span class="number">1004</span>,<span class="string">&#x27;123456&#x27;</span>,<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">1507</span>,<span class="number">110</span>,<span class="string">&#x27;北京&#x27;</span>,<span class="string">&#x27;23-5月-1995&#x27;</span>,<span class="string">&#x27;@10422&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="查询此表"><a href="#查询此表" class="headerlink" title="查询此表"></a>查询此表</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
+<h2 id="根据条件修改"><a href="#根据条件修改" class="headerlink" title="根据条件修改"></a>根据条件修改</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> student <span class="keyword">set</span> studentname=<span class="string">&#x27;孙七&#x27;</span>,loginpwd=<span class="string">&#x27;666666&#x27;</span> <span class="keyword">where</span> studentid=<span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
+<h2 id="根据条件删除"><a href="#根据条件删除" class="headerlink" title="根据条件删除"></a>根据条件删除</h2><figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> student <span class="keyword">where</span> studentid=<span class="number">1002</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
+<h2 id="增加字段"><a href="#增加字段" class="headerlink" title="增加字段"></a>增加字段</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 <span class="keyword">ADD</span>(列名称 数据类型 [<span class="keyword">DEFAULT</span> 默认值],列名称 数据类型 [<span class="keyword">DEFAULT</span> 默认值],…)</span><br></pre></td></tr></table></figure>
+<h2 id="删除此表"><a href="#删除此表" class="headerlink" title="删除此表"></a>删除此表</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> student;</span><br></pre></td></tr></table></figure>
+<h2 id="B卷-创建表空间"><a href="#B卷-创建表空间" class="headerlink" title="B卷 创建表空间"></a>B卷 创建表空间</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> mytestspace <span class="keyword">datafile</span> <span class="string">&#x27;e:week3.dbf&#x27;</span> <span class="keyword">size</span> <span class="number">2</span>M;</span><br></pre></td></tr></table></figure>
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">create<span class="built_in"> user </span>zhangsan identified by zhangsan<span class="built_in"> default </span>tablespace mytestspace</span><br><span class="line"></span><br><span class="line">temporary tablespace temp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建角色并授权"><a href="#创建角色并授权" class="headerlink" title="创建角色并授权"></a>创建角色并授权</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">role</span> fang;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">to</span> fang;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> fang <span class="keyword">to</span> zhangsan;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> dba <span class="keyword">to</span> zhangsan;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建表-1"><a href="#创建表-1" class="headerlink" title="创建表"></a>创建表</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">create table teacher (</span><br><span class="line"></span><br><span class="line">tid number primary key,</span><br><span class="line"></span><br><span class="line">tname varchar2(50),</span><br><span class="line"></span><br><span class="line">tdate date,</span><br><span class="line"></span><br><span class="line">address varchar2(100)</span><br><span class="line"></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">select * <span class="keyword">from</span> teacher;</span><br></pre></td></tr></table></figure>
+<h2 id="创建序列"><a href="#创建序列" class="headerlink" title="创建序列"></a>创建序列</h2><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">sequence</span> teachers_sequence <span class="keyword">minvalue</span> <span class="number">1</span> <span class="keyword">maxvalue</span> <span class="number">100</span> (最小值，最大值)<span class="keyword">cycle</span> (循环)<span class="keyword">increment</span> <span class="keyword">by</span> <span class="number">1</span>(步长值) <span class="keyword">start</span> <span class="keyword">with</span> <span class="number">1</span>（从<span class="number">1</span>开始）;</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> teacher <span class="keyword">values</span>(teachers_sequence.nextval,<span class="string">&#x27;小李&#x27;</span>,<span class="string">&#x27;01-1月-1999&#x27;</span>,<span class="string">&#x27;北京&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> teacher <span class="keyword">values</span>(teachers_sequence.nextval,<span class="string">&#x27;小张&#x27;</span>,to_date(<span class="string">&#x27;1982-1-1&#x27;</span>,<span class="string">&#x27;yyyy-mm-dd&#x27;</span>),<span class="string">&#x27;北京&#x27;</span>);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>SQL</category>
+        <category>数据表</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>数据表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/10/25/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>我的第一篇blog</title>
@@ -477,6 +477,1335 @@
       <tags>
         <tag>美化</tag>
         <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电商系统表结构</title>
+    <url>/2021/12/11/%E7%94%B5%E5%95%86%E7%B3%BB%E7%BB%9F%E8%A1%A8%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h2 id="电商系统表结构"><a href="#电商系统表结构" class="headerlink" title="电商系统表结构"></a>电商系统表结构</h2><p>电商数仓项目业务数据所涉及的表结构</p>
+<a id="more"></a>
+<h3 id="1-活动信息表（activity-info）"><a href="#1-活动信息表（activity-info）" class="headerlink" title="1 活动信息表（activity_info）"></a>1 活动信息表（activity_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>活动id</td>
+</tr>
+<tr>
+<td><strong>activity_name</strong></td>
+<td>活动名称</td>
+</tr>
+<tr>
+<td><strong>activity_type</strong></td>
+<td>活动类型（1：满减，2：折扣）</td>
+</tr>
+<tr>
+<td><strong>activity_desc</strong></td>
+<td>活动描述</td>
+</tr>
+<tr>
+<td><strong>start_time</strong></td>
+<td>开始时间</td>
+</tr>
+<tr>
+<td><strong>end_time</strong></td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+</tbody></table>
+<h3 id="2-活动规则表（activity-rule）"><a href="#2-活动规则表（activity-rule）" class="headerlink" title="2 活动规则表（activity_rule）"></a>2 活动规则表（activity_rule）</h3><table>
+<thead>
+<tr>
+<th><strong>id</strong></th>
+<th><strong>编号</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>activity_id</strong></td>
+<td>活动ID</td>
+</tr>
+<tr>
+<td><strong>activity_type</strong></td>
+<td>活动类型</td>
+</tr>
+<tr>
+<td><strong>condition_amount</strong></td>
+<td>满减金额</td>
+</tr>
+<tr>
+<td><strong>condition_num</strong></td>
+<td>满减件数</td>
+</tr>
+<tr>
+<td><strong>benefit_amount</strong></td>
+<td>优惠金额</td>
+</tr>
+<tr>
+<td><strong>benefit_discount</strong></td>
+<td>优惠折扣</td>
+</tr>
+<tr>
+<td><strong>benefit_level</strong></td>
+<td>优惠级别</td>
+</tr>
+</tbody></table>
+<h3 id="3-活动商品关联表（activity-sku）"><a href="#3-活动商品关联表（activity-sku）" class="headerlink" title="3 活动商品关联表（activity_sku）"></a>3 活动商品关联表（activity_sku）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>activity_id</strong></td>
+<td>活动id</td>
+</tr>
+<tr>
+<td><strong>sku_id</strong></td>
+<td>sku_id</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+</tbody></table>
+<h3 id="4-平台属性表（base-attr-info）"><a href="#4-平台属性表（base-attr-info）" class="headerlink" title="4 平台属性表（base_attr_info）"></a>4 平台属性表（base_attr_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>attr_name</strong></td>
+<td>属性名称</td>
+</tr>
+<tr>
+<td><strong>category_id</strong></td>
+<td>分类id</td>
+</tr>
+<tr>
+<td><strong>category_level</strong></td>
+<td>分类层级</td>
+</tr>
+</tbody></table>
+<h3 id="5-平台属性值表（base-attr-value）"><a href="#5-平台属性值表（base-attr-value）" class="headerlink" title="5 平台属性值表（base_attr_value）"></a>5 平台属性值表（base_attr_value）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>value_name</strong></td>
+<td>属性值名称</td>
+</tr>
+<tr>
+<td><strong>attr_id</strong></td>
+<td>属性id</td>
+</tr>
+</tbody></table>
+<h3 id="6-一级分类表（base-category1）"><a href="#6-一级分类表（base-category1）" class="headerlink" title="6 一级分类表（base_category1）"></a>6 一级分类表（base_category1）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>分类名称</td>
+</tr>
+</tbody></table>
+<h3 id="7-二级分类表（base-category2）"><a href="#7-二级分类表（base-category2）" class="headerlink" title="7 二级分类表（base_category2）"></a>7 二级分类表（base_category2）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>二级分类名称</td>
+</tr>
+<tr>
+<td><strong>category1_id</strong></td>
+<td>一级分类编号</td>
+</tr>
+</tbody></table>
+<h3 id="8-三级分类表（base-category3）"><a href="#8-三级分类表（base-category3）" class="headerlink" title="8 三级分类表（base_category3）"></a>8 三级分类表（base_category3）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>三级分类名称</td>
+</tr>
+<tr>
+<td><strong>category2_id</strong></td>
+<td>二级分类编号</td>
+</tr>
+</tbody></table>
+<h3 id="9-字典表（base-dic）"><a href="#9-字典表（base-dic）" class="headerlink" title="9 字典表（base_dic）"></a>9 字典表（base_dic）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>dic_code</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>dic_name</strong></td>
+<td>编码名称</td>
+</tr>
+<tr>
+<td><strong>parent_code</strong></td>
+<td>父编号</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建日期</td>
+</tr>
+<tr>
+<td><strong>operate_time</strong></td>
+<td>修改日期</td>
+</tr>
+</tbody></table>
+<h3 id="10-省份表（base-province）"><a href="#10-省份表（base-province）" class="headerlink" title="10 省份表（base_province）"></a>10 省份表（base_province）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>id</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>省名称</td>
+</tr>
+<tr>
+<td><strong>region_id</strong></td>
+<td>大区id</td>
+</tr>
+<tr>
+<td><strong>area_code</strong></td>
+<td>行政区位码</td>
+</tr>
+<tr>
+<td><strong>iso_code</strong></td>
+<td>国际编码</td>
+</tr>
+<tr>
+<td><strong>iso_3166_2</strong></td>
+<td>ISO3166编码</td>
+</tr>
+</tbody></table>
+<h3 id="11-地区表（base-region）"><a href="#11-地区表（base-region）" class="headerlink" title="11 地区表（base_region）"></a>11 地区表（base_region）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>大区id</td>
+</tr>
+<tr>
+<td><strong>region_name</strong></td>
+<td>大区名称</td>
+</tr>
+</tbody></table>
+<h3 id="12-品牌表（base-trademark）"><a href="#12-品牌表（base-trademark）" class="headerlink" title="12 品牌表（base_trademark）"></a>12 品牌表（base_trademark）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>tm_name</strong></td>
+<td>属性值</td>
+</tr>
+<tr>
+<td><strong>logo_url</strong></td>
+<td>品牌logo的图片路径</td>
+</tr>
+</tbody></table>
+<h3 id="13-购物车表（cart-info）"><a href="#13-购物车表（cart-info）" class="headerlink" title="13 购物车表（cart_info）"></a>13 购物车表（cart_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>user_id</strong></td>
+<td>用户id</td>
+</tr>
+<tr>
+<td><strong>sku_id</strong></td>
+<td>skuid</td>
+</tr>
+<tr>
+<td><strong>cart_price</strong></td>
+<td>放入购物车时价格</td>
+</tr>
+<tr>
+<td><strong>sku_num</strong></td>
+<td>数量</td>
+</tr>
+<tr>
+<td><strong>img_url</strong></td>
+<td>图片文件</td>
+</tr>
+<tr>
+<td><strong>sku_name</strong></td>
+<td>sku名称 (冗余)</td>
+</tr>
+<tr>
+<td><strong>is_checked</strong></td>
+<td>是否已经下单</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td><strong>operate_time</strong></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td><strong>is_ordered</strong></td>
+<td>是否已经下单</td>
+</tr>
+<tr>
+<td><strong>order_time</strong></td>
+<td>下单时间</td>
+</tr>
+<tr>
+<td><strong>source_type</strong></td>
+<td>来源类型</td>
+</tr>
+<tr>
+<td><strong>source_id</strong></td>
+<td>来源编号</td>
+</tr>
+</tbody></table>
+<h3 id="14-评价表（comment-info）"><a href="#14-评价表（comment-info）" class="headerlink" title="14 评价表（comment_info）"></a>14 评价表（comment_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>user_id</strong></td>
+<td>用户id</td>
+</tr>
+<tr>
+<td><strong>nick_name</strong></td>
+<td>用户昵称</td>
+</tr>
+<tr>
+<td><strong>head_img</strong></td>
+<td>图片</td>
+</tr>
+<tr>
+<td><strong>sku_id</strong></td>
+<td>商品sku_id</td>
+</tr>
+<tr>
+<td><strong>spu_id</strong></td>
+<td>商品spu_id</td>
+</tr>
+<tr>
+<td><strong>order_id</strong></td>
+<td>订单编号</td>
+</tr>
+<tr>
+<td><strong>appraise</strong></td>
+<td>评价 1 好评 2 中评 3 差评</td>
+</tr>
+<tr>
+<td><strong>comment_txt</strong></td>
+<td>评价内容</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td><strong>operate_time</strong></td>
+<td>修改时间</td>
+</tr>
+</tbody></table>
+<h3 id="15-优惠券信息表（coupon-info）"><a href="#15-优惠券信息表（coupon-info）" class="headerlink" title="15 优惠券信息表（coupon_info）"></a>15 优惠券信息表（coupon_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>购物券编号</td>
+</tr>
+<tr>
+<td><strong>coupon_name</strong></td>
+<td>购物券名称</td>
+</tr>
+<tr>
+<td><strong>coupon_type</strong></td>
+<td>购物券类型 1 现金券 2 折扣券 3 满减券 4 满件打折券</td>
+</tr>
+<tr>
+<td><strong>condition_amount</strong></td>
+<td>满额数（3）</td>
+</tr>
+<tr>
+<td><strong>condition_num</strong></td>
+<td>满件数（4）</td>
+</tr>
+<tr>
+<td><strong>activity_id</strong></td>
+<td>活动编号</td>
+</tr>
+<tr>
+<td><strong>benefit_amount</strong></td>
+<td>减金额（1 3）</td>
+</tr>
+<tr>
+<td><strong>benefit_discount</strong></td>
+<td>折扣（2 4）</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td><strong>range_type</strong></td>
+<td>范围类型 1、商品(spuid) 2、品类(三级分类id) 3、品牌</td>
+</tr>
+<tr>
+<td><strong>limit_num</strong></td>
+<td>最多领用次数</td>
+</tr>
+<tr>
+<td><strong>taken_count</strong></td>
+<td>已领用次数</td>
+</tr>
+<tr>
+<td><strong>start_time</strong></td>
+<td>可以领取的开始日期</td>
+</tr>
+<tr>
+<td><strong>end_time</strong></td>
+<td>可以领取的结束日期</td>
+</tr>
+<tr>
+<td><strong>operate_time</strong></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td><strong>expire_time</strong></td>
+<td>过期时间</td>
+</tr>
+<tr>
+<td><strong>range_desc</strong></td>
+<td>范围描述</td>
+</tr>
+</tbody></table>
+<h3 id="16-优惠券优惠范围表（coupon-range）"><a href="#16-优惠券优惠范围表（coupon-range）" class="headerlink" title="16 优惠券优惠范围表（coupon_range）"></a>16 优惠券优惠范围表（coupon_range）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>购物券编号</td>
+</tr>
+<tr>
+<td><strong>coupon_id</strong></td>
+<td>优惠券id</td>
+</tr>
+<tr>
+<td><strong>range_type</strong></td>
+<td>范围类型 1、商品(spuid) 2、品类(三级分类id) 3、品牌</td>
+</tr>
+<tr>
+<td><strong>range_id</strong></td>
+<td>范围id</td>
+</tr>
+</tbody></table>
+<h3 id="17-优惠券领用表（coupon-use）"><a href="#17-优惠券领用表（coupon-use）" class="headerlink" title="17 优惠券领用表（coupon_use）"></a>17 优惠券领用表（coupon_use）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>coupon_id</strong></td>
+<td>购物券ID</td>
+</tr>
+<tr>
+<td><strong>user_id</strong></td>
+<td>用户ID</td>
+</tr>
+<tr>
+<td><strong>order_id</strong></td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td><strong>coupon_status</strong></td>
+<td>购物券状态（1：未使用 2：已使用）</td>
+</tr>
+<tr>
+<td><strong>get_time</strong></td>
+<td>获取时间</td>
+</tr>
+<tr>
+<td><strong>using_time</strong></td>
+<td>使用时间</td>
+</tr>
+<tr>
+<td><strong>used_time</strong></td>
+<td>支付时间</td>
+</tr>
+<tr>
+<td><strong>expire_time</strong></td>
+<td>过期时间</td>
+</tr>
+</tbody></table>
+<h3 id="18-收藏表（favor-info）"><a href="#18-收藏表（favor-info）" class="headerlink" title="18 收藏表（favor_info）"></a>18 收藏表（favor_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>user_id</strong></td>
+<td>用户id</td>
+</tr>
+<tr>
+<td><strong>sku_id</strong></td>
+<td>skuid</td>
+</tr>
+<tr>
+<td><strong>spu_id</strong></td>
+<td>商品id</td>
+</tr>
+<tr>
+<td><strong>is_cancel</strong></td>
+<td>是否已取消 0 正常 1 已取消</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td><strong>cancel_time</strong></td>
+<td>修改时间</td>
+</tr>
+</tbody></table>
+<h3 id="19-订单明细表（order-detail）"><a href="#19-订单明细表（order-detail）" class="headerlink" title="19 订单明细表（order_detail）"></a>19 订单明细表（order_detail）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>order_id</strong></td>
+<td>订单编号</td>
+</tr>
+<tr>
+<td><strong>sku_id</strong></td>
+<td>sku_id</td>
+</tr>
+<tr>
+<td><strong>sku_name</strong></td>
+<td>sku名称（冗余)</td>
+</tr>
+<tr>
+<td><strong>img_url</strong></td>
+<td>图片名称（冗余)</td>
+</tr>
+<tr>
+<td><strong>order_price</strong></td>
+<td>购买价格(下单时sku价格）</td>
+</tr>
+<tr>
+<td><strong>sku_num</strong></td>
+<td>购买个数</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td><strong>source_type</strong></td>
+<td>来源类型</td>
+</tr>
+<tr>
+<td><strong>source_id</strong></td>
+<td>来源编号</td>
+</tr>
+<tr>
+<td><strong>split_total_amount</strong></td>
+<td>分摊总金额</td>
+</tr>
+<tr>
+<td><strong>split_activity_amount</strong></td>
+<td>分摊活动减免金额</td>
+</tr>
+<tr>
+<td><strong>split_coupon_amount</strong></td>
+<td>分摊优惠券减免金额</td>
+</tr>
+</tbody></table>
+<h3 id="20-订单明细活动关联表（order-detail-activity）"><a href="#20-订单明细活动关联表（order-detail-activity）" class="headerlink" title="20 订单明细活动关联表（order_detail_activity）"></a>20 订单明细活动关联表（order_detail_activity）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>order_id</strong></td>
+<td>订单id</td>
+</tr>
+<tr>
+<td><strong>order_detail_id</strong></td>
+<td>订单明细id</td>
+</tr>
+<tr>
+<td><strong>activity_id</strong></td>
+<td>活动ID</td>
+</tr>
+<tr>
+<td><strong>activity_rule_id</strong></td>
+<td>活动规则</td>
+</tr>
+<tr>
+<td><strong>sku_id</strong></td>
+<td>skuID</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>获取时间</td>
+</tr>
+</tbody></table>
+<h3 id="21-订单明细优惠券关联表（order-detail-coupon）"><a href="#21-订单明细优惠券关联表（order-detail-coupon）" class="headerlink" title="21 订单明细优惠券关联表（order_detail_coupon）"></a>21 订单明细优惠券关联表（order_detail_coupon）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>order_id</strong></td>
+<td>订单id</td>
+</tr>
+<tr>
+<td><strong>order_detail_id</strong></td>
+<td>订单明细id</td>
+</tr>
+<tr>
+<td><strong>coupon_id</strong></td>
+<td>购物券ID</td>
+</tr>
+<tr>
+<td><strong>coupon_use_id</strong></td>
+<td>购物券领用id</td>
+</tr>
+<tr>
+<td><strong>sku_id</strong></td>
+<td>skuID</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>获取时间</td>
+</tr>
+</tbody></table>
+<h3 id="22-订单表-order-info）"><a href="#22-订单表-order-info）" class="headerlink" title="22 订单表(order_info）"></a>22 订单表(order_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>consignee</strong></td>
+<td>收货人</td>
+</tr>
+<tr>
+<td><strong>consignee_tel</strong></td>
+<td>收件人电话</td>
+</tr>
+<tr>
+<td><strong>total_amount</strong></td>
+<td>总金额</td>
+</tr>
+<tr>
+<td><strong>order_status</strong></td>
+<td>订单状态</td>
+</tr>
+<tr>
+<td><strong>user_id</strong></td>
+<td>用户id</td>
+</tr>
+<tr>
+<td><strong>payment_way</strong></td>
+<td>付款方式</td>
+</tr>
+<tr>
+<td><strong>delivery_address</strong></td>
+<td>送货地址</td>
+</tr>
+<tr>
+<td><strong>order_comment</strong></td>
+<td>订单备注</td>
+</tr>
+<tr>
+<td><strong>out_trade_no</strong></td>
+<td>订单交易编号（第三方支付用)</td>
+</tr>
+<tr>
+<td><strong>trade_body</strong></td>
+<td>订单描述(第三方支付用)</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td><strong>operate_time</strong></td>
+<td>操作时间</td>
+</tr>
+<tr>
+<td><strong>expire_time</strong></td>
+<td>失效时间</td>
+</tr>
+<tr>
+<td><strong>process_status</strong></td>
+<td>进度状态</td>
+</tr>
+<tr>
+<td><strong>tracking_no</strong></td>
+<td>物流单编号</td>
+</tr>
+<tr>
+<td><strong>parent_order_id</strong></td>
+<td>父订单编号</td>
+</tr>
+<tr>
+<td><strong>img_url</strong></td>
+<td>图片路径</td>
+</tr>
+<tr>
+<td><strong>province_id</strong></td>
+<td>地区</td>
+</tr>
+<tr>
+<td><strong>activity_reduce_amount</strong></td>
+<td>促销金额</td>
+</tr>
+<tr>
+<td><strong>coupon_reduce_amount</strong></td>
+<td>优惠金额</td>
+</tr>
+<tr>
+<td><strong>original_total_amount</strong></td>
+<td>原价金额</td>
+</tr>
+<tr>
+<td><strong>feight_fee</strong></td>
+<td>运费</td>
+</tr>
+<tr>
+<td><strong>feight_fee_reduce</strong></td>
+<td>运费减免</td>
+</tr>
+<tr>
+<td><strong>refundable_time</strong></td>
+<td>可退款日期（签收后30天）</td>
+</tr>
+</tbody></table>
+<h3 id="23-退单表（order-refund-info）"><a href="#23-退单表（order-refund-info）" class="headerlink" title="23 退单表（order_refund_info）"></a>23 退单表（order_refund_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>user_id</strong></td>
+<td>用户id</td>
+</tr>
+<tr>
+<td><strong>order_id</strong></td>
+<td>订单id</td>
+</tr>
+<tr>
+<td><strong>sku_id</strong></td>
+<td>skuid</td>
+</tr>
+<tr>
+<td><strong>refund_type</strong></td>
+<td>退款类型</td>
+</tr>
+<tr>
+<td><strong>refund_num</strong></td>
+<td>退货件数</td>
+</tr>
+<tr>
+<td><strong>refund_amount</strong></td>
+<td>退款金额</td>
+</tr>
+<tr>
+<td><strong>refund_reason_type</strong></td>
+<td>原因类型</td>
+</tr>
+<tr>
+<td><strong>refund_reason_txt</strong></td>
+<td>原因内容</td>
+</tr>
+<tr>
+<td><strong>refund_status</strong></td>
+<td>退款状态（0：待审批 1：已退款）</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+</tbody></table>
+<h3 id="24-订单状态流水表（order-status-log）"><a href="#24-订单状态流水表（order-status-log）" class="headerlink" title="24 订单状态流水表（order_status_log）"></a>24 订单状态流水表（order_status_log）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>order_id</strong></td>
+<td>订单编号</td>
+</tr>
+<tr>
+<td><strong>order_status</strong></td>
+<td>订单状态</td>
+</tr>
+<tr>
+<td><strong>operate_time</strong></td>
+<td>操作时间</td>
+</tr>
+</tbody></table>
+<h3 id="25-支付表（payment-info）"><a href="#25-支付表（payment-info）" class="headerlink" title="25 支付表（payment_info）"></a>25 支付表（payment_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>out_trade_no</strong></td>
+<td>对外业务编号</td>
+</tr>
+<tr>
+<td><strong>order_id</strong></td>
+<td>订单编号</td>
+</tr>
+<tr>
+<td><strong>user_id</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>payment_type</strong></td>
+<td>支付类型（微信 支付宝）</td>
+</tr>
+<tr>
+<td><strong>trade_no</strong></td>
+<td>交易编号</td>
+</tr>
+<tr>
+<td><strong>total_amount</strong></td>
+<td>支付金额</td>
+</tr>
+<tr>
+<td><strong>subject</strong></td>
+<td>交易内容</td>
+</tr>
+<tr>
+<td><strong>payment_status</strong></td>
+<td>支付状态</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td><strong>callback_time</strong></td>
+<td>回调时间</td>
+</tr>
+<tr>
+<td><strong>callback_content</strong></td>
+<td>回调信息</td>
+</tr>
+</tbody></table>
+<h3 id="26-退款表（refund-payment）"><a href="#26-退款表（refund-payment）" class="headerlink" title="26 退款表（refund_payment）"></a>26 退款表（refund_payment）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>out_trade_no</strong></td>
+<td>对外业务编号</td>
+</tr>
+<tr>
+<td><strong>order_id</strong></td>
+<td>订单编号</td>
+</tr>
+<tr>
+<td><strong>sku_id</strong></td>
+<td>商品sku_id</td>
+</tr>
+<tr>
+<td><strong>payment_type</strong></td>
+<td>支付类型（微信 支付宝）</td>
+</tr>
+<tr>
+<td><strong>trade_no</strong></td>
+<td>交易编号</td>
+</tr>
+<tr>
+<td><strong>total_amount</strong></td>
+<td>退款金额</td>
+</tr>
+<tr>
+<td><strong>subject</strong></td>
+<td>交易内容</td>
+</tr>
+<tr>
+<td><strong>refund_status</strong></td>
+<td>退款状态</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td><strong>callback_time</strong></td>
+<td>回调时间</td>
+</tr>
+<tr>
+<td><strong>callback_content</strong></td>
+<td>回调信息</td>
+</tr>
+</tbody></table>
+<h3 id="27-SKU平台属性表（sku-attr-value）"><a href="#27-SKU平台属性表（sku-attr-value）" class="headerlink" title="27 SKU平台属性表（sku_attr_value）"></a>27 SKU平台属性表（sku_attr_value）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>attr_id</strong></td>
+<td>属性id（冗余)</td>
+</tr>
+<tr>
+<td><strong>value_id</strong></td>
+<td>属性值id</td>
+</tr>
+<tr>
+<td><strong>sku_id</strong></td>
+<td>skuid</td>
+</tr>
+<tr>
+<td><strong>attr_name</strong></td>
+<td>属性名称</td>
+</tr>
+<tr>
+<td><strong>value_name</strong></td>
+<td>属性值名称</td>
+</tr>
+</tbody></table>
+<h3 id="28-SKU信息表（sku-info）"><a href="#28-SKU信息表（sku-info）" class="headerlink" title="28 SKU信息表（sku_info）"></a>28 SKU信息表（sku_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>库存id(itemID)</td>
+</tr>
+<tr>
+<td><strong>spu_id</strong></td>
+<td>商品id</td>
+</tr>
+<tr>
+<td><strong>price</strong></td>
+<td>价格</td>
+</tr>
+<tr>
+<td><strong>sku_name</strong></td>
+<td>sku名称</td>
+</tr>
+<tr>
+<td><strong>sku_desc</strong></td>
+<td>商品规格描述</td>
+</tr>
+<tr>
+<td><strong>weight</strong></td>
+<td>重量</td>
+</tr>
+<tr>
+<td><strong>tm_id</strong></td>
+<td>品牌(冗余)</td>
+</tr>
+<tr>
+<td><strong>category3_id</strong></td>
+<td>三级分类id（冗余)</td>
+</tr>
+<tr>
+<td><strong>sku_default_img</strong></td>
+<td>默认显示图片(冗余)</td>
+</tr>
+<tr>
+<td><strong>is_sale</strong></td>
+<td>是否销售（1：是 0：否）</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+</tbody></table>
+<h3 id="29-SKU销售属性表（sku-sale-attr-value）"><a href="#29-SKU销售属性表（sku-sale-attr-value）" class="headerlink" title="29 SKU销售属性表（sku_sale_attr_value）"></a>29 SKU销售属性表（sku_sale_attr_value）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>id</td>
+</tr>
+<tr>
+<td><strong>sku_id</strong></td>
+<td>库存单元id</td>
+</tr>
+<tr>
+<td><strong>spu_id</strong></td>
+<td>spu_id（冗余）</td>
+</tr>
+<tr>
+<td><strong>sale_attr_value_id</strong></td>
+<td>销售属性值id</td>
+</tr>
+<tr>
+<td><strong>sale_attr_id</strong></td>
+<td>销售属性id</td>
+</tr>
+<tr>
+<td><strong>sale_attr_name</strong></td>
+<td>销售属性值名称</td>
+</tr>
+<tr>
+<td><strong>sale_attr_value_name</strong></td>
+<td>销售属性值名称</td>
+</tr>
+</tbody></table>
+<h3 id="30-SPU信息表（spu-info）"><a href="#30-SPU信息表（spu-info）" class="headerlink" title="30 SPU信息表（spu_info）"></a>30 SPU信息表（spu_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>商品id</td>
+</tr>
+<tr>
+<td><strong>spu_name</strong></td>
+<td>商品名称</td>
+</tr>
+<tr>
+<td><strong>description</strong></td>
+<td>商品描述(后台简述）</td>
+</tr>
+<tr>
+<td><strong>category3_id</strong></td>
+<td>三级分类id</td>
+</tr>
+<tr>
+<td><strong>tm_id</strong></td>
+<td>品牌id</td>
+</tr>
+</tbody></table>
+<h3 id="31-SPU销售属性表（spu-sale-attr）"><a href="#31-SPU销售属性表（spu-sale-attr）" class="headerlink" title="31 SPU销售属性表（spu_sale_attr）"></a>31 SPU销售属性表（spu_sale_attr）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号（业务中无关联）</td>
+</tr>
+<tr>
+<td><strong>spu_id</strong></td>
+<td>商品id</td>
+</tr>
+<tr>
+<td><strong>base_sale_attr_id</strong></td>
+<td>销售属性id</td>
+</tr>
+<tr>
+<td><strong>sale_attr_name</strong></td>
+<td>销售属性名称（冗余）</td>
+</tr>
+</tbody></table>
+<h3 id="32-SPU销售属性值表（spu-sale-attr-value）"><a href="#32-SPU销售属性值表（spu-sale-attr-value）" class="headerlink" title="32 SPU销售属性值表（spu_sale_attr_value）"></a>32 SPU销售属性值表（spu_sale_attr_value）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>销售属性值编号</td>
+</tr>
+<tr>
+<td><strong>spu_id</strong></td>
+<td>商品id</td>
+</tr>
+<tr>
+<td><strong>base_sale_attr_id</strong></td>
+<td>销售属性id</td>
+</tr>
+<tr>
+<td><strong>sale_attr_value_name</strong></td>
+<td>销售属性值名称</td>
+</tr>
+<tr>
+<td><strong>sale_attr_name</strong></td>
+<td>销售属性名称（冗余）</td>
+</tr>
+</tbody></table>
+<h3 id="33-用户地址表（user-address）"><a href="#33-用户地址表（user-address）" class="headerlink" title="33 用户地址表（user_address）"></a>33 用户地址表（user_address）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>user_id</strong></td>
+<td>用户id</td>
+</tr>
+<tr>
+<td><strong>province_id</strong></td>
+<td>省份id</td>
+</tr>
+<tr>
+<td><strong>user_address</strong></td>
+<td>用户地址</td>
+</tr>
+<tr>
+<td><strong>consignee</strong></td>
+<td>收件人</td>
+</tr>
+<tr>
+<td><strong>phone_num</strong></td>
+<td>联系方式</td>
+</tr>
+<tr>
+<td><strong>is_default</strong></td>
+<td>是否是默认</td>
+</tr>
+</tbody></table>
+<h3 id="34-用户信息表（user-info）"><a href="#34-用户信息表（user-info）" class="headerlink" title="34 用户信息表（user_info）"></a>34 用户信息表（user_info）</h3><table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>id</strong></td>
+<td>编号</td>
+</tr>
+<tr>
+<td><strong>login_name</strong></td>
+<td>用户名称</td>
+</tr>
+<tr>
+<td><strong>nick_name</strong></td>
+<td>用户昵称</td>
+</tr>
+<tr>
+<td><strong>passwd</strong></td>
+<td>用户密码</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>用户姓名</td>
+</tr>
+<tr>
+<td><strong>phone_num</strong></td>
+<td>手机号</td>
+</tr>
+<tr>
+<td><strong>email</strong></td>
+<td>邮箱</td>
+</tr>
+<tr>
+<td><strong>head_img</strong></td>
+<td>头像</td>
+</tr>
+<tr>
+<td><strong>user_level</strong></td>
+<td>用户级别</td>
+</tr>
+<tr>
+<td><strong>birthday</strong></td>
+<td>用户生日</td>
+</tr>
+<tr>
+<td><strong>gender</strong></td>
+<td>性别 M男,F女</td>
+</tr>
+<tr>
+<td><strong>create_time</strong></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td><strong>operate_time</strong></td>
+<td>修改时间</td>
+</tr>
+<tr>
+<td><strong>status</strong></td>
+<td>状态</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>数据表</category>
+      </categories>
+      <tags>
+        <tag>数据表</tag>
       </tags>
   </entry>
   <entry>
