@@ -155,7 +155,7 @@
 
 <h4 id="7-在集群上分发配置好的-Hadoop-配置文件"><a href="#7-在集群上分发配置好的-Hadoop-配置文件" class="headerlink" title="(7)在集群上分发配置好的 Hadoop 配置文件"></a>(7)在集群上分发配置好的 Hadoop 配置文件</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">xsync /export/servers/hadoop-3.1.3/etc/hadoop/</span><br></pre></td></tr></table></figure>
 
-<p><a href="Hadoop%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/%E7%9B%AE%E5%BD%95.png">xsync分发脚本详情跳转</a></p>
+
 <h2 id="7-群起集群"><a href="#7-群起集群" class="headerlink" title="7.群起集群"></a>7.群起集群</h2><h3 id="7-1格式化NameNode"><a href="#7-1格式化NameNode" class="headerlink" title="7.1格式化NameNode"></a>7.1格式化NameNode</h3><p><strong>如果集群是第一次启动，需要在 hadoop1 节点格式化 NameNode</strong></p>
 <p><strong>注意</strong>:格式化 NameNode，会产生新的集群 id，导致 NameNode 和 DataNode 的集群 id 不一致，集群找不 到已往数据。如果集群在运行过程中报错，<u>需要重新格式化 NameNode 的话，一定要先停止 namenode 和 datanode 进程，并且要删除所有机器的 data 和 logs 目录，然后再进行格式化。</u></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hdfs namenode -format</span><br></pre></td></tr></table></figure>
