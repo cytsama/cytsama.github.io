@@ -485,8 +485,7 @@
     <content><![CDATA[<h2 id="电商系统表结构"><a href="#电商系统表结构" class="headerlink" title="电商系统表结构"></a>电商系统表结构</h2><p>电商数仓项目业务数据所涉及的表结构</p>
 <a id="more"></a>
 
-<p><a href="http://wd.cytsama.cn/">世界疫情</a></p>
-<p><a href="http://cn.cytsama.cn/">中国疫情</a></p>
+
 <h3 id="1-活动信息表（activity-info）"><a href="#1-活动信息表（activity-info）" class="headerlink" title="1 活动信息表（activity_info）"></a>1 活动信息表（activity_info）</h3><table>
 <thead>
 <tr>
